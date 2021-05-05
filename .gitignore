@@ -1,0 +1,5 @@
+.vs/
+
+# Compiled Artifacts
+backend/Profile.API/obj/
+backend/Profile.API/bin/
