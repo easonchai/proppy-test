@@ -10,8 +10,8 @@ using Proppy.API.Persistence.Contexts;
 namespace Proppy.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210505053509_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20210505160016_Initialize")]
+    partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -88,6 +88,12 @@ namespace Proppy.API.Migrations
                         .HasMaxLength(20);
 
                     b.HasKey("Code");
+
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("Description")
+                        .IsUnique();
 
                     b.ToTable("Positions");
 

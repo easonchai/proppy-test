@@ -42,3 +42,15 @@ dotnet run # This will run the backend
 <br>
 
 Once complete, you may test the API by going to `localhost:5000/api/positions`. If you run into issues due to insecure connection, you may alternatively use the HTTPS url at `https://localhost:5001/api/positions`
+
+## Useful Commands
+
+```bash
+dotnet run                  # Starts the API
+dotnet ef migrations add     # Adds migration
+dotnet ef database update   # Runs migrations
+dotnet ef database update 0 # Reset all migrations
+```
+
+_References: https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli_ <br>
+*https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/managing?tabs=dotnet-core-cli*

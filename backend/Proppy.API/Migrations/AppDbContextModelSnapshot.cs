@@ -87,6 +87,12 @@ namespace Proppy.API.Migrations
 
                     b.HasKey("Code");
 
+                    b.HasIndex("Code")
+                        .IsUnique();
+
+                    b.HasIndex("Description")
+                        .IsUnique();
+
                     b.ToTable("Positions");
 
                     b.HasData(
