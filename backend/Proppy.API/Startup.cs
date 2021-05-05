@@ -38,6 +38,7 @@ namespace Proppy.API
             });
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IPositionService, PositionService>();
+            services.AddScoped<IUnitOfWork, UnitOfWork>();
             // services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddAutoMapper();
         }
