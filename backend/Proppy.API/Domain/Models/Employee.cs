@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System;
 
-namespace Profile.API.Domain.Models
+namespace Proppy.API.Domain.Models
 {
     public class Employee
     {

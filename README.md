@@ -34,7 +34,7 @@ Then, run the commands below:
 
 ```bash
 Windows:
-cd backend\Profile.API # Ensure you're in the correct directory
+cd backend\Proppy.API # Ensure you're in the correct directory
 dotnet ef database update   # This will run migrations
 dotnet run # This will run the backend
 ```

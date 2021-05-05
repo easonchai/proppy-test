@@ -1,6 +1,6 @@
 using System.Collections.Generic;
 
-namespace Profile.API.Domain.Models
+namespace Proppy.API.Domain.Models
 {
     public class Position
     {

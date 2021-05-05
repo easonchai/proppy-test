@@ -1,4 +1,4 @@
-namespace Profile.API.Resources
+namespace Proppy.API.Resources
 {
     public class PositionResource
     {

@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Profile.API.Domain.Models;
+using Proppy.API.Domain.Models;
 
-namespace Profile.API.Domain.Repositories
+namespace Proppy.API.Domain.Services
 {
-    public interface IPositionRepository
+    public interface IPositionService
     {
         Task<IEnumerable<Position>> ListAsync();
     }

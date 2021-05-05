@@ -1,6 +1,6 @@
-using Profile.API.Persistence.Contexts;
+using Proppy.API.Persistence.Contexts;
 
-namespace Profile.API.Persistence.Repositories
+namespace Proppy.API.Persistence.Repositories
 {
     public abstract class BaseRepository
     {

@@ -1,5 +1,6 @@
 .vs/
+.vscode/
 
 # Compiled Artifacts
-backend/Profile.API/obj/
-backend/Profile.API/bin/
+backend/Proppy.API/obj/
+backend/Proppy.API/bin/

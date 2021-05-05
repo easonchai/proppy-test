@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
-using Profile.API.Domain.Models;
-using Profile.API.Domain.Services;
-using Profile.API.Domain.Repositories;
+using Proppy.API.Domain.Models;
+using Proppy.API.Domain.Services;
+using Proppy.API.Domain.Repositories;
 
-namespace Profile.API.Services
+namespace Proppy.API.Services
 {
     public class PositionService: IPositionService
     {

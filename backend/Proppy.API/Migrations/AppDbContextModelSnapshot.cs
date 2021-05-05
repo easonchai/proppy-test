@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
-using Profile.API.Persistence.Contexts;
+using Proppy.API.Persistence.Contexts;
 
-namespace Profile.API.Migrations
+namespace Proppy.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210505053509_InitialCreate")]
-    partial class InitialCreate
+    partial class AppDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -21,7 +19,7 @@ namespace Profile.API.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Profile.API.Domain.Models.Employee", b =>
+            modelBuilder.Entity("Proppy.API.Domain.Models.Employee", b =>
                 {
                     b.Property<long>("ID")
                         .ValueGeneratedOnAdd()
@@ -75,7 +73,7 @@ namespace Profile.API.Migrations
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("Profile.API.Domain.Models.Position", b =>
+            modelBuilder.Entity("Proppy.API.Domain.Models.Position", b =>
                 {
                     b.Property<string>("Code")
                         .ValueGeneratedOnAdd()
@@ -99,9 +97,9 @@ namespace Profile.API.Migrations
                     );
                 });
 
-            modelBuilder.Entity("Profile.API.Domain.Models.Employee", b =>
+            modelBuilder.Entity("Proppy.API.Domain.Models.Employee", b =>
                 {
-                    b.HasOne("Profile.API.Domain.Models.Position", "Position")
+                    b.HasOne("Proppy.API.Domain.Models.Position", "Position")
                         .WithMany("Employees")
                         .HasForeignKey("Position_Code")
                         .OnDelete(DeleteBehavior.Cascade);

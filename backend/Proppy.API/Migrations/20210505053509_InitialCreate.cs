@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace Profile.API.Migrations
+namespace Proppy.API.Migrations
 {
     public partial class InitialCreate : Migration
     {

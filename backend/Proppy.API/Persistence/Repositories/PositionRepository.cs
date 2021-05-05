@@ -1,12 +1,12 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
-using Profile.API.Domain.Models;
-using Profile.API.Domain.Repositories;
-using Profile.API.Persistence.Contexts;
+using Proppy.API.Domain.Models;
+using Proppy.API.Domain.Repositories;
+using Proppy.API.Persistence.Contexts;
 
 
-namespace Profile.API.Persistence.Repositories
+namespace Proppy.API.Persistence.Repositories
 {
     public class PositionRepository: BaseRepository, IPositionRepository
     {

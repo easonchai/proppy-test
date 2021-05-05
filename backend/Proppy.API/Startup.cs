@@ -10,15 +10,15 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using Microsoft.Extensions.Options;
-using Profile.API.Persistence.Repositories;
-using Profile.API.Persistence.Contexts;
-using Profile.API.Services;
-using Profile.API.Domain.Services;
-using Profile.API.Domain.Repositories;
+using Proppy.API.Persistence.Repositories;
+using Proppy.API.Persistence.Contexts;
+using Proppy.API.Services;
+using Proppy.API.Domain.Services;
+using Proppy.API.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 
-namespace Profile.API
+namespace Proppy.API
 {
     public class Startup
     {

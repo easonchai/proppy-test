@@ -1,10 +1,10 @@
 using Microsoft.AspNetCore.Mvc;
-using Profile.API.Domain.Services;
+using Proppy.API.Domain.Services;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using Profile.API.Domain.Models;
+using Proppy.API.Domain.Models;
 
-namespace Profile.API.Controllers
+namespace Proppy.API.Controllers
 {
     [Route("/api/[controller]")]
     public class PositionController: Controller

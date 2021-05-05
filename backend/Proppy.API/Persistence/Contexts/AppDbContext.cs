@@ -1,7 +1,7 @@
 using Microsoft.EntityFrameworkCore;
-using Profile.API.Domain.Models;
+using Proppy.API.Domain.Models;
 
-namespace Profile.API.Persistence.Contexts
+namespace Proppy.API.Persistence.Contexts
 {
     public class AppDbContext: DbContext
     {
