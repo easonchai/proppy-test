@@ -1,31 +1,32 @@
-# Test Application
+# Test Application 📝
 
 _This is a test application/assignment for Proppy_
 
-## About
+## About 🤔
 
 This application is used to view Employees data within a company. It is split into two sections: <br>
 
 1. Mobile App
-2. .NET Core API
-   <br>
+2. .NET Core Web API
 
-## Getting Started
+<br>
 
-### Requirements
+## Getting Started 🏃
+
+### Requirements 🚩
 
 - .NET Core 2.1
 - Microsoft SQL Server
 - NodeJS
 
-### Setup
+### Setup 🏗️
 
 First, ensure that your SQL server is running & proper credentials have been setup.
 
 <br>
 
 Then, modify the `connection string` in appsettings.json using the format: <br>
-`"Server=<server-name>;Database=<db-nam>;User Id=<username>;Password=<password>;"`
+`"Server=<server-name>;Database=<db-name>;User Id=<username>;Password=<password>;"`
 
 <br>
 
