@@ -28,5 +28,12 @@ namespace Proppy.API.Controllers
 
             return resources;
         }
+
+        [HttpPost]
+        public async Task<IActionResult> PostAsync([FromBody] SavePositionResource resource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+        }
     }
 }
