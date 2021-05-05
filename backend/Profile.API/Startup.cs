@@ -16,6 +16,7 @@ using Profile.API.Services;
 using Profile.API.Domain.Services;
 using Profile.API.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
+using AutoMapper;
 
 namespace Profile.API
 {
@@ -38,6 +39,7 @@ namespace Profile.API
             services.AddScoped<IPositionRepository, PositionRepository>();
             services.AddScoped<IPositionService, PositionService>();
             // services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            services.AddAutoMapper();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
