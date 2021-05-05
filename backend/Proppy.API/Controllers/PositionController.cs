@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using Proppy.API.Domain.Models;
 using AutoMapper;
 using Proppy.API.Resources;
+using Proppy.API.Extensions;
 
 namespace Proppy.API.Controllers
 {
