@@ -35,6 +35,8 @@ namespace Proppy.API.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState.GetErrorMessages());
+            
+            var position = _mapper.Map<SavePositionResource, Position>(resource);
         }
     }
 }
