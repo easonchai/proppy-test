@@ -16,7 +16,7 @@ namespace Profile.API.Persistence.Repositories
 
         public async Task<IEnumerable<Position>> ListAsync()
         {
-            return await _context.Position.ToListAsync();
+            return await _context.Positions.ToListAsync();
         }
     }
 }
