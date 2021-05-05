@@ -6,6 +6,9 @@ namespace Proppy.API.Mapping
 {
     public class ModelToResourceProppy: Profile
     {
-        
+        public ModelToResourceProppy()
+        {
+            CreateMap<Position, PositionResource>();
+        }
     }
 }
