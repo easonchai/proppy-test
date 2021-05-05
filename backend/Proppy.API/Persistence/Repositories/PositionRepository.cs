@@ -18,5 +18,10 @@ namespace Proppy.API.Persistence.Repositories
         {
             return await _context.Positions.ToListAsync();
         }
+
+        public async Task AddAsync(Position position)
+        {
+            await _context.Positions.AddAsync(position);
+        }
     }
 }

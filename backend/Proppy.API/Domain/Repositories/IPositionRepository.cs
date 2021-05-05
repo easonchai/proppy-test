@@ -7,5 +7,6 @@ namespace Proppy.API.Domain.Repositories
     public interface IPositionRepository
     {
         Task<IEnumerable<Position>> ListAsync();
+        Task AddAsync(Position position);
     }
 }
