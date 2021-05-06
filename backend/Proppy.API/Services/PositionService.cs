@@ -86,7 +86,7 @@ namespace Proppy.API.Services
             }
             catch (Exception ex)
             {
-                return new PositionResponse($"An error occurred when updating the category: {ex.Message}");
+                return new PositionResponse($"An error occurred when deleting the position: {ex.Message}");
             }
         }
     }

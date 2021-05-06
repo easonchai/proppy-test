@@ -51,7 +51,22 @@ namespace Proppy.API.Services
 
         public async Task<EmployeeResponse> DeleteAsync(int id)
         {
+            var existingEmployee = await _employeeRepository.FindByIdAsync(id);
+
+            if (existingEmployee == null)
+                return new EmployeeResponse($"Employee with ID: {id} not found.");
             
+            try
+            {
+                _employeeRepository.Remove(existingEmployee)
+                await _unitOfWork.CompleteAsync();
+
+                return new EmployeeResponse(existingEmployee);
+            }
+            catch (Exception ex)
+            {
+                return new EmployeeResponse($"An error occurred when deleting the employee: {ex.Message}");
+            }   
         }
     }
 }
