@@ -7,6 +7,7 @@ using Proppy.API.Persistence.Contexts;
 using Proppy.API.Domain.Models.Queries;
 using System.Linq;
 using System.Linq.Dynamic.Core;
+using System;
 
 namespace Proppy.API.Persistence.Repositories
 {
@@ -14,6 +15,34 @@ namespace Proppy.API.Persistence.Repositories
     {
         public EmployeeRepository(AppDbContext context): base(context)
         {
+        }
+
+        public IQueryable<Employee> FilterBy(IQueryable<Employee> queryable, EmployeesQuery query)
+        {
+            if (!string.IsNullOrEmpty(query.Gender))
+            {
+                queryable = queryable.Where(e => e.Gender == query.Gender);
+            }
+            if (!string.IsNullOrEmpty(query.PositionCode))
+            {
+                queryable = queryable.Where(e => e.Position_Code == query.PositionCode);
+            }
+            if (!string.IsNullOrEmpty(query.DOB))
+            {
+                var dobString = query.DOB.Split("-");
+                var month = dobString[0];
+                var year = dobString.Length == 2 ? dobString[1] : null;
+
+                var validMonth = Int32.TryParse(month, out int numericMonth);
+                var validYear = Int32.TryParse(year, out int numericYear);
+                if (
+                    validMonth && validYear &&
+                    numericMonth > 0 && numericMonth < 12 &&
+                    numericYear > 0 && numericYear < 9999
+                )
+                    queryable = queryable.Where(e => e.DOB.Month == numericMonth && e.DOB.Year == numericYear);
+            }
+            return queryable;
         }
 
         public async Task<QueryResult<Employee>> ListAsync(EmployeesQuery query)
@@ -31,10 +60,7 @@ namespace Proppy.API.Persistence.Repositories
                                                                 .AsNoTracking(); // Disable tracking as not needed
 
             // Filter
-            if (!string.IsNullOrEmpty(query.Gender))
-            {
-                queryable = queryable.Where(e => e.Gender == query.Gender);
-            }
+            queryable = FilterBy(queryable, query);
 
             // Count the rows present in this query
             int totalItems = await queryable.CountAsync();
