@@ -2,29 +2,19 @@ using Proppy.API.Domain.Models;
 
 namespace Proppy.API.Domain.Communication
 {
-    public class PositionResponse: BaseResponse
+    public class EmployeeResponse: BaseResponse
     {
-        public Position Position {get; private set;}
+        public Employee Employee {get; private set;}
 
-        private PositionResponse(bool success, string message, Position position): base(success, message)
+        private EmployeeResponse(bool success, string message, Employee employee): base(success, message)
         {
-            Position = position;
+            Employee = employee;
         }
 
-        /// <summary>
-        /// Creates a success response.
-        /// </summary>
-        /// <param name="position">Saved position.</param>
-        /// <returns>Response.</returns>
-        public PositionResponse(Position position): this(true, string.Empty, position)
+        public EmployeeResponse(Employee employee): this(true, string.Empty, employee)
         { }
 
-        /// <summary>
-        /// Creates am error response.
-        /// </summary>
-        /// <param name="message">Error message.</param>
-        /// <returns>Response.</returns>
-        public PositionResponse(string message): this(false, message, null)
+        public EmployeeResponse(string message): this(false, message, null)
         { }
     }
 }

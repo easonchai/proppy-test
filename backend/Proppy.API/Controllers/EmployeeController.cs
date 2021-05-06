@@ -28,5 +28,16 @@ namespace Proppy.API.Controllers
 
             return resources;
         }
+
+        [HttpPost]
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateAsync(int id, [FromBody])
+        {
+            var employees = await _employeeService.ListAsync();
+            var resources = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeResource>>(employees);
+
+            return resources;
+        }
     }
 }

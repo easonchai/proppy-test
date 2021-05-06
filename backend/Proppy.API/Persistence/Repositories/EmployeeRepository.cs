@@ -18,5 +18,25 @@ namespace Proppy.API.Persistence.Repositories
             return await _context.Employees.Include(e => e.Position)
                                             .ToListAsync();
         }
+
+        public async Task AddAsync(Employee employee)
+        {
+            await _context.Employees.AddAsync(employee);
+        }
+
+        public async Task<Employee> FindByIdAsync(int code)
+        {
+            return await _context.Employees.FindAsync(code);
+        }
+
+        public void Update(Employee employee)
+        {
+            _context.Employees.Update(employee);
+        }
+
+        public void Remove(Employee employee)
+        {
+            _context.Employees.Remove(employee);
+        }
     }
 }
