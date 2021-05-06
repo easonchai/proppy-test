@@ -26,7 +26,7 @@ namespace Proppy.API.Services
             return await _employeeRepository.ListAsync();
         }
 
-        public async Task<Employee> GetByIdAsync(int id)
+        public async Task<Employee> GetByIdAsync(long id)
         {
             return await _employeeRepository.FindByIdAsync(id);
         }
@@ -46,7 +46,7 @@ namespace Proppy.API.Services
             }
         }
 
-        public async Task<EmployeeResponse> UpdateAsync(int id, Employee employee)
+        public async Task<EmployeeResponse> UpdateAsync(long id, Employee employee)
         {
             var existingEmployee = await _employeeRepository.FindByIdAsync(id);
             var existingPosition = await _positionRepository.FindByCodeAsync(employee.Position_Code);
@@ -82,7 +82,7 @@ namespace Proppy.API.Services
             }
         }
 
-        public async Task<EmployeeResponse> DeleteAsync(int id)
+        public async Task<EmployeeResponse> DeleteAsync(long id)
         {
             var existingEmployee = await _employeeRepository.FindByIdAsync(id);
 

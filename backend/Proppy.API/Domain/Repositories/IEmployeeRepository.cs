@@ -8,7 +8,7 @@ namespace Proppy.API.Domain.Repositories
     {
         Task<IEnumerable<Employee>> ListAsync();
         Task AddAsync(Employee employee);
-        Task<Employee> FindByIdAsync(int id);
+        Task<Employee> FindByIdAsync(long id);
         void Update(Employee employee);
         void Remove(Employee employee);
     }

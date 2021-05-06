@@ -36,7 +36,7 @@ namespace Proppy.API.Persistence.Contexts
 
             builder.Entity<Employee>().ToTable("Employees");
             builder.Entity<Employee>().HasKey(p => p.ID);
-            builder.Entity<Employee>().Property(p => p.ID).HasColumnType("int").HasMaxLength(19).IsRequired().UseSqlServerIdentityColumn();
+            builder.Entity<Employee>().Property(p => p.ID).HasColumnType("bigint").HasMaxLength(19).IsRequired();
             builder.Entity<Employee>().HasIndex(p => p.ID).IsUnique();
             builder.Entity<Employee>().Property(p => p.Name).HasColumnType("varchar(30)").HasMaxLength(30).IsRequired();
             builder.Entity<Employee>().Property(p => p.Phone_No).HasColumnType("varchar(20)").HasMaxLength(20).IsRequired();
@@ -55,7 +55,7 @@ namespace Proppy.API.Persistence.Contexts
             (
                 new Employee
                 {
-                    ID = 1,
+                    ID = 1L,
                     Name = "Mary Tan",
                     Phone_No = "0161234567",
                     Email = "abc@gmail.com",
@@ -68,7 +68,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 2,
+                    ID = 2L,
                     Name = "Aliasgar",
                     Phone_No = "+60161234568",
                     Email = "xyz@yahoo.com",
@@ -81,7 +81,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 3,
+                    ID = 3L,
                     Name = "Justin Biieber",
                     Phone_No = "0161234569",
                     Email = "abc2@gmail.com",
@@ -94,7 +94,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 4,
+                    ID = 4L,
                     Name = "Chow Yun Fatt",
                     Phone_No = "0161234570",
                     Email = "xyz2@yahoo.com",
@@ -107,7 +107,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 5,
+                    ID = 5L,
                     Name = "Angela Baby",
                     Phone_No = "0161234571",
                     Email = "abc3@gmail.com",
@@ -120,7 +120,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 6,
+                    ID = 6L,
                     Name = "Mohd Rizal",
                     Phone_No = "+80161234569",
                     Email = "xyz3@yahoo.com",
@@ -133,7 +133,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 7,
+                    ID = 7L,
                     Name = "Ken yoong",
                     Phone_No = "+50161234571",
                     Email = "abc4@gmail.com",
@@ -146,7 +146,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 8,
+                    ID = 8L,
                     Name = "Willson Wong",
                     Phone_No = "+44161234533",
                     Email = "xyz4@yahoo.com",
@@ -159,7 +159,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 9,
+                    ID = 9L,
                     Name = "Vivian Chong",
                     Phone_No = "0161234575",
                     Email = "abc5@gmail.com",
@@ -172,7 +172,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 10,
+                    ID = 10L,
                     Name = "Shirley Tan Wai Ling",
                     Phone_No = "0161234576",
                     Email = "xyz5@yahoo.com",
@@ -185,7 +185,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 11,
+                    ID = 11L,
                     Name = "Mary Tan 2",
                     Phone_No = "01612345672",
                     Email = "abc9@gmail.com",
@@ -198,7 +198,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 12,
+                    ID = 12L,
                     Name = "Aliasgar 2",
                     Phone_No = "+601612345682",
                     Email = "xyz9@yahoo.com",
@@ -211,7 +211,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 13,
+                    ID = 13L,
                     Name = "Justin Biieber 2",
                     Phone_No = "01612345692",
                     Email = "abc29@gmail.com",
@@ -224,7 +224,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 14,
+                    ID = 14L,
                     Name = "Chow Yun Fatt 2",
                     Phone_No = "01612345702",
                     Email = "xyz29@yahoo.com",
@@ -237,7 +237,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 15,
+                    ID = 15L,
                     Name = "Angela Baby 2",
                     Phone_No = "01612345712",
                     Email = "abc39@gmail.com",
@@ -250,7 +250,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 16,
+                    ID = 16L,
                     Name = "Mohd Rizal 2",
                     Phone_No = "+801612345692",
                     Email = "xyz39@yahoo.com",
@@ -263,7 +263,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 17,
+                    ID = 17L,
                     Name = "Ken yoong 2",
                     Phone_No = "+501612345712",
                     Email = "abc49@gmail.com",
@@ -276,7 +276,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 18,
+                    ID = 18L,
                     Name = "Willson Wong 2",
                     Phone_No = "+441612345332",
                     Email = "xyz49@yahoo.com",
@@ -289,7 +289,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 19,
+                    ID = 19L,
                     Name = "Vivian Chong 2",
                     Phone_No = "01612345752",
                     Email = "abc59@gmail.com",
@@ -302,7 +302,7 @@ namespace Proppy.API.Persistence.Contexts
                 },
                 new Employee
                 {
-                    ID = 20,
+                    ID = 20L,
                     Name = "Shirley Tan Wai Ling 2",
                     Phone_No = "01612345762",
                     Email = "xyz59@yahoo.com",

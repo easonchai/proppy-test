@@ -8,9 +8,9 @@ namespace Proppy.API.Domain.Services
     public interface IEmployeeService
     {
         Task<IEnumerable<Employee>> ListAsync();
-        Task<Employee> GetByIdAsync(int id);
+        Task<Employee> GetByIdAsync(long id);
         Task<EmployeeResponse> SaveAsync(Employee employee);
-        Task<EmployeeResponse> UpdateAsync(int id, Employee employee);
-        Task<EmployeeResponse> DeleteAsync(int id);
+        Task<EmployeeResponse> UpdateAsync(long id, Employee employee);
+        Task<EmployeeResponse> DeleteAsync(long id);
     }
 }

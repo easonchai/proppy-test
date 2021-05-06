@@ -24,7 +24,7 @@ namespace Proppy.API.Persistence.Repositories
             await _context.Employees.AddAsync(employee);
         }
 
-        public async Task<Employee> FindByIdAsync(int code)
+        public async Task<Employee> FindByIdAsync(long code)
         {
             // Include changes the return type, so we have to change ToListAsync -> FirstOrDefaultAsync
             return await _context.Employees.Include(e => e.Position)
