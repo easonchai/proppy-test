@@ -29,7 +29,6 @@ namespace Proppy.API.Resources
         public DateTime DOB {get; set;} 
 
         [Required]
-        [MaxLength(16)]
         public int Salary {get; set;}
 
         [Required]

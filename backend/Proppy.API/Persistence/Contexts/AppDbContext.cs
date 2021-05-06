@@ -36,7 +36,7 @@ namespace Proppy.API.Persistence.Contexts
 
             builder.Entity<Employee>().ToTable("Employees");
             builder.Entity<Employee>().HasKey(p => p.ID);
-            builder.Entity<Employee>().Property(p => p.ID).HasColumnType("bigint").HasMaxLength(19).IsRequired().ValueGeneratedOnAdd();
+            builder.Entity<Employee>().Property(p => p.ID).HasColumnType("int").HasMaxLength(19).IsRequired().UseSqlServerIdentityColumn();
             builder.Entity<Employee>().HasIndex(p => p.ID).IsUnique();
             builder.Entity<Employee>().Property(p => p.Name).HasColumnType("varchar(30)").HasMaxLength(30).IsRequired();
             builder.Entity<Employee>().Property(p => p.Phone_No).HasColumnType("varchar(20)").HasMaxLength(20).IsRequired();
