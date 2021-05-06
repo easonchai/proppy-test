@@ -10,6 +10,8 @@ namespace Proppy.API.Mapping
         {
             CreateMap<SavePositionResource, Position>();
             CreateMap<UpdatePositionResource, Position>();
+
+            CreateMap<SaveEmployeeResource, Employee>();
         }
     }
 }
