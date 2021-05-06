@@ -30,6 +30,15 @@ namespace Proppy.API.Controllers
             return resources;
         }
 
+        [HttpGet("{id}")]
+        public async Task<EmployeeResource> GetAsync(int id)
+        {
+            var employee = await _employeeService.GetByIdAsync(id);
+            var resource = _mapper.Map<Employee, EmployeeResource>(employee);
+
+            return resource;
+        }
+
         [HttpPost]
         public async Task<IActionResult> PostAsync([FromBody] SaveEmployeeResource resource)
         {

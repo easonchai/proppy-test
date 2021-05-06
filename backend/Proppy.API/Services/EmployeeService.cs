@@ -26,6 +26,11 @@ namespace Proppy.API.Services
             return await _employeeRepository.ListAsync();
         }
 
+        public async Task<Employee> GetByIdAsync(int id)
+        {
+            return await _employeeRepository.FindByIdAsync(id);
+        }
+
         public async Task<EmployeeResponse> SaveAsync(Employee employee)
         {
             try
