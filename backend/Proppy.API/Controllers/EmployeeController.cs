@@ -55,13 +55,16 @@ namespace Proppy.API.Controllers
             
         }
 
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutAsync(int id, [FromBody])
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> DeleteAsync(int id)
         {
-            var employees = await _employeeService.ListAsync();
-            var resources = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeResource>>(employees);
+            var result = await _employeeService.DeleteAsync(id);
 
-            
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            var employeeResource = _mapper.Map<Employee, EmployeeResource>(result.Employee);
+            return Ok(employeeResource);
         }
     }
 }
