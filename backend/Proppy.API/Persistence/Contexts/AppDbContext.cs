@@ -41,6 +41,8 @@ namespace Proppy.API.Persistence.Contexts
             builder.Entity<Employee>().Property(p => p.Salary).HasColumnType("decimal(16)").HasMaxLength(16).IsRequired();
             builder.Entity<Employee>().Property(p => p.Remarks).HasColumnType("varchar(1000)").HasMaxLength(1000);
             builder.Entity<Employee>().Property(p => p.Photo).HasColumnType("varchar(30)").HasMaxLength(30).IsRequired();
+
+            
         }
     }
 }
