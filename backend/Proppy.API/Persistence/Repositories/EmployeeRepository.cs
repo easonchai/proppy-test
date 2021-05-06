@@ -4,6 +4,8 @@ using Microsoft.EntityFrameworkCore;
 using Proppy.API.Domain.Models;
 using Proppy.API.Domain.Repositories;
 using Proppy.API.Persistence.Contexts;
+using Proppy.API.Domain.Models.Queries;
+using System.Linq;
 
 namespace Proppy.API.Persistence.Repositories
 {
@@ -13,10 +15,40 @@ namespace Proppy.API.Persistence.Repositories
         {
         }
 
-        public async Task<IEnumerable<Employee>> ListAsync()
+        public async Task<QueryResult<Employee>> ListAsync(EmployeesQuery query)
         {
-            return await _context.Employees.Include(e => e.Position)
-                                            .ToListAsync();
+            /* 
+            We need to do a few things:
+            1. Filter (if provided)
+            2. Count
+            3. Sort
+            4. Paginate
+            5. Return
+            */
+
+            IQueryable<Employee> queryable = _context.Employees.Include(e => e.Position)
+                                                                .AsNoTracking(); // Disable tracking as not needed
+
+            // Filter
+            if (!string.IsNullOrEmpty(query.Gender))
+            {
+                queryable = queryable.Where(e => e.Gender == query.Gender);
+            }
+
+            // Count the rows present in this query
+            int totalItems = await queryable.CountAsync();
+
+            // Pagination
+            List<Employee> employees = await queryable.Skip((query.Page - 1) * query.ItemsPerPage)
+                                                        .Take(query.ItemsPerPage)
+                                                        .ToListAsync();
+
+            // Finally, return the object
+            return new QueryResult<Employee>
+            {
+                Items = employees,
+                TotalItems = totalItems
+            };
         }
 
         public async Task AddAsync(Employee employee)

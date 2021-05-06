@@ -6,7 +6,7 @@ using Proppy.API.Domain.Models;
 using Proppy.API.Domain.Services;
 using Proppy.API.Resources;
 using Proppy.API.Extensions;
-
+using Proppy.API.Domain.Models.Queries;
 namespace Proppy.API.Controllers
 {
     [Route("/api/[controller]")]
@@ -22,11 +22,12 @@ namespace Proppy.API.Controllers
         }
 
         [HttpGet]
-        public async Task<IEnumerable<EmployeeResource>> ListAsync()
+        public async Task<QueryResultResource<EmployeeResource>> ListAsync([FromQuery] EmployeeQueryResource query)
         {
-            var employees = await _employeeService.ListAsync();
-            var resources = _mapper.Map<IEnumerable<Employee>, IEnumerable<EmployeeResource>>(employees);
+            var employeesQuery = _mapper.Map<EmployeeQueryResource, EmployeesQuery>(query);
+            var queryResult = await _employeeService.ListAsync(employeesQuery);
 
+            var resources = _mapper.Map<QueryResult<Employee>, QueryResultResource<EmployeeResource>>(queryResult);
             return resources;
         }
 

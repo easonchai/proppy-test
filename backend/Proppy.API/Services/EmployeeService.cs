@@ -5,6 +5,7 @@ using Proppy.API.Domain.Repositories;
 using Proppy.API.Domain.Services;
 using Proppy.API.Domain.Communication;
 using System;
+using Proppy.API.Domain.Models.Queries;
 
 namespace Proppy.API.Services
 {
@@ -21,9 +22,9 @@ namespace Proppy.API.Services
             _positionRepository = positionRepository;
         }
 
-        public async Task<IEnumerable<Employee>> ListAsync()
+        public async Task<QueryResult<Employee>> ListAsync(EmployeesQuery query)
         {
-            return await _employeeRepository.ListAsync();
+            return await _employeeRepository.ListAsync(query);
         }
 
         public async Task<Employee> GetByIdAsync(long id)
