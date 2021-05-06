@@ -56,6 +56,45 @@ namespace Proppy.API.Migrations
                     { "D", "Designer" }
                 });
 
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "ID", "DOB", "Email", "Gender", "Name", "Phone_No", "Photo", "Position_Code", "Remarks", "Salary" },
+                values: new object[] { 1L, new DateTime(1970, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "abc@gmail.com", "F", "Mary Tan", "0161234567", "https://images.unsplash.com/1", "A", "", 5000m });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "ID", "DOB", "Email", "Gender", "Name", "Phone_No", "Photo", "Position_Code", "Remarks", "Salary" },
+                values: new object[] { 2L, new DateTime(1971, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), "xyz@yahoo.com", "M", "Aliasgar", "+60161234568", "https://images.unsplash.com/2", "B", "", 3500m });
+
+            migrationBuilder.InsertData(
+                table: "Employees",
+                columns: new[] { "ID", "DOB", "Email", "Gender", "Name", "Phone_No", "Photo", "Position_Code", "Remarks", "Salary" },
+                values: new object[] { 3L, new DateTime(1972, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), "abc2@gmail.com", "M", "Justin Biieber", "0161234569", "https://images.unsplash.com/3", "B", "", 3300m });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_Email",
+                table: "Employees",
+                column: "Email",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_ID",
+                table: "Employees",
+                column: "ID",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_Phone_No",
+                table: "Employees",
+                column: "Phone_No",
+                unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Employees_Photo",
+                table: "Employees",
+                column: "Photo",
+                unique: true);
+
             migrationBuilder.CreateIndex(
                 name: "IX_Employees_Position_Code",
                 table: "Employees",

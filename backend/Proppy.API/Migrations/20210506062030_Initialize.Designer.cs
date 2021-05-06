@@ -10,7 +10,7 @@ using Proppy.API.Persistence.Contexts;
 namespace Proppy.API.Migrations
 {
     [DbContext(typeof(AppDbContext))]
-    [Migration("20210505160016_Initialize")]
+    [Migration("20210506062030_Initialize")]
     partial class Initialize
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -70,9 +70,27 @@ namespace Proppy.API.Migrations
 
                     b.HasKey("ID");
 
+                    b.HasIndex("Email")
+                        .IsUnique();
+
+                    b.HasIndex("ID")
+                        .IsUnique();
+
+                    b.HasIndex("Phone_No")
+                        .IsUnique();
+
+                    b.HasIndex("Photo")
+                        .IsUnique();
+
                     b.HasIndex("Position_Code");
 
                     b.ToTable("Employees");
+
+                    b.HasData(
+                        new { ID = 1L, DOB = new DateTime(1970, 1, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), Email = "abc@gmail.com", Gender = "F", Name = "Mary Tan", Phone_No = "0161234567", Photo = "https://images.unsplash.com/1", Position_Code = "A", Remarks = "", Salary = 5000m },
+                        new { ID = 2L, DOB = new DateTime(1971, 3, 2, 0, 0, 0, 0, DateTimeKind.Unspecified), Email = "xyz@yahoo.com", Gender = "M", Name = "Aliasgar", Phone_No = "+60161234568", Photo = "https://images.unsplash.com/2", Position_Code = "B", Remarks = "", Salary = 3500m },
+                        new { ID = 3L, DOB = new DateTime(1972, 5, 25, 0, 0, 0, 0, DateTimeKind.Unspecified), Email = "abc2@gmail.com", Gender = "M", Name = "Justin Biieber", Phone_No = "0161234569", Photo = "https://images.unsplash.com/3", Position_Code = "B", Remarks = "", Salary = 3300m }
+                    );
                 });
 
             modelBuilder.Entity("Proppy.API.Domain.Models.Position", b =>

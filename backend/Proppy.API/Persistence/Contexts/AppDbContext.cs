@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Proppy.API.Domain.Models;
+using System;
 
 namespace Proppy.API.Persistence.Contexts
 {
@@ -46,6 +47,48 @@ namespace Proppy.API.Persistence.Contexts
             builder.Entity<Employee>().Property(p => p.Photo).HasColumnType("varchar(30)").HasMaxLength(30).IsRequired();
             builder.Entity<Employee>().HasIndex(p => p.Photo).IsUnique();
 
+            builder.Entity<Employee>().HasData
+            (
+                new Employee
+                {
+                    ID = 1,
+                    Name = "Mary Tan",
+                    Phone_No = "0161234567",
+                    Email = "abc@gmail.com",
+                    Gender = "F",
+                    Position_Code = "A",
+                    DOB = new DateTime(1970, 1, 25),
+                    Salary = 5000,
+                    Remarks = "",
+                    Photo = "https://images.unsplash.com/1",
+                },
+                new Employee
+                {
+                    ID = 2,
+                    Name = "Aliasgar",
+                    Phone_No = "+60161234568",
+                    Email = "xyz@yahoo.com",
+                    Gender = "M",
+                    Position_Code = "B",
+                    DOB = new DateTime(1971, 3, 2),
+                    Salary = 3500,
+                    Remarks = "",
+                    Photo = "https://images.unsplash.com/2",
+                },
+                new Employee
+                {
+                    ID = 3,
+                    Name = "Justin Biieber",
+                    Phone_No = "0161234569",
+                    Email = "abc2@gmail.com",
+                    Gender = "M",
+                    Position_Code = "B",
+                    DOB = new DateTime(1972, 5, 25),
+                    Salary = 3300,
+                    Remarks = "",
+                    Photo = "https://images.unsplash.com/3",
+                }
+            );
         }
     }
 }
