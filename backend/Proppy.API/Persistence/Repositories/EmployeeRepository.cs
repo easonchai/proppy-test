@@ -6,6 +6,7 @@ using Proppy.API.Domain.Repositories;
 using Proppy.API.Persistence.Contexts;
 using Proppy.API.Domain.Models.Queries;
 using System.Linq;
+using System.Linq.Dynamic.Core;
 
 namespace Proppy.API.Persistence.Repositories
 {
@@ -39,8 +40,26 @@ namespace Proppy.API.Persistence.Repositories
             int totalItems = await queryable.CountAsync();
 
             // Sorting
-            if (string.IsNullOrEmpty(query.SortBy))
-                queryable = queryable.OrderBy(e => e.CreatedDate);
+            if (!string.IsNullOrEmpty(query.SortBy))
+            {
+                // Getting the strings to check
+                var sortBy = query.SortBy.Split(":")[0];
+                var orderBy = query.SortBy.EndsWith("desc") ? "descending" : "ascending";
+
+                // Pulling the properties
+                var objProperties = typeof(Employee).GetProperties();
+                var property = objProperties.FirstOrDefault(em => em.Name.Equals(sortBy, System.StringComparison.InvariantCultureIgnoreCase));
+
+                if (property != null)
+                {
+                    var orderQuery = $"{property.Name.ToString()} {orderBy}";
+                    queryable = queryable.OrderBy(orderQuery);
+                }
+            }
+            else
+            {
+                queryable = queryable.OrderBy(e => e.ID); // Default
+            }
 
             // Pagination
             List<Employee> employees = await queryable.Skip((query.Page - 1) * query.ItemsPerPage)
