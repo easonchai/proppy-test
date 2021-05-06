@@ -26,7 +26,17 @@ namespace Proppy.API.Services
 
         public async Task<EmployeeResponse> SaveAsync(Employee employee)
         {
+            try
+            {
+                await _employeeRepository.AddAsync(employee);
+                await _unitOfWork.CompleteAsync();
 
+                return new EmployeeResponse(employee);
+            }
+            catch (Exception ex)
+            {
+                return new EmployeeResponse($"An error occurred when saving the employee: {ex.Message}");
+            }
         }
 
         public async Task<EmployeeResponse> UpdateAsync(int id, Employee employee)
@@ -58,7 +68,7 @@ namespace Proppy.API.Services
             
             try
             {
-                _employeeRepository.Remove(existingEmployee)
+                _employeeRepository.Remove(existingEmployee);
                 await _unitOfWork.CompleteAsync();
 
                 return new EmployeeResponse(existingEmployee);
