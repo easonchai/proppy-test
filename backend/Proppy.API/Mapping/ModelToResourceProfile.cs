@@ -9,9 +9,7 @@ namespace Proppy.API.Mapping
         public ModelToResourceProppy()
         {
             CreateMap<Position, PositionResource>();
-            CreateMap<Employee, EmployeeResource>()
-                .ForMember(src => src.Gender,
-                            options => options.MapFrom(src => src.Gender.ToDescriptionString()));
+            CreateMap<Employee, EmployeeResource>();
         }
     }
 }
