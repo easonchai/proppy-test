@@ -26,6 +26,11 @@ namespace Proppy.API.Services
 
         public async Task<SavePositionResponse> SaveAsync(Position position)
         {
+            var existingPosition = await _positionRepository.FindByCodeAsync(position.Code);
+
+            if (existingPosition != null)
+                return new SavePositionResponse($"An error occurred when saving the position: Duplicate key of {position.Code} not allowed.");
+
             try
             {
                 await _positionRepository.AddAsync(position);
