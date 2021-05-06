@@ -2,11 +2,11 @@ using Proppy.API.Domain.Models;
 
 namespace Proppy.API.Domain.Communication
 {
-    public class SavePositionResponse: BaseResponse
+    public class PositionResponse: BaseResponse
     {
         public Position Position {get; private set;}
 
-        private SavePositionResponse(bool success, string message, Position position): base(success, message)
+        private PositionResponse(bool success, string message, Position position): base(success, message)
         {
             Position = position;
         }
@@ -16,7 +16,7 @@ namespace Proppy.API.Domain.Communication
         /// </summary>
         /// <param name="position">Saved position.</param>
         /// <returns>Response.</returns>
-        public SavePositionResponse(Position position): this(true, string.Empty, position)
+        public PositionResponse(Position position): this(true, string.Empty, position)
         { }
 
         /// <summary>
@@ -24,7 +24,7 @@ namespace Proppy.API.Domain.Communication
         /// </summary>
         /// <param name="message">Error message.</param>
         /// <returns>Response.</returns>
-        public SavePositionResponse(string message): this(false, message, null)
+        public PositionResponse(string message): this(false, message, null)
         { }
     }
 }

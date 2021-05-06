@@ -61,5 +61,17 @@ namespace Proppy.API.Controllers
             var positionResource = _mapper.Map<Position, PositionResource>(result.Position);
             return Ok(positionResource);
         }
+
+        [HttpDelete("{code}")]
+        public async Task<IActionResult> DeleteAsync(string code)
+        {
+            var result = await _positionService.DeleteAsync(code);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+            
+            var positionResource = _mapper.Map<Position, PositionResource>(result.Position);
+            return Ok(positionResource);
+        }
     }
 }

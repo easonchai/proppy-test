@@ -10,5 +10,6 @@ namespace Proppy.API.Domain.Repositories
         Task AddAsync(Position position);
         Task<Position> FindByCodeAsync(string code);
         void Update(Position position);
+        void Remove(Position position);
     }
 }

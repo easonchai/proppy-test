@@ -33,5 +33,10 @@ namespace Proppy.API.Persistence.Repositories
         {
             _context.Positions.Update(position);
         }
+
+        public void Remove(Position position)
+        {
+            _context.Positions.Remove(position);
+        }
     }
 }

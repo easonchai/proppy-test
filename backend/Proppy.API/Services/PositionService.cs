@@ -24,33 +24,33 @@ namespace Proppy.API.Services
             return await _positionRepository.ListAsync();
         }
 
-        public async Task<SavePositionResponse> SaveAsync(Position position)
+        public async Task<PositionResponse> SaveAsync(Position position)
         {
             var existingPosition = await _positionRepository.FindByCodeAsync(position.Code);
 
             if (existingPosition != null)
-                return new SavePositionResponse($"An error occurred when saving the position: Duplicate key of {position.Code} not allowed.");
+                return new PositionResponse($"An error occurred when saving the position: Duplicate key of {position.Code} not allowed.");
 
             try
             {
                 await _positionRepository.AddAsync(position);
                 await _unitOfWork.CompleteAsync();
 
-                return new SavePositionResponse(position);
+                return new PositionResponse(position);
             }
             catch (Exception ex)
             {
                 // Add logging here
-                return new SavePositionResponse($"An error occurred when saving the position: {ex.Message}");
+                return new PositionResponse($"An error occurred when saving the position: {ex.Message}");
             }
         }
 
-        public async Task<SavePositionResponse> UpdateAsync(string code, Position position)
+        public async Task<PositionResponse> UpdateAsync(string code, Position position)
         {
             var existingPosition = await _positionRepository.FindByCodeAsync(code);
 
             if (existingPosition == null)
-                return new SavePositionResponse($"Position with code {code} not found.");
+                return new PositionResponse($"Position with code {code} not found.");
             
             // Here we update the existing position
             existingPosition.Code = code;
@@ -61,12 +61,32 @@ namespace Proppy.API.Services
                 _positionRepository.Update(existingPosition);
                 await _unitOfWork.CompleteAsync();
 
-                return new SavePositionResponse(existingPosition);
+                return new PositionResponse(existingPosition);
             }
             catch (Exception ex)
             {
                 // Log something here
-                return new SavePositionResponse($"An error occurred when updating the category: {ex.Message}");
+                return new PositionResponse($"An error occurred when updating the category: {ex.Message}");
+            }
+        }
+
+        public async Task<PositionResponse> DeleteAsync(string code)
+        {
+            var existingPosition = await _positionRepository.FindByCodeAsync(code);
+
+            if (existingPosition == null)
+                return new PositionResponse("Position not found");
+
+            try
+            {
+                _positionRepository.Remove(existingPosition);
+                await _unitOfWork.CompleteAsync();
+
+                return new PositionResponse(existingPosition);
+            }
+            catch (Exception ex)
+            {
+                return new PositionResponse($"An error occurred when updating the category: {ex.Message}");
             }
         }
     }

@@ -8,7 +8,8 @@ namespace Proppy.API.Domain.Services
     public interface IPositionService
     {
         Task<IEnumerable<Position>> ListAsync();
-        Task<SavePositionResponse> SaveAsync(Position position);
-        Task<SavePositionResponse> UpdateAsync(string Code, Position position);
+        Task<PositionResponse> SaveAsync(Position position);
+        Task<PositionResponse> UpdateAsync(string Code, Position position);
+        Task<PositionResponse> DeleteAsync(string code);
     }
 }
