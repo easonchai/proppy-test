@@ -9,6 +9,7 @@ namespace Proppy.API.Mapping
         public ResourceToModelProfile()
         {
             CreateMap<SavePositionResource, Position>();
+            CreateMap<UpdatePositionResource, Position>();
         }
     }
 }

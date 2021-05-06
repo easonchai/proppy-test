@@ -45,5 +45,21 @@ namespace Proppy.API.Controllers
             var positionResource = _mapper.Map<Position, PositionResource>(result.Position);
             return Ok(positionResource);
         }
+
+        [HttpPut("{code}")]
+        public async Task<IActionResult> PutAsync(string code, [FromBody] UpdatePositionResource resource)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState.GetErrorMessages());
+
+            var position = _mapper.Map<UpdatePositionResource, Position>(resource);
+            var result = await _positionService.UpdateAsync(code, position);
+
+            if (!result.Success)
+                return BadRequest(result.Message);
+
+            var positionResource = _mapper.Map<Position, PositionResource>(result.Position);
+            return Ok(positionResource);
+        }
     }
 }

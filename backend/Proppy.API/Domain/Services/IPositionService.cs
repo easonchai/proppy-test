@@ -9,5 +9,6 @@ namespace Proppy.API.Domain.Services
     {
         Task<IEnumerable<Position>> ListAsync();
         Task<SavePositionResponse> SaveAsync(Position position);
+        Task<SavePositionResponse> UpdateAsync(string Code, Position position);
     }
 }

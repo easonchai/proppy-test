@@ -8,5 +8,7 @@ namespace Proppy.API.Domain.Repositories
     {
         Task<IEnumerable<Position>> ListAsync();
         Task AddAsync(Position position);
+        Task<Position> FindByCodeAsync(string code);
+        void Update(Position position);
     }
 }

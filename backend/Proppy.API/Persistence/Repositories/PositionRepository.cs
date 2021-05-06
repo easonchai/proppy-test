@@ -23,5 +23,15 @@ namespace Proppy.API.Persistence.Repositories
         {
             await _context.Positions.AddAsync(position);
         }
+
+        public async Task<Position> FindByCodeAsync(string code)
+        {
+            return await _context.Positions.FindAsync(code);
+        }
+
+        public void Update(Position position)
+        {
+            _context.Positions.Update(position);
+        }
     }
 }

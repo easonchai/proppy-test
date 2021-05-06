@@ -39,5 +39,30 @@ namespace Proppy.API.Services
                 return new SavePositionResponse($"An error occurred when saving the position: {ex.Message}");
             }
         }
+
+        public async Task<SavePositionResponse> UpdateAsync(string code, Position position)
+        {
+            var existingPosition = await _positionRepository.FindByCodeAsync(code);
+
+            if (existingPosition == null)
+                return new SavePositionResponse($"Position with code {code} not found.");
+            
+            // Here we update the existing position
+            existingPosition.Code = code;
+            existingPosition.Description = position.Description;
+
+            try
+            {
+                _positionRepository.Update(existingPosition);
+                await _unitOfWork.CompleteAsync();
+
+                return new SavePositionResponse(existingPosition);
+            }
+            catch (Exception ex)
+            {
+                // Log something here
+                return new SavePositionResponse($"An error occurred when updating the category: {ex.Message}");
+            }
+        }
     }
 }
