@@ -33,10 +33,18 @@ namespace Proppy.API.Services
 
         public async Task<EmployeeResponse> SaveAsync(Employee employee)
         {
+            var existingPosition = await _positionRepository.FindByCodeAsync(employee.Position_Code);
+            
+            if (existingPosition == null)
+                return new EmployeeResponse($"Position with code: {employee.Position_Code} not found.");
+
             try
             {
                 await _employeeRepository.AddAsync(employee);
                 await _unitOfWork.CompleteAsync();
+
+                // Return the position object
+                employee.Position = existingPosition;
 
                 return new EmployeeResponse(employee);
             }

@@ -47,9 +47,10 @@ Once complete, you may test the API by going to `localhost:5000/api/positions`. 
 
 ```bash
 dotnet run                  # Starts the API
-dotnet ef migrations add     # Adds migration
+dotnet ef migrations add    # Adds migration
 dotnet ef database update   # Runs migrations
 dotnet ef database update 0 # Reset all migrations
+dotnet watch                # Watches for changes (hot reload)
 ```
 
 _References: https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli_ <br>
