@@ -1,6 +1,7 @@
 using AutoMapper;
 using Proppy.API.Domain.Models;
 using Proppy.API.Resources;
+using Proppy.API.Domain.Models.Queries;
 
 namespace Proppy.API.Mapping
 {
@@ -12,6 +13,7 @@ namespace Proppy.API.Mapping
             CreateMap<UpdatePositionResource, Position>();
 
             CreateMap<SaveEmployeeResource, Employee>();
+            CreateMap<EmployeeQueryResource, EmployeesQuery>();
         }
     }
 }
