@@ -30,17 +30,13 @@ namespace Proppy.API.Persistence.Repositories
             if (!string.IsNullOrEmpty(query.DOB))
             {
                 var dobString = query.DOB.Split("-");
-                var month = dobString[0];
-                var year = dobString.Length == 2 ? dobString[1] : null;
+                var year = dobString[0];
+                var month = dobString.Length == 2 ? dobString[1] : null;
 
-                var validMonth = Int32.TryParse(month, out int numericMonth);
-                var validYear = Int32.TryParse(year, out int numericYear);
-                if (
-                    validMonth && validYear &&
-                    numericMonth > 0 && numericMonth < 12 &&
-                    numericYear > 0 && numericYear < 9999
-                )
-                    queryable = queryable.Where(e => e.DOB.Month == numericMonth && e.DOB.Year == numericYear);
+                if (Int32.TryParse(month, out int numericMonth) && numericMonth > 0 && numericMonth < 12)
+                    queryable = queryable.Where(e => e.DOB.Month == numericMonth);
+                if (Int32.TryParse(year, out int numericYear) && numericYear > 0 && numericYear < 9999)
+                    queryable = queryable.Where(e => e.DOB.Year == numericYear);
             }
             return queryable;
         }
