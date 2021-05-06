@@ -38,6 +38,10 @@ namespace Proppy.API.Persistence.Repositories
             // Count the rows present in this query
             int totalItems = await queryable.CountAsync();
 
+            // Sorting
+            if (string.IsNullOrEmpty(query.SortBy))
+                queryable = queryable.OrderBy(e => e.CreatedDate);
+
             // Pagination
             List<Employee> employees = await queryable.Skip((query.Page - 1) * query.ItemsPerPage)
                                                         .Take(query.ItemsPerPage)

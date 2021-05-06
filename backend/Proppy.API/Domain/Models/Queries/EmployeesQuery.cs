@@ -4,7 +4,7 @@ namespace Proppy.API.Domain.Models.Queries
     {
         public string Gender {get; set;}
 
-        public EmployeesQuery(string gender, int page, int itemsPerPage): base(page, itemsPerPage)
+        public EmployeesQuery(string gender, int page, int itemsPerPage, string sortBy): base(page, itemsPerPage, sortBy)
         {
             Gender = gender;
         }
