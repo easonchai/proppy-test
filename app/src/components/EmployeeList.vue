@@ -14,7 +14,7 @@
           <h3 class="sub__title">
             {{ employee.phone_No }}
           </h3>
-          <p>RM {{ employee.salary }}</p>
+          <p>RM {{ displaySalary(employee.salary) }}</p>
         </ion-label>
       </ion-item>
     </ion-list>
@@ -103,6 +103,11 @@ export default {
       store.dispatch("employeeList/getAllEmployees", this.params, {
         root: true,
       });
+    },
+    displaySalary(value) {
+      const num = value.toFixed(2);
+      const parsed = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return parsed;
     },
   },
 };
