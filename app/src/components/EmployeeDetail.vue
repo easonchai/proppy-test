@@ -7,7 +7,7 @@
     <h3>Date of Birth:</h3>
     <h4>{{ displayDob(employee.dob) }}</h4>
     <h3>Remarks:</h3>
-    <h4>{{ employee.remarks }}</h4>
+    <h4>{{ employee.remarks === "" ? "None" : employee.remarks }}</h4>
   </div>
 </template>
 
