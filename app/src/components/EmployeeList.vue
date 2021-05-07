@@ -1,20 +1,8 @@
 <template>
   <div class="container">
-    <ion-list>
-      <ion-item>
-        <ion-label>Pokémon Yellow</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Mega Man X</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>The Legend of Zelda</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Pac-Man</ion-label>
-      </ion-item>
-      <ion-item>
-        <ion-label>Super Mario World</ion-label>
+    <ion-list v-if="employees">
+      <ion-item v-for="employee in employees" :key="employee.id">
+        <ion-label>{{ employee.name }}</ion-label>
       </ion-item>
     </ion-list>
     <pagination
@@ -50,17 +38,17 @@ export default {
   },
   computed: {
     employeeList: function() {
-      return store.state.employeeList?.employees;
+      return store.state.employeeList.employees;
     },
   },
   mounted() {
-    store.dispatch("employeeList/getAllEmployees", { root: true });
+    store.dispatch("employeeList/getAllEmployees", this.params, { root: true });
   },
   watch: {
     employeeList: {
       handler(employeeObj) {
         this.totalItems = employeeObj.totalItems;
-        this.employees = employeeObj.employees;
+        this.employees = employeeObj.items;
       },
       deep: true,
     },
@@ -68,12 +56,22 @@ export default {
   methods: {
     goNext() {
       this.params.page += 1;
+      store.dispatch("employeeList/getAllEmployees", this.params, {
+        root: true,
+      });
     },
     goPrev() {
       this.params.page -= 1;
+      store.dispatch("employeeList/getAllEmployees", this.params, {
+        root: true,
+      });
     },
   },
 };
 </script>
 
-<style></style>
+<style>
+.container {
+  padding: 2vh 2vw;
+}
+</style>

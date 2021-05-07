@@ -1,3 +1,4 @@
+import { QueryParams } from "@/models/QueryParams";
 import { axios } from "../../utils/axios";
 import { Endpoints } from "../endpoints";
 
@@ -32,12 +33,17 @@ const getters = {
 };
 
 const actions = {
-  async getAllEmployees({ commit }: any) {
+  async getAllEmployees({ commit }: any, params: QueryParams) {
+    console.log("params!", params);
     commit("employeeList/updateLoading", true, { root: true });
     try {
-      await axios.get(Endpoints.Employees).then((response) => {
-        commit("employeeList/updateEmployees", response.data, { root: true });
-      });
+      await axios
+        .get(Endpoints.Employees, {
+          params,
+        })
+        .then((response) => {
+          commit("employeeList/updateEmployees", response.data, { root: true });
+        });
     } catch (error) {
       commit("employeeList/updateError", error, { root: true });
     }

@@ -66,7 +66,7 @@ export default {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding: 2vh;
+  padding: 2vh 2vw;
 }
 
 h2 {
