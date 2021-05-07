@@ -7,6 +7,7 @@ using Proppy.API.Domain.Services;
 using Proppy.API.Resources;
 using Proppy.API.Extensions;
 using Proppy.API.Domain.Models.Queries;
+using Microsoft.AspNetCore.Cors;
 namespace Proppy.API.Controllers
 {
     [Route("/api/[controller]")]

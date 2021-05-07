@@ -6,6 +6,7 @@ using Proppy.API.Domain.Models;
 using AutoMapper;
 using Proppy.API.Resources;
 using Proppy.API.Extensions;
+using Microsoft.AspNetCore.Cors;
 
 namespace Proppy.API.Controllers
 {
