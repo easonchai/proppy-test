@@ -1,7 +1,16 @@
 <template>
   <div class="container">
     <ion-list v-if="employees.length > 0">
-      <ion-list-header class="list__header">Employees</ion-list-header>
+      <div class="item__container">
+        <div class="column is_left">
+          <ion-list-header class="list__header">Employees</ion-list-header>
+        </div>
+        <div class="column is_right">
+          <ion-button>
+            <ion-icon slot="icon-only" :icon="filterCircleOutline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
       <ion-item
         v-for="employee in employees"
         :key="employee.id"
@@ -57,10 +66,17 @@
 
 <script>
 import store from "../stores";
-import { IonList, IonItem, IonListHeader, IonText, IonIcon } from "@ionic/vue";
+import {
+  IonList,
+  IonItem,
+  IonListHeader,
+  IonText,
+  IonIcon,
+  IonButton,
+} from "@ionic/vue";
 import SkeletonList from "./skeletons/SkeletonList";
 import EmployeeDetail from "./EmployeeDetail";
-import { caretDownOutline } from "ionicons/icons";
+import { caretDownOutline, filterCircleOutline } from "ionicons/icons";
 
 export default {
   name: "EmployeeList",
@@ -72,10 +88,12 @@ export default {
     IonText,
     IonIcon,
     EmployeeDetail,
+    IonButton,
   },
   setup() {
     return {
       caretDownOutline,
+      filterCircleOutline,
     };
   },
   data() {
