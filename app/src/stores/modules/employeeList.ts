@@ -32,19 +32,16 @@ const getters = {
 };
 
 const actions = {
-  async getAllEmployees(context: {
-    commit: (arg0: string, arg1: boolean) => void;
-  }) {
-    context.commit("updateLoadingStatus", true);
+  async getAllEmployees({ commit }: any) {
+    commit("employeeList/updateLoading", true, { root: true });
     try {
-      await axios.get(Endpoints.Positions).then((response) => {
-        context.commit("updateEmployees", response.data);
-        console.log(response.data);
+      await axios.get(Endpoints.Employees).then((response) => {
+        commit("employeeList/updateEmployees", response.data, { root: true });
       });
     } catch (error) {
-      context.commit("updateError", error);
+      commit("employeeList/updateError", error, { root: true });
     }
-    context.commit("updateLoadingStatus", false);
+    commit("employeeList/updateLoading", false, { root: true });
   },
 };
 

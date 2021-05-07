@@ -28,16 +28,14 @@ export default {
   },
   computed: {
     employeeStore: function() {
-      return store.getters;
+      return (store.state as any).employeeList.employees;
     },
   },
   mounted() {
-    // console.log(store.state.employeeList);
-    console.log((store.state as any).employeeList);
     console.log(store.dispatch("employeeList/getAllEmployees", { root: true }));
   },
   watch: {
-    "store.state"() {
+    employeeStore() {
       console.log((store.state as any).employeeList.employees);
     },
   },

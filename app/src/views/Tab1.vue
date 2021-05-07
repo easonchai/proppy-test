@@ -1,30 +1,17 @@
 <template>
-  <ion-page>
-    <ion-header>
+  <base-layout pageTitle="View Employees - List View">
+    <ion-header collapse="condense">
       <ion-toolbar>
-        <ion-title>View Employees - List</ion-title>
+        <ion-title size="large">View Employees - List</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">View Employees - List</ion-title>
-        </ion-toolbar>
-      </ion-header>
 
-      <ExploreContainer name="View Employees - List page" />
-    </ion-content>
-  </ion-page>
+    <ExploreContainer name="View Employees - List page" />
+  </base-layout>
 </template>
 
 <script lang="ts">
-import {
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-} from "@ionic/vue";
+import { IonHeader, IonToolbar, IonTitle } from "@ionic/vue";
 import ExploreContainer from "@/components/ExploreContainer.vue";
 
 export default {
@@ -34,8 +21,6 @@ export default {
     IonHeader,
     IonToolbar,
     IonTitle,
-    IonContent,
-    IonPage,
   },
 };
 </script>
