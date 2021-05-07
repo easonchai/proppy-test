@@ -34,7 +34,6 @@ const getters = {
 
 const actions = {
   async getAllEmployees({ commit }: any, params: QueryParams) {
-    console.log("params!", params);
     commit("employeeList/updateLoading", true, { root: true });
     try {
       await axios

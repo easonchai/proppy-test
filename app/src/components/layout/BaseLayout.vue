@@ -5,7 +5,7 @@
         <ion-title>{{ pageTitle }}</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
+    <ion-content :fullscreen="true" class="content__container">
       <slot></slot>
     </ion-content>
   </ion-page>
@@ -32,3 +32,9 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.content__container {
+  padding: 1vh 2vw;
+}
+</style>

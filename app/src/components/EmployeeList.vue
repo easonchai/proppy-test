@@ -1,9 +1,38 @@
 <template>
   <div class="container">
-    <ion-list v-if="employees">
-      <ion-item v-for="employee in employees" :key="employee.id">
-        <ion-label>{{ employee.name }}</ion-label>
+    <ion-list v-if="employees.length > 0">
+      <ion-list-header class="list__header">Employees</ion-list-header>
+      <ion-item
+        v-for="employee in employees"
+        :key="employee.id"
+        class="list__item"
+      >
+        <ion-label>
+          <h2 class="main__title">
+            {{ employee.name }}
+          </h2>
+          <h3 class="sub__title">
+            {{ employee.phone_No }}
+          </h3>
+          <p>RM {{ employee.salary }}</p>
+        </ion-label>
       </ion-item>
+    </ion-list>
+    <ion-list v-else>
+      <ion-list-header>
+        <ion-skeleton-text animated style="width: 120px"></ion-skeleton-text>
+      </ion-list-header>
+      <ion-label>
+        <h3>
+          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
+        </h3>
+        <p>
+          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
+        </p>
+        <p>
+          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
+        </p>
+      </ion-label>
     </ion-list>
     <pagination
       :page="params.page"
@@ -17,7 +46,13 @@
 
 <script>
 import store from "../stores";
-import { IonList, IonItem, IonLabel } from "@ionic/vue";
+import {
+  IonList,
+  IonItem,
+  IonLabel,
+  IonSkeletonText,
+  IonListHeader,
+} from "@ionic/vue";
 
 export default {
   name: "EmployeeList",
@@ -25,6 +60,8 @@ export default {
     IonItem,
     IonLabel,
     IonList,
+    IonSkeletonText,
+    IonListHeader,
   },
   data() {
     return {
@@ -49,6 +86,7 @@ export default {
       handler(employeeObj) {
         this.totalItems = employeeObj.totalItems;
         this.employees = employeeObj.items;
+        console.log(this.employees);
       },
       deep: true,
     },
@@ -70,8 +108,18 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .container {
-  padding: 2vh 2vw;
+  padding: 0 2vw;
+}
+
+.list__header {
+  font-weight: bold;
+  font-size: 18px;
+}
+
+.list__item {
+  display: flex;
+  flex-direction: column;
 }
 </style>
