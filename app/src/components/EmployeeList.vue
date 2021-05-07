@@ -28,7 +28,9 @@
               <h3 class="sub__title">
                 {{ displayGender(employee.gender) }}
               </h3>
-              <p>RM {{ displaySalary(employee.salary) }}</p>
+              <ion-text color="primary" class="view_more">
+                <p>View More <ion-icon :icon="caretDownOutline"></ion-icon></p>
+              </ion-text>
             </div>
           </div>
           <transition name="fade">
@@ -57,8 +59,9 @@
 
 <script>
 import store from "../stores";
-import { IonList, IonItem, IonListHeader } from "@ionic/vue";
+import { IonList, IonItem, IonListHeader, IonText, IonIcon } from "@ionic/vue";
 import SkeletonList from "./skeletons/SkeletonList";
+import { caretDownOutline } from "ionicons/icons";
 
 export default {
   name: "EmployeeList",
@@ -67,6 +70,13 @@ export default {
     IonList,
     IonListHeader,
     SkeletonList,
+    IonText,
+    IonIcon,
+  },
+  setup() {
+    return {
+      caretDownOutline,
+    };
   },
   data() {
     return {
@@ -136,10 +146,8 @@ export default {
         const curE = this.$refs["body-" + e.id];
         if (e === employee) {
           if (curE.dataset.isExpanded === "true") {
-            console.log("close");
             curE.setAttribute("data-is-expanded", false);
           } else {
-            console.log("open");
             curE.setAttribute("data-is-expanded", true);
           }
         } else {
@@ -208,5 +216,21 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
+}
+
+p {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.fade-enter-active,
+.fade-leave-active {
+  transition: height 0.2s ease-in-out;
+  overflow: hidden;
+}
+.fade-enter-from,
+.fade-leave-to {
+  height: 0px !important;
 }
 </style>
