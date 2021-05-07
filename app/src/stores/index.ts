@@ -1,8 +1,11 @@
-import Vuex from "vuex";
+import { createStore } from "vuex";
+import employeeList from "./modules/employeeList";
 
-export default new Vuex.Store({
+const store = createStore({
   state: {},
-  mutations: {},
-  actions: {},
-  getters: {},
+  modules: {
+    employeeList,
+  },
 });
+
+export default store;

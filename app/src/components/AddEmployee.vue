@@ -1,80 +1,5 @@
 <template>
   <form class="form__container" @submit.prevent>
-    <!-- <ion-grid>
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Employee Name</ion-label>
-            <ion-input placeholder="Enter employee name..."></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Phone Number</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Email</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Gender</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Position</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Date of Birth</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Salary</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Employee Name</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Salary</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-        <ion-col>
-          <ion-item>
-            <ion-label position="stacked">Employee Name</ion-label>
-            <ion-input></ion-input>
-          </ion-item>
-        </ion-col>
-      </ion-row>
-      <ion-item>
-        <ion-textarea placeholder="Enter remarks here..."></ion-textarea>
-      </ion-item>
-    </ion-grid> -->
     <ion-item class="input__field">
       <ion-label position="floating">Employee Name</ion-label>
       <ion-input type="text" required></ion-input>
@@ -125,11 +50,22 @@
 
 <script>
 import { IonInput, IonItem, IonLabel } from "@ionic/vue";
-import { defineComponent } from "vue";
 
 export default {
   components: { IonInput, IonItem, IonLabel },
   name: "AddEmployee",
+  data() {
+    return {
+      name: "",
+      email: "",
+      phoneNo: "",
+      gender: "M",
+      position: "A",
+      salary: 0,
+      imageUrl: "",
+      remarks: "",
+    };
+  },
 };
 </script>
 

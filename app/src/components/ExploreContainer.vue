@@ -1,18 +1,47 @@
 <template>
   <div id="container">
     <strong>{{ name }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+    <p>
+      Explore
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="https://ionicframework.com/docs/components"
+        >UI Components</a
+      >
+    </p>
   </div>
 </template>
 
 <script lang="ts">
+import store from "../stores";
 
 export default {
-  name: 'ExploreContainer',
+  name: "ExploreContainer",
   props: {
-    name: String
-  }
-}
+    name: String,
+  },
+  data() {
+    return {
+      store: null,
+    };
+  },
+  computed: {
+    employeeStore: function() {
+      return store.getters;
+    },
+  },
+  mounted() {
+    // console.log(store.state.employeeList);
+    console.log((store.state as any).employeeList);
+    console.log(store.dispatch("employeeList/getAllEmployees", { root: true }));
+  },
+  watch: {
+    "store.state"() {
+      console.log((store.state as any).employeeList.employees);
+    },
+  },
+};
 </script>
 
 <style scoped>
