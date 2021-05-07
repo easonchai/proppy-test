@@ -6,34 +6,45 @@
         v-for="employee in employees"
         :key="employee.id"
         class="list__item"
+        no-lines
       >
-        <ion-label>
-          <h2 class="main__title">
-            {{ employee.name }}
-          </h2>
-          <h3 class="sub__title">
-            {{ employee.phone_No }}
-          </h3>
-          <p>RM {{ displaySalary(employee.salary) }}</p>
-        </ion-label>
+        <div
+          :ref="'header-' + employee.id"
+          class="accordion__container"
+          @click="headerClicked(employee)"
+        >
+          <div class="item__container">
+            <div class="column is_left">
+              <h2 class="main__title">
+                {{ employee.name }}
+              </h2>
+              <h3 class="sub__title">
+                {{ employee.phone_No }}
+              </h3>
+              <p>{{ employee.position.description }}</p>
+            </div>
+            <div class="column is_right">
+              <h2 class="main__title">ID: {{ employee.id }}</h2>
+              <h3 class="sub__title">
+                {{ displayGender(employee.gender) }}
+              </h3>
+              <p>RM {{ displaySalary(employee.salary) }}</p>
+            </div>
+          </div>
+          <transition name="fade">
+            <div
+              :ref="'body-' + employee.id"
+              style="margin-top:8px;display:none; height: 100px;"
+              v-show="expandElement(employee)"
+            >
+              ASDHJAHSDJAHSJD
+              <slot :item="employee"></slot>
+            </div>
+          </transition>
+        </div>
       </ion-item>
     </ion-list>
-    <ion-list v-else>
-      <ion-list-header>
-        <ion-skeleton-text animated style="width: 120px"></ion-skeleton-text>
-      </ion-list-header>
-      <ion-label>
-        <h3>
-          <ion-skeleton-text animated style="width: 80%"></ion-skeleton-text>
-        </h3>
-        <p>
-          <ion-skeleton-text animated style="width: 60%"></ion-skeleton-text>
-        </p>
-        <p>
-          <ion-skeleton-text animated style="width: 30%"></ion-skeleton-text>
-        </p>
-      </ion-label>
-    </ion-list>
+    <SkeletonList v-else />
     <pagination
       :page="params.page"
       :itemsPerPage="params.itemsPerPage"
@@ -46,22 +57,16 @@
 
 <script>
 import store from "../stores";
-import {
-  IonList,
-  IonItem,
-  IonLabel,
-  IonSkeletonText,
-  IonListHeader,
-} from "@ionic/vue";
+import { IonList, IonItem, IonListHeader } from "@ionic/vue";
+import SkeletonList from "./skeletons/SkeletonList";
 
 export default {
   name: "EmployeeList",
   components: {
     IonItem,
-    IonLabel,
     IonList,
-    IonSkeletonText,
     IonListHeader,
+    SkeletonList,
   },
   data() {
     return {
@@ -109,6 +114,40 @@ export default {
       const parsed = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
       return parsed;
     },
+    displayGender(character) {
+      switch (character) {
+        case "M":
+          return "Male";
+        case "F":
+          return "Female";
+      }
+    },
+    expandElement(employee) {
+      const curE = this.$refs["body-" + employee.id];
+      if (curE === undefined) return false;
+      if (curE.dataset.isExpanded === "true") {
+        return true;
+      } else {
+        return false;
+      }
+    },
+    headerClicked(employee) {
+      this.employees.map(function(e) {
+        const curE = this.$refs["body-" + e.id];
+        if (e === employee) {
+          if (curE.dataset.isExpanded === "true") {
+            console.log("close");
+            curE.setAttribute("data-is-expanded", false);
+          } else {
+            console.log("open");
+            curE.setAttribute("data-is-expanded", true);
+          }
+        } else {
+          curE.setAttribute("data-is-expanded", false);
+        }
+      }, this);
+      this.employees = [...this.employees];
+    },
   },
 };
 </script>
@@ -120,11 +159,54 @@ export default {
 
 .list__header {
   font-weight: bold;
-  font-size: 18px;
+  font-size: 20px;
+  color: var(--ion-color-step-100);
 }
 
 .list__item {
   display: flex;
   flex-direction: column;
+}
+
+.main__title {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ion-color-step-200);
+}
+
+.sub__title {
+  font-weight: 500;
+  font-size: 16px;
+  color: var(--ion-color-step-300);
+}
+
+.item__container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+  width: 100%;
+}
+
+.is_left {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.is_right {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.accordion__container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
 }
 </style>
