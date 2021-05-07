@@ -26,7 +26,7 @@ const getters = {
   error(state: { error: any }) {
     return state.error;
   },
-  employee(state: { employees: any }) {
+  employees(state: { employees: any }) {
     return state.employees;
   },
 };

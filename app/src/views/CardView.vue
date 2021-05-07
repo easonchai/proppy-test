@@ -5,19 +5,15 @@
         <ion-title size="large">View Employees - Card</ion-title>
       </ion-toolbar>
     </ion-header>
-
-    <ExploreContainer name="View Employees - Card page" />
   </base-layout>
 </template>
 
 <script lang="ts">
 import { IonHeader, IonToolbar, IonTitle } from "@ionic/vue";
-import ExploreContainer from "@/components/ExploreContainer.vue";
 
 export default {
-  name: "Tab2",
+  name: "CardView",
   components: {
-    ExploreContainer,
     IonHeader,
     IonToolbar,
     IonTitle,

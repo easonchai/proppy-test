@@ -1,39 +1,39 @@
-import { createRouter, createWebHistory } from '@ionic/vue-router';
-import { RouteRecordRaw } from 'vue-router';
-import Tabs from '../views/Tabs.vue'
+import { createRouter, createWebHistory } from "@ionic/vue-router";
+import { RouteRecordRaw } from "vue-router";
+import Tabs from "../views/Tabs.vue";
 
 const routes: Array<RouteRecordRaw> = [
   {
-    path: '/',
-    redirect: '/tabs/tab1'
+    path: "/",
+    redirect: "/views/list_employee",
   },
   {
-    path: '/tabs/',
+    path: "/views/",
     component: Tabs,
     children: [
       {
-        path: '',
-        redirect: '/tabs/tab1'
+        path: "",
+        redirect: "/views/list_employee",
       },
       {
-        path: 'tab1',
-        component: () => import('@/views/Tab1.vue')
+        path: "list_employee",
+        component: () => import("@/views/ListView.vue"),
       },
       {
-        path: 'tab2',
-        component: () => import('@/views/Tab2.vue')
+        path: "list_employee_card",
+        component: () => import("@/views/CardView.vue"),
       },
       {
-        path: 'tab3',
-        component: () => import('@/views/Tab3.vue')
-      }
-    ]
-  }
-]
+        path: "add_employee",
+        component: () => import("@/views/AddEmployeeView.vue"),
+      },
+    ],
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;

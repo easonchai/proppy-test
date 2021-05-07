@@ -3,6 +3,9 @@ import employeeList from "./modules/employeeList";
 
 const store = createStore({
   state: {},
+  mutations: {},
+  actions: {},
+  getters: {},
   modules: {
     employeeList,
   },

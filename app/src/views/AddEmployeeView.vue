@@ -8,7 +8,7 @@
 import AddEmployee from "@/components/AddEmployee.vue";
 
 export default {
-  name: "Tab3",
+  name: "AddEmployeeView",
   components: {
     AddEmployee,
   },

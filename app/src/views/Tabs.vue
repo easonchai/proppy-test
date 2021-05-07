@@ -2,17 +2,20 @@
   <ion-page>
     <ion-tabs>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="tab1" href="/tabs/tab1">
+        <ion-tab-button tab="list_employee" href="/views/list_employee">
           <ion-icon :icon="listOutline" />
           <ion-label>Employees (List)</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab2" href="/tabs/tab2">
+        <ion-tab-button
+          tab="list_employee_card"
+          href="/views/list_employee_card"
+        >
           <ion-icon :icon="gridOutline" />
           <ion-label>Employees (Card)</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="tab3" href="/tabs/tab3">
+        <ion-tab-button tab="add_employee" href="/views/add_employee">
           <ion-icon :icon="addCircle" />
           <ion-label>Add Employee</ion-label>
         </ion-tab-button>
