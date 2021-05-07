@@ -7,6 +7,7 @@
     </ion-header>
 
     <ExploreContainer name="View Employees - List page" />
+    <pagination :page="1" :itemsPerPage="20" :totalItems="30"></pagination>
   </base-layout>
 </template>
 
@@ -24,3 +25,4 @@ export default {
   },
 };
 </script>
+Pagination

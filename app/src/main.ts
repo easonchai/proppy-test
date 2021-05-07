@@ -25,6 +25,7 @@ import "@ionic/vue/css/display.css";
 import "./theme/variables.css";
 import "./theme/core.css";
 import BaseLayout from "./components/layout/BaseLayout.vue";
+import Pagination from "./components/Pagination.vue";
 
 const app = createApp(App)
   .use(IonicVue)
@@ -32,6 +33,7 @@ const app = createApp(App)
   .use(store);
 
 app.component("base-layout", BaseLayout); // Custom global component
+app.component("pagination", Pagination);
 
 router.isReady().then(() => {
   app.mount("#app");
