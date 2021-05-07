@@ -33,16 +33,14 @@
               </ion-text>
             </div>
           </div>
-          <transition name="fade">
-            <div
-              :ref="'body-' + employee.id"
-              style="margin-top:8px;display:none; height: 100px;"
-              v-show="expandElement(employee)"
-            >
-              ASDHJAHSDJAHSJD
-              <slot :item="employee"></slot>
-            </div>
-          </transition>
+          <div
+            :ref="'body-' + employee.id"
+            class="accordion__body"
+            style="display:none; height: 100%; margin-top: 8px;"
+            v-show="expandElement(employee)"
+          >
+            <EmployeeDetail :employee="employee"></EmployeeDetail>
+          </div>
         </div>
       </ion-item>
     </ion-list>
@@ -61,6 +59,7 @@
 import store from "../stores";
 import { IonList, IonItem, IonListHeader, IonText, IonIcon } from "@ionic/vue";
 import SkeletonList from "./skeletons/SkeletonList";
+import EmployeeDetail from "./EmployeeDetail";
 import { caretDownOutline } from "ionicons/icons";
 
 export default {
@@ -72,6 +71,7 @@ export default {
     SkeletonList,
     IonText,
     IonIcon,
+    EmployeeDetail,
   },
   setup() {
     return {
@@ -118,11 +118,6 @@ export default {
       store.dispatch("employeeList/getAllEmployees", this.params, {
         root: true,
       });
-    },
-    displaySalary(value) {
-      const num = value.toFixed(2);
-      const parsed = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
-      return parsed;
     },
     displayGender(character) {
       switch (character) {
@@ -180,12 +175,14 @@ export default {
   font-weight: 600;
   font-size: 18px;
   color: var(--ion-color-step-200);
+  margin: 0 0 8px 0;
 }
 
 .sub__title {
   font-weight: 500;
   font-size: 16px;
   color: var(--ion-color-step-300);
+  margin: 0 0 4px 0;
 }
 
 .item__container {
@@ -216,21 +213,13 @@ export default {
   display: flex;
   flex-direction: column;
   width: 100%;
+  margin: 12px 0;
 }
 
 p {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-
-.fade-enter-active,
-.fade-leave-active {
-  transition: height 0.2s ease-in-out;
-  overflow: hidden;
-}
-.fade-enter-from,
-.fade-leave-to {
-  height: 0px !important;
+  margin: 0 0 4px 0;
 }
 </style>
