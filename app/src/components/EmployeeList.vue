@@ -129,7 +129,7 @@ export default {
     },
     expandElement(employee) {
       const curE = this.$refs["body-" + employee.id];
-      if (curE === undefined) return false;
+      if (curE === undefined || curE === null) return false;
       if (curE.dataset.isExpanded === "true") {
         return true;
       } else {
@@ -140,7 +140,7 @@ export default {
       this.employees.map(function(e) {
         const curE = this.$refs["body-" + e.id];
         if (e === employee) {
-          if (curE.dataset.isExpanded === "true") {
+          if (curE.dataset?.isExpanded === "true") {
             curE.setAttribute("data-is-expanded", false);
           } else {
             curE.setAttribute("data-is-expanded", true);
