@@ -72,7 +72,7 @@ namespace Proppy.API
 
             app.UseCors(CorsPolicy);
 
-            app.UseHttpsRedirection();
+            // app.UseHttpsRedirection();
             app.UseMvc();
         }
     }
