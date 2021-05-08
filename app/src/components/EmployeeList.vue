@@ -70,6 +70,10 @@
     >
       <FilterOptions
         :itemsPerPage="params.itemsPerPage"
+        :sortBy="params.sortBy"
+        :gender="params.gender"
+        :position="params.position"
+        :dob="params.dob"
         @itemsPerPage="updateItemsPerPage"
         @sortBy="updateSortBy"
         @gender="updateGender"
@@ -132,7 +136,7 @@ export default {
       params: {
         page: 1,
         itemsPerPage: 10,
-        sortBy: "",
+        sortBy: "id:asc",
         gender: "",
         dob: "",
         position: "",
