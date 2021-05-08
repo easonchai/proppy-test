@@ -1,13 +1,7 @@
-import { ComponentCustomProperties } from "vue";
-import { Store } from "vuex";
+import VueRouter, { Route } from "vue-router";
 
-declare module "@vue/runtime-core" {
-  // Declare your own store states.
-  interface State {
-    count: number;
-  }
-
-  interface ComponentCustomProperties {
-    $store: Store<State>;
+declare module "vue/types/vue" {
+  interface Vue {
+    $router: VueRouter;
   }
 }
