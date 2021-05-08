@@ -9,7 +9,7 @@ const state = () => ({
     id: 0,
     name: "",
     email: "",
-    phoneNo: "",
+    phone_No: "",
     gender: "M",
     position: {
       code: "",
@@ -84,6 +84,27 @@ const actions = {
       commit("employeeDetail/updateError", error, { root: true });
     }
     commit("employeeDetail/updateLoading", false, { root: true });
+  },
+  async updateEmployee({ commit, state }: any, params: string) {
+    commit("employeeDetail/updateRetrieved", false, { root: true });
+    commit("employeeDetail/updateLoading", true, { root: true });
+    try {
+      await axios
+        .put(`${Endpoints.Employees}/${state.employee.id}`, {
+          data: {
+            ...state.employee,
+          },
+        })
+        .then((response) => {
+          commit("employeeDetail/updateEmployee", response.data, {
+            root: true,
+          });
+        });
+    } catch (error) {
+      commit("employeeDetail/updateError", error, { root: true });
+    }
+    commit("employeeDetail/updateLoading", false, { root: true });
+    commit("employeeDetail/updateRetrieved", true, { root: true });
   },
 };
 

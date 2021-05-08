@@ -1,6 +1,7 @@
 import { createStore } from "vuex";
 import employeeList from "./modules/employeeList";
 import employeeDetail from "./modules/employeeDetail";
+import employeeCreate from "./modules/employeeCreate";
 import positionList from "./modules/positionList";
 
 const store = createStore({
@@ -12,6 +13,7 @@ const store = createStore({
     employeeList,
     positionList,
     employeeDetail,
+    employeeCreate,
   },
 });
 
