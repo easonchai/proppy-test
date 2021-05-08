@@ -123,7 +123,7 @@ h4 {
 
 .image__container {
   width: 100%;
-  height: 30vh;
+  min-height: 30vh;
   display: flex;
   justify-content: center;
   align-items: center;

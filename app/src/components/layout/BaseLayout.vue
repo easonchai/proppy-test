@@ -6,18 +6,23 @@
       </ion-toolbar>
     </ion-header>
     <ion-content :fullscreen="true" class="content__container">
+      <ion-refresher slot="fixed" @ionRefresh="doRefresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
       <slot></slot>
     </ion-content>
   </ion-page>
 </template>
 
-<script lang="ts">
+<script>
 import {
   IonPage,
   IonHeader,
   IonToolbar,
   IonTitle,
   IonContent,
+  IonRefresher,
+  IonRefresherContent,
 } from "@ionic/vue";
 
 export default {
@@ -29,6 +34,13 @@ export default {
     IonTitle,
     IonContent,
     IonPage,
+    IonRefresher,
+    IonRefresherContent,
+  },
+  methods: {
+    doRefresh() {
+      this.$router.go();
+    },
   },
 };
 </script>

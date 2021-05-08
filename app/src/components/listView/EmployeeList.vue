@@ -202,7 +202,7 @@ export default {
     $route() {
       const defaultParams = {
         page: 1,
-        itemsPerPage: 1,
+        itemsPerPage: 10,
         sortBy: "id:asc",
         gender: "",
         dob: "",
