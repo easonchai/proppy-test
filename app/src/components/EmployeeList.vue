@@ -6,7 +6,7 @@
           <ion-list-header class="list__header">Employees</ion-list-header>
         </div>
         <div class="column is_right">
-          <ion-button>
+          <ion-button @click="openFilterOptions">
             <ion-icon slot="icon-only" :icon="filterCircleOutline"></ion-icon>
           </ion-button>
         </div>
@@ -73,9 +73,11 @@ import {
   IonText,
   IonIcon,
   IonButton,
+  popoverController,
 } from "@ionic/vue";
 import SkeletonList from "./skeletons/SkeletonList";
 import EmployeeDetail from "./EmployeeDetail";
+import FilterOptions from "./FilterOptions";
 import { caretDownOutline, filterCircleOutline } from "ionicons/icons";
 
 export default {
@@ -168,6 +170,18 @@ export default {
         }
       }, this);
       this.employees = [...this.employees];
+    },
+    async openFilterOptions(ev) {
+      const popover = await popoverController.create({
+        component: FilterOptions,
+        cssClass: "my-custom-class",
+        event: ev,
+        translucent: true,
+      });
+      await popover.present();
+
+      const { role } = await popover.onDidDismiss();
+      console.log("onDidDismiss resolved with role", role);
     },
   },
 };
