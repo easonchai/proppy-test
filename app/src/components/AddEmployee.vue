@@ -1,141 +1,26 @@
 <template>
-  <form class="form__container" @submit.prevent>
-    <div class="input__field">
-      <ion-label position="floating">Employee Name</ion-label>
-      <ion-input
-        type="text"
-        required
-        v-model="employee.name"
-        :maxlength="30"
-        :class="{ error: nameError }"
-      ></ion-input>
-      <span class="error__message" v-if="nameError"
-        >Please enter a valid name!</span
-      >
-    </div>
-    <div class="input__field">
-      <ion-label position="floating">Phone No</ion-label>
-      <ion-input
-        type="tel"
-        required
-        v-model="employee.phoneNo"
-        :maxlength="20"
-        :class="{ error: phoneError }"
-      ></ion-input>
-      <span class="error__message" v-if="phoneError"
-        >Please enter a valid phone number!</span
-      >
-    </div>
-    <div class="input__field">
-      <ion-label position="floating">Email</ion-label>
-      <ion-input
-        type="email"
-        required
-        v-model="employee.email"
-        :maxlength="30"
-        :class="{ error: emailError }"
-      ></ion-input>
-      <span class="error__message" v-if="emailError"
-        >Please enter a valid email!</span
-      >
-    </div>
-    <div class="input__field">
-      <ion-label>Gender</ion-label>
-      <ion-select
-        placeholder="Select One"
-        v-model="employee.gender"
-        interface="popover"
-        :interface-options="options"
-      >
-        <ion-select-option value="F">Female</ion-select-option>
-        <ion-select-option value="M">Male</ion-select-option>
-      </ion-select>
-    </div>
-    <div class="input__field">
-      <ion-label>Position</ion-label>
-      <ion-select
-        placeholder="Select One"
-        v-model="employee.positionCode"
-        interface="popover"
-        :interface-options="options"
-      >
-        <ion-select-option value="A">Senior Manager</ion-select-option>
-        <ion-select-option value="B">Manager</ion-select-option>
-        <ion-select-option value="C">Engineer</ion-select-option>
-        <ion-select-option value="D">Designer</ion-select-option>
-        <ion-select-option value="E">CEO</ion-select-option>
-        <ion-select-option value="F">COO</ion-select-option>
-        <ion-select-option value="G">CTO</ion-select-option>
-        <ion-select-option value="H">CMO</ion-select-option>
-      </ion-select>
-    </div>
-    <div class="input__field">
-      <ion-label position="floating">Salary (RM)</ion-label>
-      <ion-input
-        type="number"
-        inputmode="numeric"
-        required
-        v-model="employee.salary"
-        :maxlength="16"
-        :class="{ error: salaryError }"
-      ></ion-input>
-      <span class="error__message" v-if="salaryError"
-        >Please enter a valid salary!</span
-      >
-    </div>
-    <div class="input__field">
-      <ion-label position="floating">Photo Filename/URL</ion-label>
-      <ion-input
-        type="text"
-        required
-        v-model="employee.photo"
-        :maxlength="100"
-        :class="{ error: photoError }"
-      ></ion-input>
-      <span class="error__message" v-if="photoError"
-        >Please enter a valid photo name/URL!</span
-      >
-    </div>
-    <div class="input__field">
-      <ion-label position="floating">Remarks</ion-label>
-      <ion-textarea
-        placeholder="Enter employee remarks..."
-        v-model="employee.remarks"
-        :maxlength="1000"
-        :rows="5"
-        spellcheck
-      ></ion-textarea>
-    </div>
-    <ion-button
-      expand="block"
-      :disabled="buttonDisabled"
-      @click="createEmployee"
-      >Add Employee</ion-button
-    >
-  </form>
+  <EmployeeForm
+    :employeeData="employee"
+    buttonText="Add Employee"
+    @name="updateName"
+    @email="updateEmail"
+    @phoneNo="updatePhone"
+    @gender="updateGender"
+    @positionCode="updatePositionCode"
+    @salary="updateSalary"
+    @photo="updatePhoto"
+    @remarks="updateRemarks"
+    @formSubmit="createEmployee"
+  />
 </template>
 
 <script>
-import {
-  IonInput,
-  IonLabel,
-  IonTextarea,
-  IonButton,
-  IonSelectOption,
-  IonSelect,
-  alertController,
-} from "@ionic/vue";
-import { validateEmail, validatePhone } from "../utils/validation";
 import store from "../stores";
+import EmployeeForm from "./EmployeeForm";
 
 export default {
   components: {
-    IonInput,
-    IonLabel,
-    IonTextarea,
-    IonButton,
-    IonSelectOption,
-    IonSelect,
+    EmployeeForm,
   },
   name: "AddEmployee",
   data() {
@@ -150,77 +35,7 @@ export default {
         photo: "",
         remarks: "",
       },
-      nameError: false,
-      emailError: false,
-      phoneError: false,
-      salaryError: false,
-      photoError: false,
-      options: {
-        cssClass: "styled_select",
-      },
     };
-  },
-  computed: {
-    buttonDisabled() {
-      if (
-        !this.employee.name ||
-        !this.employee.email ||
-        !this.employee.gender ||
-        !this.employee.positionCode ||
-        !this.employee.photo ||
-        !this.employee.phoneNo ||
-        this.emailError ||
-        this.phoneError ||
-        this.nameError ||
-        this.photoError ||
-        this.salaryError
-      )
-        return true;
-      return false;
-    },
-    employeeStore() {
-      return store.state.employeeCreate.employee;
-    },
-    error() {
-      return store.state.employeeCreate.error;
-    },
-  },
-  watch: {
-    "employee.name"() {
-      this.nameError = !this.employee.name;
-    },
-    "employee.photo"() {
-      this.photoError = !this.employee.photo;
-    },
-    "employee.email"(newVal) {
-      this.emailError = !this.employee.email || !validateEmail(newVal);
-    },
-    "employee.phoneNo"(newVal) {
-      this.phoneError = !this.employee.phoneNo || !validatePhone(newVal);
-    },
-    "employee.salary"(newVal) {
-      if (isNaN(newVal)) this.salaryError = true;
-      else {
-        this.employee.salary = parseInt(newVal);
-        this.salaryError = false;
-      }
-    },
-    employeeStore() {
-      if (this.employeeStore.id) {
-        this.presentCreateSuccess();
-      }
-    },
-    error() {
-      // Will improve in future
-      let errorMessage =
-        "An error occured when saving the employee: Some of the data might already exist";
-      if (
-        this.error.message !==
-        "An error occurred when saving the employee: An error occurred while updating the entries. See the inner exception for details."
-      )
-        errorMessage = this.error.message;
-      this.presentCreateFailed(errorMessage);
-    },
   },
   methods: {
     createEmployee() {
@@ -228,32 +43,29 @@ export default {
         root: true,
       });
     },
-    async presentCreateSuccess() {
-      const alert = await alertController.create({
-        header: "Create Success!",
-        message: "This employee was created successfully.",
-        buttons: [
-          {
-            text: "OK",
-            handler: () => {
-              this.$router.go();
-            },
-          },
-        ],
-      });
-      await alert.present();
-
-      const { role } = await alert.onDidDismiss();
+    updateName(val) {
+      this.employee.name = val;
     },
-    async presentCreateFailed(errorMessage) {
-      const alert = await alertController.create({
-        header: "Create Failed!",
-        message: errorMessage,
-        buttons: ["OK"],
-      });
-      await alert.present();
-
-      const { role } = await alert.onDidDismiss();
+    updateEmail(val) {
+      this.employee.email = val;
+    },
+    updatePhone(val) {
+      this.employee.phoneNo = val;
+    },
+    updateGender(val) {
+      this.employee.gender = val;
+    },
+    updatePositionCode(val) {
+      this.employee.positionCode = val;
+    },
+    updateSalary(val) {
+      this.employee.salary = val;
+    },
+    updatePhoto(val) {
+      this.employee.photo = val;
+    },
+    updateRemarks(val) {
+      this.employee.remarks = val;
     },
   },
 };

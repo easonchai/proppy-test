@@ -106,12 +106,9 @@
         spellcheck
       ></ion-textarea>
     </div>
-    <ion-button
-      expand="block"
-      :disabled="buttonDisabled"
-      @click="createEmployee"
-      >Add Employee</ion-button
-    >
+    <ion-button expand="block" :disabled="buttonDisabled" @click="emitClick">{{
+      buttonText
+    }}</ion-button>
   </form>
 </template>
 
@@ -138,18 +135,21 @@ export default {
     IonSelect,
   },
   name: "AddEmployee",
+  props: ["employeeData", "buttonText"],
+  emits: [
+    "name",
+    "email",
+    "phoneNo",
+    "gender",
+    "positionCode",
+    "salary",
+    "photo",
+    "remarks",
+    "formSubmit",
+  ],
   data() {
     return {
-      employee: {
-        name: "",
-        email: "",
-        phoneNo: "",
-        gender: "M",
-        positionCode: "A",
-        salary: 0,
-        photo: "",
-        remarks: "",
-      },
+      employee: this.employeeData,
       nameError: false,
       emailError: false,
       phoneError: false,
@@ -188,15 +188,27 @@ export default {
   watch: {
     "employee.name"() {
       this.nameError = !this.employee.name;
+      if (!this.nameError) {
+        this.$emit("name", this.employee.name);
+      }
     },
     "employee.photo"() {
       this.photoError = !this.employee.photo;
+      if (!this.photoError) {
+        this.$emit("photo", this.employee.photo);
+      }
     },
     "employee.email"(newVal) {
       this.emailError = !this.employee.email || !validateEmail(newVal);
+      if (!this.emailError) {
+        this.$emit("email", this.employee.email);
+      }
     },
     "employee.phoneNo"(newVal) {
       this.phoneError = !this.employee.phoneNo || !validatePhone(newVal);
+      if (!this.phoneError) {
+        this.$emit("phoneNo", this.employee.phoneNo);
+      }
     },
     "employee.salary"(newVal) {
       if (isNaN(newVal)) this.salaryError = true;
@@ -204,6 +216,15 @@ export default {
         this.employee.salary = parseInt(newVal);
         this.salaryError = false;
       }
+      if (!this.salaryError) {
+        this.$emit("salary", this.employee.salary);
+      }
+    },
+    "employee.gender"(newVal) {
+      this.$emit("gender", newVal);
+    },
+    "employee.positionCode"(newVal) {
+      this.$emit("positionCode", newVal);
     },
     employeeStore() {
       if (this.employeeStore.id) {
@@ -223,11 +244,6 @@ export default {
     },
   },
   methods: {
-    createEmployee() {
-      store.dispatch("employeeCreate/createEmployee", this.employee, {
-        root: true,
-      });
-    },
     async presentCreateSuccess() {
       const alert = await alertController.create({
         header: "Create Success!",
@@ -254,6 +270,9 @@ export default {
       await alert.present();
 
       const { role } = await alert.onDidDismiss();
+    },
+    emitClick() {
+      this.$emit("formSubmit");
     },
   },
 };
