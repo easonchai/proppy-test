@@ -8,7 +8,7 @@
 import EditEmployee from "@/components/EditEmployee.vue";
 
 export default {
-  name: "EditEmployeeView",
+  name: "EditView",
   components: {
     EditEmployee,
   },

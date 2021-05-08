@@ -25,17 +25,17 @@ const routes: Array<RouteRecordRaw> = [
       },
       {
         path: "add_employee",
-        component: () => import("@/views/AddEmployeeView.vue"),
+        component: () => import("@/views/AddView.vue"),
       },
     ],
   },
   {
     path: "/employees/edit/:id",
-    component: () => import("@/views/EditEmployeeView.vue"),
+    component: () => import("@/views/EditView.vue"),
   },
   {
     path: "/employees/:id",
-    component: () => import("@/views/FullDetailsView.vue"),
+    component: () => import("@/views/DetailsView.vue"),
   },
 ];
 

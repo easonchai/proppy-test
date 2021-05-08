@@ -12,7 +12,7 @@ import { IonRefresher, IonRefresherContent } from "@ionic/vue";
 import EmployeeCardFull from "../components/fullView/EmployeeCardFull.vue";
 
 export default {
-  name: "FullDetailsView",
+  name: "DetailsView",
   components: {
     EmployeeCardFull,
     IonRefresher,

@@ -8,7 +8,7 @@
 import AddEmployee from "@/components/AddEmployee.vue";
 
 export default {
-  name: "AddEmployeeView",
+  name: "AddView",
   components: {
     AddEmployee,
   },
