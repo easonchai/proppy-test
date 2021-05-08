@@ -11,11 +11,11 @@
       <h3>Email</h3>
       <h4>{{ employee.email }}</h4>
       <h3>Gender</h3>
-      <h4>{{ employee.gender }}</h4>
+      <h4>{{ displayGender(employee.gender) }}</h4>
       <h3>Date of Birth</h3>
-      <h4>{{ employee.phone_No }}</h4>
+      <h4>{{ displayDob(employee.dob) }}</h4>
       <h3>Salary</h3>
-      <h4>{{ employee.phone_No }}</h4>
+      <h4>RM {{ displaySalary(employee.salary) }}</h4>
     </ion-card-content>
   </ion-card>
 </template>
@@ -24,7 +24,68 @@
 export default {
   name: "EmployeeCard",
   props: ["employee"],
+  methods: {
+    displaySalary(value) {
+      const num = value.toFixed(2);
+      const parsed = num.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+      return parsed;
+    },
+    displayDob(value) {
+      const date = new Date(value);
+      const parsed = date.toLocaleString().split(",")[0];
+      return parsed;
+    },
+    displayGender(character) {
+      switch (character) {
+        case "M":
+          return "Male";
+        case "F":
+          return "Female";
+      }
+    },
+  },
 };
 </script>
 
-<style scoped></style>
+<style scoped>
+ion-card {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+ion-card-title {
+  color: var(--ion-color-step-100);
+  font-weight: bold;
+  font-size: 24px;
+  text-align: left;
+}
+
+ion-card-subtitle {
+  color: var(--ion-color-step-200);
+  font-weight: 600;
+  font-size: 18px;
+  text-align: left;
+}
+
+ion-card-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+h3 {
+  color: var(--ion-color-step-500);
+  font-size: 16px;
+  margin: 4px 0;
+  font-weight: 600;
+  flex: 2;
+}
+
+h4 {
+  color: var(--ion-color-step-500);
+  font-size: 16px;
+  margin: 4px 0 12px 0;
+  flex: 5;
+}
+</style>

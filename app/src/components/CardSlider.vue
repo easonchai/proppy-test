@@ -30,7 +30,7 @@ export default {
     return {
       params: {
         page: 1,
-        itemsPerPage: 10,
+        itemsPerPage: 0, // Will retrieve all
         sortBy: "",
         gender: "",
         dob: "",
