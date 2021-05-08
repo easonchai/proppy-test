@@ -68,7 +68,10 @@ export default {
   watch: {
     employee() {
       if (this.employee.id) {
-        this.employeeData = this.employee;
+        this.employeeData = {
+          ...this.employee,
+          positionCode: this.employee.position.code,
+        };
       }
     },
   },
