@@ -1,8 +1,8 @@
 <template>
   <ion-card type="button" @click="navigateToDetails">
-    <img :src="employee.photo" @load="updateImageLoaded" />
-    <div class="image__container" v-if="imageNotLoaded">
-      <ion-skeleton-text></ion-skeleton-text>
+    <div class="image__container">
+      <ion-skeleton-text v-if="imageNotLoaded"></ion-skeleton-text>
+      <img :src="employee.photo" @load="updateImageLoaded" />
     </div>
     <ion-card-header>
       <ion-card-title>{{ employee.name }}</ion-card-title>
@@ -125,5 +125,15 @@ h4 {
 .image__container {
   width: 100%;
   height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+
+.image__container img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
 }
 </style>

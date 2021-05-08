@@ -4,7 +4,7 @@ import { Endpoints } from "../endpoints";
 const state = () => ({
   isLoading: false,
   isRetrieved: false,
-  error: {},
+  error: null,
   employee: {
     id: 0,
     name: "",
@@ -67,6 +67,23 @@ const actions = {
     }
     commit("employeeDetail/updateLoading", false, { root: true });
     commit("employeeDetail/updateRetrieved", true, { root: true });
+  },
+  async deleteEmployee({ commit }: any, params: string) {
+    commit("employeeDetail/updateRetrieved", false, { root: true });
+    commit("employeeDetail/updateLoading", true, { root: true });
+    try {
+      await axios
+        .delete(`${Endpoints.Employees}/${params}`)
+        .then((response) => {
+          response.data.deleted = true;
+          commit("employeeDetail/updateEmployee", response.data, {
+            root: true,
+          });
+        });
+    } catch (error) {
+      commit("employeeDetail/updateError", error, { root: true });
+    }
+    commit("employeeDetail/updateLoading", false, { root: true });
   },
 };
 

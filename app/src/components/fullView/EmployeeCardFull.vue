@@ -1,8 +1,8 @@
 <template>
   <ion-card v-if="employee">
-    <img :src="employee.photo" @load="updateImageLoaded" />
-    <div class="image__container" v-if="imageNotLoaded">
-      <ion-skeleton-text></ion-skeleton-text>
+    <div class="image__container">
+      <ion-skeleton-text v-if="imageNotLoaded"></ion-skeleton-text>
+      <img :src="employee.photo" @load="updateImageLoaded" />
     </div>
     <ion-card-header>
       <ion-card-title>{{ employee.name }}</ion-card-title>
@@ -73,6 +73,13 @@ export default {
       return store.state.employeeDetail.employee;
     },
   },
+  watch: {
+    employee() {
+      if (this.employee.deleted) {
+        this.$router.push("/views/view_employee");
+      }
+    },
+  },
   mounted() {
     store.dispatch("employeeDetail/getEmployee", this.$route.params.id, {
       root: true,
@@ -111,14 +118,17 @@ export default {
             text: "Cancel",
             role: "cancel",
             cssClass: "secondary",
-            handler: (blah) => {
-              console.log("Confirm Cancel:", blah);
-            },
           },
           {
             text: "Delete",
             handler: () => {
-              console.log("Confirm Okay");
+              store.dispatch(
+                "employeeDetail/deleteEmployee",
+                this.$route.params.id,
+                {
+                  root: true,
+                }
+              );
             },
           },
         ],
@@ -172,9 +182,19 @@ h4 {
   flex: 5;
 }
 
+img {
+  flex-shrink: 0;
+  min-width: 100%;
+  min-height: 100%;
+}
+
 .image__container {
   width: 100%;
-  height: 30vh;
+  min-height: 30vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
 }
 
 .button__container {
