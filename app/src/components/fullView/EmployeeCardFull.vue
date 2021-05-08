@@ -24,7 +24,9 @@
     </ion-card-content>
     <div class="button__container">
       <div class="column">
-        <ion-button expand="block" fill="outline">Edit Employee</ion-button>
+        <ion-button expand="block" fill="outline" @click="editEmployee"
+          >Edit Employee</ion-button
+        >
       </div>
       <div class="column">
         <ion-button
@@ -113,6 +115,9 @@ export default {
     },
     updateImageLoaded() {
       this.imageNotLoaded = false;
+    },
+    editEmployee() {
+      this.$router.push(`/employees/edit/${this.employee.id}`);
     },
     async presentAlertConfirm() {
       const alert = await alertController.create({
