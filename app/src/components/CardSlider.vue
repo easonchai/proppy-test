@@ -14,6 +14,7 @@
 <script>
 import { IonSlides, IonSlide } from "@ionic/vue";
 import EmployeeCard from "@/components/EmployeeCard.vue";
+import { filterCircleOutline } from "ionicons/icons";
 import store from "../stores";
 
 export default {
@@ -24,7 +25,7 @@ export default {
       initialSlide: 0,
       speed: 400,
     };
-    return { slideOpts };
+    return { slideOpts, filterCircleOutline };
   },
   data() {
     return {
@@ -53,6 +54,7 @@ export default {
       handler(employeeObj) {
         this.totalItems = employeeObj.totalItems;
         this.employees = employeeObj.items;
+        console.log(this.employees);
       },
       deep: true,
     },
@@ -62,6 +64,6 @@ export default {
 
 <style scoped>
 .card__container {
-  padding: 4vh 2vw;
+  padding: 0 2vw 4vh 2vw;
 }
 </style>

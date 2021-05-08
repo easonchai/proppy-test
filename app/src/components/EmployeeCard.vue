@@ -21,9 +21,24 @@
 </template>
 
 <script>
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardSubtitle,
+  IonCardTitle,
+} from "@ionic/vue";
+
 export default {
   name: "EmployeeCard",
   props: ["employee"],
+  components: {
+    IonCard,
+    IonCardContent,
+    IonCardHeader,
+    IonCardSubtitle,
+    IonCardTitle,
+  },
   methods: {
     displaySalary(value) {
       const num = value.toFixed(2);
