@@ -34,6 +34,7 @@ import {
   IonCardTitle,
   IonSkeletonText,
 } from "@ionic/vue";
+import store from "../../stores";
 
 export default {
   name: "EmployeeCardFull",
@@ -48,11 +49,17 @@ export default {
   data() {
     return {
       imageNotLoaded: true,
-      employee: null,
     };
   },
+  computed: {
+    employee: function() {
+      return store.state.employeeDetail.employee;
+    },
+  },
   mounted() {
-    console.log("here");
+    store.dispatch("employeeDetail/getEmployee", this.$route.params.id, {
+      root: true,
+    });
   },
   methods: {
     displaySalary(value) {
