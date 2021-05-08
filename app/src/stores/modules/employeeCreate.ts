@@ -26,6 +26,9 @@ const mutations = {
   updateLoading(state: { isLoading: any }, payload: any) {
     state.isLoading = payload;
   },
+  updateEmployeeId(state: { employee: any }, payload: boolean) {
+    state.employee.id = payload;
+  },
 };
 
 const getters = {
@@ -58,6 +61,9 @@ const actions = {
       commit("employeeCreate/updateError", errorBody, { root: true });
     }
     commit("employeeCreate/updateLoading", false, { root: true });
+  },
+  updateEmployeeId({ commit, state }: any, params: any) {
+    commit("employeeCreate/updateEmployeeId", params, { root: true });
   },
 };
 

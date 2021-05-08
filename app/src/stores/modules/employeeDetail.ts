@@ -91,6 +91,8 @@ const actions = {
       commit("employeeDetail/updateError", error, { root: true });
     }
     commit("employeeDetail/updateLoading", false, { root: true });
+    commit("employeeDetail/updateRetrieved", true, { root: true });
+    commit("employeeDetail/updateSuccess", true, { root: true });
   },
   async updateEmployee({ commit, state }: any, params: any) {
     commit("employeeDetail/updateSuccess", false, { root: true });
@@ -108,6 +110,9 @@ const actions = {
     }
     commit("employeeDetail/updateLoading", false, { root: true });
     commit("employeeDetail/updateSuccess", true, { root: true });
+  },
+  updateSuccess({ commit, state }: any, params: any) {
+    commit("employeeDetail/updateSuccess", params, { root: true });
   },
 };
 
