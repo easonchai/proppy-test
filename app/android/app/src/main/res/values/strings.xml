@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">Proppy</string>
+    <string name="title_activity_main">Proppy</string>
+    <string name="package_name">com.easonchai.proppy</string>
+    <string name="custom_url_scheme">com.easonchai.proppy</string>
+</resources>
