@@ -1,6 +1,6 @@
 <template>
   <div class="container">
-    <ion-list v-if="employees.length > 0">
+    <ion-list v-if="employees.length > 0 && employeesRetrieved">
       <div class="item__container">
         <div class="column is_left">
           <ion-list-header class="list__header">Employees</ion-list-header>
@@ -45,12 +45,27 @@
           <div
             :ref="'body-' + employee.id"
             class="accordion__body"
-            style="display:none; height: 100%; margin-top: 8px;"
+            style="display:none;"
             v-show="expandElement(employee)"
           >
             <EmployeeDetail :employee="employee"></EmployeeDetail>
           </div>
         </div>
+      </ion-item>
+    </ion-list>
+    <ion-list v-if="employees.length === 0 && employeesRetrieved">
+      <div class="item__container">
+        <div class="column is_left">
+          <ion-list-header class="list__header">Employees</ion-list-header>
+        </div>
+        <div class="column is_right">
+          <ion-button @click="setOpen(true, $event)">
+            <ion-icon slot="icon-only" :icon="filterCircleOutline"></ion-icon>
+          </ion-button>
+        </div>
+      </div>
+      <ion-item class="list__item">
+        <h2 class="main__title">No employees found.</h2>
       </ion-item>
     </ion-list>
     <SkeletonList v-else />
@@ -308,6 +323,11 @@ export default {
   flex-direction: column;
   width: 100%;
   margin: 12px 0;
+}
+
+.accordion__body {
+  height: 100%;
+  margin-top: 8px;
 }
 
 p {

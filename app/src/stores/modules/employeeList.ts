@@ -4,6 +4,7 @@ import { Endpoints } from "../endpoints";
 
 const state = () => ({
   isLoading: false,
+  isRetrieved: false,
   error: {},
   employees: [],
 });
@@ -18,11 +19,17 @@ const mutations = {
   updateLoading(state: { isLoading: any }, payload: any) {
     state.isLoading = payload;
   },
+  updateRetrieved(state: { isRetrieved: any }, payload: any) {
+    state.isRetrieved = payload;
+  },
 };
 
 const getters = {
   loading(state: { isLoading: any }) {
     return state.isLoading;
+  },
+  retrieved(state: { isRetrieved: any }) {
+    return state.isRetrieved;
   },
   error(state: { error: any }) {
     return state.error;
@@ -34,6 +41,7 @@ const getters = {
 
 const actions = {
   async getAllEmployees({ commit }: any, params: QueryParams) {
+    commit("employeeList/updateRetrieved", false, { root: true });
     commit("employeeList/updateLoading", true, { root: true });
     try {
       await axios
@@ -47,6 +55,7 @@ const actions = {
       commit("employeeList/updateError", error, { root: true });
     }
     commit("employeeList/updateLoading", false, { root: true });
+    commit("employeeList/updateRetrieved", true, { root: true });
   },
 };
 
