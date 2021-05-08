@@ -20,7 +20,7 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import("@/views/ListView.vue"),
       },
       {
-        path: "list_employee_card",
+        path: "view_employee",
         component: () => import("@/views/CardView.vue"),
       },
       {

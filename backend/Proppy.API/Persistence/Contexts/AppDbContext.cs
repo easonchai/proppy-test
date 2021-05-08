@@ -64,7 +64,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1970, 1, 25),
                     Salary = 5000,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/1",
+                    Photo = "https://picsum.photos/501",
                 },
                 new Employee
                 {
@@ -77,7 +77,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1971, 3, 2),
                     Salary = 3500,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/2",
+                    Photo = "https://picsum.photos/502",
                 },
                 new Employee
                 {
@@ -90,7 +90,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1972, 5, 25),
                     Salary = 3300,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/3",
+                    Photo = "https://picsum.photos/503",
                 },
                 new Employee
                 {
@@ -103,7 +103,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1973, 2, 13),
                     Salary = 2800,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/4",
+                    Photo = "https://picsum.photos/504",
                 },
                 new Employee
                 {
@@ -116,7 +116,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1974, 8, 8),
                     Salary = 2700,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/5",
+                    Photo = "https://picsum.photos/505",
                 },
                 new Employee
                 {
@@ -129,7 +129,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1975, 1, 23),
                     Salary = 2500,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/6",
+                    Photo = "https://picsum.photos/506",
                 },
                 new Employee
                 {
@@ -142,7 +142,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1976, 1, 31),
                     Salary = 2550,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/7",
+                    Photo = "https://picsum.photos/507",
                 },
                 new Employee
                 {
@@ -155,7 +155,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1977, 2, 28),
                     Salary = 5500,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/8",
+                    Photo = "https://picsum.photos/508",
                 },
                 new Employee
                 {
@@ -168,7 +168,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1978, 12, 25),
                     Salary = 7000,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/9",
+                    Photo = "https://picsum.photos/509",
                 },
                 new Employee
                 {
@@ -181,7 +181,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1979, 1, 7),
                     Salary = 8000,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/10",
+                    Photo = "https://picsum.photos/510",
                 },
                 new Employee
                 {
@@ -194,7 +194,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1980, 1, 25),
                     Salary = 5000,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/11",
+                    Photo = "https://picsum.photos/511",
                 },
                 new Employee
                 {
@@ -207,7 +207,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1981, 3, 2),
                     Salary = 3500,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/12",
+                    Photo = "https://picsum.photos/512",
                 },
                 new Employee
                 {
@@ -220,7 +220,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1982, 5, 25),
                     Salary = 3300,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/13",
+                    Photo = "https://picsum.photos/513",
                 },
                 new Employee
                 {
@@ -233,7 +233,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1983, 2, 13),
                     Salary = 2800,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/14",
+                    Photo = "https://picsum.photos/514",
                 },
                 new Employee
                 {
@@ -246,7 +246,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1984, 8, 8),
                     Salary = 2700,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/15",
+                    Photo = "https://picsum.photos/515",
                 },
                 new Employee
                 {
@@ -259,7 +259,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1985, 1, 23),
                     Salary = 2500,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/16",
+                    Photo = "https://picsum.photos/516",
                 },
                 new Employee
                 {
@@ -272,7 +272,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1986, 1, 31),
                     Salary = 2550,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/17",
+                    Photo = "https://picsum.photos/517",
                 },
                 new Employee
                 {
@@ -285,7 +285,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1987, 2, 28),
                     Salary = 5500,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/18",
+                    Photo = "https://picsum.photos/518",
                 },
                 new Employee
                 {
@@ -298,7 +298,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1988, 12, 25),
                     Salary = 7000,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/19",
+                    Photo = "https://picsum.photos/519",
                 },
                 new Employee
                 {
@@ -311,7 +311,7 @@ namespace Proppy.API.Persistence.Contexts
                     DOB = new DateTime(1989, 1, 7),
                     Salary = 8000,
                     Remarks = "",
-                    Photo = "https://images.unsplash.com/20",
+                    Photo = "https://picsum.photos/520",
                 }
             );
         }

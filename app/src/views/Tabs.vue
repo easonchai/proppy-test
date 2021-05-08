@@ -7,10 +7,7 @@
           <ion-label>Employees (List)</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button
-          tab="list_employee_card"
-          href="/views/list_employee_card"
-        >
+        <ion-tab-button tab="view_employee" href="/views/view_employee">
           <ion-icon :icon="gridOutline" />
           <ion-label>Employees (Card)</ion-label>
         </ion-tab-button>
