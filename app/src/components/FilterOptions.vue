@@ -89,4 +89,11 @@ export default {
   display: flex;
   flex-direction: row;
 }
+
+ion-select {
+  border: 1px solid var(--ion-color-primary);
+  border-radius: 4px;
+  margin: 4px 0;
+  padding: 8px;
+}
 </style>
