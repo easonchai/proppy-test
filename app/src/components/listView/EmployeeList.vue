@@ -327,12 +327,14 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  justify-content: space-evenly;
 }
 
 .is_right {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
+  justify-content: space-evenly;
 }
 
 .accordion__container {
