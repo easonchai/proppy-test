@@ -14,10 +14,28 @@
       pager="true"
       :options="slideOpts"
       class="card__container"
-      v-if="employees"
+      v-if="employees.length > 0 && employeesRetrieved"
     >
       <ion-slide v-for="employee in employees" :key="employee.id">
         <EmployeeCard :employee="employee" />
+      </ion-slide>
+    </ion-slides>
+    <ion-slides
+      pager="true"
+      :options="slideOpts"
+      class="card__container"
+      v-if="employees.length === 0 && employeesRetrieved"
+    >
+      <h2 class="main__title">No Employees Found.</h2>
+    </ion-slides>
+    <ion-slides
+      pager="true"
+      :options="slideOpts"
+      class="card__container"
+      v-else
+    >
+      <ion-slide>
+        <SkeletonCard />
       </ion-slide>
     </ion-slides>
     <ion-popover
@@ -56,6 +74,7 @@ import {
 import EmployeeCard from "@/components/cardView/EmployeeCard";
 import { filterCircleOutline } from "ionicons/icons";
 import FilterOptions from "@/components/FilterOptions";
+import SkeletonCard from "@/components/skeletons/SkeletonCard";
 import store from "../../stores";
 import { ref } from "vue";
 
@@ -70,6 +89,7 @@ export default {
     IonContent,
     IonPopover,
     FilterOptions,
+    SkeletonCard,
   },
   setup() {
     const slideOpts = {
@@ -200,5 +220,12 @@ h1 {
   font-size: 20px;
   color: var(--ion-color-step-100);
   margin: 0;
+}
+
+.main__title {
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--ion-color-step-200);
+  margin: 0 0 8px 0;
 }
 </style>

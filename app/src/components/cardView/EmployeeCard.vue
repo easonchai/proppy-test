@@ -67,6 +67,7 @@ ion-card {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+  min-width: 80vw;
 }
 
 ion-card-title {
