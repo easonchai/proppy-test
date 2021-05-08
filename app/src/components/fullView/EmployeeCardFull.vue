@@ -27,7 +27,11 @@
         <ion-button expand="block" fill="outline">Edit Employee</ion-button>
       </div>
       <div class="column">
-        <ion-button expand="block" fill="outline" color="danger"
+        <ion-button
+          expand="block"
+          fill="outline"
+          color="danger"
+          @click="presentAlertConfirm"
           >Delete Employee</ion-button
         >
       </div>
@@ -43,6 +47,8 @@ import {
   IonCardSubtitle,
   IonCardTitle,
   IonSkeletonText,
+  alertController,
+  IonButton,
 } from "@ionic/vue";
 import store from "../../stores";
 
@@ -55,6 +61,7 @@ export default {
     IonCardSubtitle,
     IonCardTitle,
     IonSkeletonText,
+    IonButton,
   },
   data() {
     return {
@@ -92,6 +99,31 @@ export default {
     },
     updateImageLoaded() {
       this.imageNotLoaded = false;
+    },
+    async presentAlertConfirm() {
+      const alert = await alertController.create({
+        cssClass: "my-custom-class",
+        header: "Confirm Deletion",
+        message:
+          "Are you sure you want to delete this employee? This action is not reversible!",
+        buttons: [
+          {
+            text: "Cancel",
+            role: "cancel",
+            cssClass: "secondary",
+            handler: (blah) => {
+              console.log("Confirm Cancel:", blah);
+            },
+          },
+          {
+            text: "Delete",
+            handler: () => {
+              console.log("Confirm Okay");
+            },
+          },
+        ],
+      });
+      return alert.present();
     },
   },
 };
