@@ -158,6 +158,12 @@ export default {
     },
   },
   watch: {
+    name() {
+      this.nameError = !this.name;
+    },
+    photo() {
+      this.photoError = !this.photo;
+    },
     email(newVal) {
       this.emailError = !this.email || !validateEmail(newVal);
     },
@@ -192,7 +198,8 @@ export default {
 }
 
 ion-input,
-ion-textarea {
+ion-textarea,
+ion-select {
   padding: 8px;
   border: 1px solid var(--ion-color-primary);
   margin: 4px 0;
@@ -211,7 +218,7 @@ ion-label {
 }
 
 .error {
-  border: 1px solid var(--ion-color-danger) !important;
+  border: 2px solid var(--ion-color-danger) !important;
 }
 
 /* Popover Interface: set color for the popover using Item's CSS variables */
