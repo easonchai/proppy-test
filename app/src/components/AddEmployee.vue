@@ -7,6 +7,7 @@
         required
         v-model="name"
         :maxlength="30"
+        :class="{ error: nameError }"
       ></ion-input>
     </div>
     <div class="input__field">
@@ -16,6 +17,7 @@
         required
         v-model="phoneNo"
         :maxlength="20"
+        :class="{ error: phoneError }"
       ></ion-input>
     </div>
     <div class="input__field">
@@ -25,6 +27,7 @@
         required
         v-model="email"
         :maxlength="30"
+        :class="{ error: emailError }"
       ></ion-input>
     </div>
     <div class="input__field">
@@ -65,7 +68,7 @@
         required
         v-model="salary"
         :maxlength="16"
-        :pattern="/^[+]?[0-9]{8,}?[\b]*$/"
+        :class="{ error: salaryError }"
       ></ion-input>
     </div>
     <div class="input__field">
@@ -75,6 +78,7 @@
         required
         v-model="photo"
         :maxlength="100"
+        :class="{ error: photoError }"
       ></ion-input>
     </div>
     <div class="input__field">
@@ -124,9 +128,11 @@ export default {
       salary: 0,
       photo: "",
       remarks: "",
+      nameError: false,
       emailError: false,
       phoneError: false,
       salaryError: false,
+      photoError: false,
       options: {
         cssClass: "styled_select",
       },
@@ -143,6 +149,8 @@ export default {
         !this.phoneNo ||
         this.emailError ||
         this.phoneError ||
+        this.nameError ||
+        this.photoError ||
         this.salaryError
       )
         return true;
