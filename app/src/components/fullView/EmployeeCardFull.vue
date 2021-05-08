@@ -76,7 +76,14 @@ export default {
   watch: {
     employee() {
       if (this.employee.deleted) {
-        this.$router.push("/views/view_employee");
+        this.$router.back();
+      }
+    },
+    $route() {
+      if (this.$route.params) {
+        store.dispatch("employeeDetail/getEmployee", this.$route.params.id, {
+          root: true,
+        });
       }
     },
   },

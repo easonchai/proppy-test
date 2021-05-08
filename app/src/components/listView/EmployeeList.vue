@@ -199,6 +199,19 @@ export default {
       },
       deep: true,
     },
+    $route() {
+      const defaultParams = {
+        page: 1,
+        itemsPerPage: 1,
+        sortBy: "id:asc",
+        gender: "",
+        dob: "",
+        positionCode: "",
+      };
+      store.dispatch("employeeList/getAllEmployees", defaultParams, {
+        root: true,
+      });
+    },
   },
   methods: {
     goNext() {

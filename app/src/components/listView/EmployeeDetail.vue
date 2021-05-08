@@ -19,9 +19,12 @@
 </template>
 
 <script>
+import { IonButton } from "@ionic/vue";
+
 export default {
   name: "EmployeeDetail",
   props: ["employee"],
+  components: { IonButton },
   methods: {
     displaySalary(value) {
       const num = value.toFixed(2);
