@@ -1,5 +1,6 @@
 import { createStore } from "vuex";
 import employeeList from "./modules/employeeList";
+import positionList from "./modules/employeeList";
 
 const store = createStore({
   state: {},
@@ -8,6 +9,7 @@ const store = createStore({
   getters: {},
   modules: {
     employeeList,
+    positionList,
   },
 });
 

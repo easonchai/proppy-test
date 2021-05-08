@@ -96,7 +96,14 @@ export default {
     IonDatetime,
   },
   emits: ["itemsPerPage", "sortBy", "gender", "position", "dob"],
-  props: ["itemsPerPage", "sortBy", "gender", "position", "dob"],
+  props: [
+    "itemsPerPage",
+    "sortBy",
+    "gender",
+    "position",
+    "dob",
+    "positionList",
+  ],
   watch: {
     selectedItemsPerPage(newVal) {
       this.$emit("itemsPerPage", newVal);
@@ -115,7 +122,6 @@ export default {
     },
     selectedDOB(newVal) {
       const parsedDate = newVal.toLocaleString().split("T")[0];
-      console.log(parsedDate);
       this.$emit("dob", parsedDate);
     },
   },
