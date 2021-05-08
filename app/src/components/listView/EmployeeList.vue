@@ -172,12 +172,6 @@ export default {
     positionList: function() {
       return store.state.positionList.positions;
     },
-    saveSuccess: function() {
-      return store.state.employeeDetail.isSuccess;
-    },
-    createSuccess: function() {
-      return store.state.employeeCreate.employee.id;
-    },
   },
   mounted() {
     store.dispatch("employeeList/getAllEmployees", this.params, { root: true });
@@ -205,33 +199,18 @@ export default {
       },
       deep: true,
     },
-    saveSuccess() {
-      if (this.saveSuccess) {
+    $route() {
+      if (window.location.href.indexOf("list") > -1) {
+        console.log("at lsit");
         const defaultParams = {
           page: 1,
-          itemsPerPage: 0,
+          itemsPerPage: 10,
           sortBy: "id:asc",
           gender: "",
           dob: "",
           positionCode: "",
         };
-        store.dispatch("employeeDetail/updateSuccess", false, { root: true });
-        store.dispatch("employeeList/getAllEmployees", defaultParams, {
-          root: true,
-        });
-      }
-    },
-    createSuccess() {
-      if (this.createSuccess) {
-        const defaultParams = {
-          page: 1,
-          itemsPerPage: 0,
-          sortBy: "id:asc",
-          gender: "",
-          dob: "",
-          positionCode: "",
-        };
-        store.dispatch("employeeCreate/updateEmployeeId", null, { root: true });
+        this.params = defaultParams;
         store.dispatch("employeeList/getAllEmployees", defaultParams, {
           root: true,
         });
