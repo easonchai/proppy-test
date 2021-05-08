@@ -2,15 +2,30 @@
   <form class="form__container" @submit.prevent>
     <ion-item class="input__field">
       <ion-label position="floating">Employee Name</ion-label>
-      <ion-input type="text" required v-model="name"></ion-input>
+      <ion-input
+        type="text"
+        required
+        v-model="name"
+        :maxlength="30"
+      ></ion-input>
     </ion-item>
     <ion-item class="input__field">
       <ion-label position="floating">Phone No</ion-label>
-      <ion-input type="phone" required v-model="phoneNo"></ion-input>
+      <ion-input
+        type="tel"
+        required
+        v-model="phoneNo"
+        :maxlength="20"
+      ></ion-input>
     </ion-item>
     <ion-item class="input__field">
       <ion-label position="floating">Email</ion-label>
-      <ion-input type="email" required v-model="email"></ion-input>
+      <ion-input
+        type="email"
+        required
+        v-model="email"
+        :maxlength="30"
+      ></ion-input>
     </ion-item>
     <ion-item class="input__field">
       <ion-label>Gender</ion-label>
@@ -44,17 +59,32 @@
     </ion-item>
     <ion-item class="input__field">
       <ion-label position="floating">Salary (RM)</ion-label>
-      <ion-input type="number" required v-model="salary"></ion-input>
+      <ion-input
+        type="number"
+        inputmode="numeric"
+        required
+        v-model="salary"
+        :maxlength="16"
+        :pattern="/^[+]?[0-9]{8,}?[\b]*$/"
+      ></ion-input>
     </ion-item>
     <ion-item class="input__field">
-      <ion-label position="floating">Image URL</ion-label>
-      <ion-input type="text" required v-model="photo"></ion-input>
+      <ion-label position="floating">Photo Filename/URL</ion-label>
+      <ion-input
+        type="text"
+        required
+        v-model="photo"
+        :maxlength="100"
+      ></ion-input>
     </ion-item>
     <ion-item class="input__field">
       <ion-label position="floating">Remarks</ion-label>
       <ion-textarea
         placeholder="Enter employee remarks..."
         v-model="remarks"
+        :maxlength="1000"
+        :rows="5"
+        spellcheck
       ></ion-textarea>
     </ion-item>
     <ion-button expand="block" :disabled="buttonDisabled"
@@ -73,7 +103,11 @@ import {
   IonSelectOption,
   IonSelect,
 } from "@ionic/vue";
-import { validateEmail, validatePhone } from "../utils/validation";
+import {
+  validateEmail,
+  validatePhone,
+  validateSalary,
+} from "../utils/validation";
 
 export default {
   components: {
@@ -108,12 +142,14 @@ export default {
     buttonDisabled() {
       if (
         !this.name ||
-        this.emailError ||
-        this.phoneError ||
+        !this.email ||
         !this.gender ||
         !this.positionCode ||
-        this.salaryError ||
-        !this.photo
+        !this.photo ||
+        !this.phoneNo ||
+        this.emailError ||
+        this.phoneError ||
+        this.salaryError
       )
         return true;
       return false;
@@ -123,8 +159,15 @@ export default {
     email(newVal) {
       this.emailError = !this.email || !validateEmail(newVal);
     },
-    phone(newVal) {
-      this.phoneError = !this.phone || !validatePhone(newVal);
+    phoneNo(newVal) {
+      this.phoneError = !this.phoneNo || !validatePhone(newVal);
+    },
+    salary(newVal) {
+      if (newVal < 0) {
+        this.salary = 0;
+      } else {
+        this.salary = Number(newVal);
+      }
     },
   },
   methods: {
@@ -144,6 +187,11 @@ export default {
 
 .input__field {
   margin-bottom: 14px;
+}
+
+ion-input {
+  padding: 8px;
+  height: 24px;
 }
 
 /* Popover Interface: set color for the popover using Item's CSS variables */
