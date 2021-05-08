@@ -8,6 +8,13 @@
     <h4>{{ displayDob(employee.dob) }}</h4>
     <h3>Remarks:</h3>
     <h4>{{ employee.remarks === "" ? "None" : employee.remarks }}</h4>
+    <ion-button
+      expand="block"
+      fill="outline"
+      color="primary"
+      @click="navigateToDetails"
+      >View Employee</ion-button
+    >
   </div>
 </template>
 
@@ -25,6 +32,9 @@ export default {
       const date = new Date(value);
       const parsed = date.toLocaleString().split(",")[0];
       return parsed;
+    },
+    navigateToDetails() {
+      this.$router.push(`/employees/${this.employee.id}`);
     },
   },
 };

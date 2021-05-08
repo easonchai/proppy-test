@@ -73,7 +73,6 @@ export default {
     },
     navigateToDetails() {
       this.$router.push(`/employees/${this.employee.id}`);
-      console.log("clicked", this.employee.id);
     },
   },
 };
