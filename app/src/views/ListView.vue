@@ -5,7 +5,7 @@
 </template>
 
 <script lang="ts">
-import EmployeeList from "@/components/EmployeeList.vue";
+import EmployeeList from "../components/listView/EmployeeList.vue";
 
 export default {
   name: "ListView",

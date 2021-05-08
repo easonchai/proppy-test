@@ -101,7 +101,7 @@
 </template>
 
 <script>
-import store from "../stores";
+import store from "../../stores";
 import {
   IonList,
   IonItem,
@@ -111,9 +111,9 @@ import {
   IonButton,
   IonPopover,
 } from "@ionic/vue";
-import SkeletonList from "./skeletons/SkeletonList";
-import EmployeeDetail from "./EmployeeDetail";
-import FilterOptions from "./FilterOptions";
+import SkeletonList from "@/components/skeletons/SkeletonList";
+import EmployeeDetail from "@/components/listView/EmployeeDetail";
+import FilterOptions from "@/components/FilterOptions";
 import { caretDownOutline, filterCircleOutline } from "ionicons/icons";
 import { ref } from "vue";
 
