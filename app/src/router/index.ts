@@ -5,26 +5,26 @@ import Tabs from "../views/Tabs.vue";
 const routes: Array<RouteRecordRaw> = [
   {
     path: "/",
-    redirect: "/views/list_employee",
+    redirect: "/admin/employee/list",
   },
   {
-    path: "/views/",
+    path: "/admin/employee",
     component: Tabs,
     children: [
       {
         path: "",
-        redirect: "/views/list_employee",
+        redirect: "/list",
       },
       {
-        path: "list_employee",
+        path: "list",
         component: () => import("@/views/ListView.vue"),
       },
       {
-        path: "view_employee",
+        path: "card",
         component: () => import("@/views/CardView.vue"),
       },
       {
-        path: "add_employee",
+        path: "add",
         component: () => import("@/views/AddView.vue"),
       },
     ],

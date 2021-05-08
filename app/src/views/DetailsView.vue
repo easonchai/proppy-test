@@ -7,7 +7,7 @@
   </base-layout>
 </template>
 
-<script lang="ts">
+<script>
 import { IonRefresher, IonRefresherContent } from "@ionic/vue";
 import EmployeeCardFull from "../components/fullView/EmployeeCardFull.vue";
 
