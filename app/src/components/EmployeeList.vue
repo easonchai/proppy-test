@@ -72,7 +72,7 @@
         :itemsPerPage="params.itemsPerPage"
         :sortBy="params.sortBy"
         :gender="params.gender"
-        :position="params.position"
+        :position="params.positionCode"
         :dob="params.dob"
         :positionList="positionList"
         @itemsPerPage="updateItemsPerPage"
@@ -140,7 +140,7 @@ export default {
         sortBy: "id:asc",
         gender: "",
         dob: "",
-        position: "",
+        positionCode: "",
       },
       totalItems: 0,
       employees: [],
@@ -240,7 +240,7 @@ export default {
       this.params.gender = newVal;
     },
     updatePosition(newVal) {
-      this.params.position = newVal;
+      this.params.positionCode = newVal;
     },
     updateDOB(newVal) {
       this.params.dob = newVal;
