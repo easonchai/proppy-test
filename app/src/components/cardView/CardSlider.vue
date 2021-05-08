@@ -32,7 +32,7 @@
       pager="true"
       :options="slideOpts"
       class="card__container"
-      v-else
+      v-if="!employeesRetrieved"
     >
       <ion-slide>
         <SkeletonCard />
@@ -46,7 +46,7 @@
       @didDismiss="setOpen(false)"
     >
       <FilterOptions
-        :itemsPerPage="params.itemsPerPage"
+        :noItemsPerPage="true"
         :sortBy="params.sortBy"
         :gender="params.gender"
         :position="params.positionCode"
@@ -109,10 +109,10 @@ export default {
       params: {
         page: 1,
         itemsPerPage: 0,
-        sortBy: "",
+        sortBy: "id:asc",
         gender: "",
         dob: "",
-        position: "",
+        positionCode: "",
       },
       employees: [],
       positions: [],

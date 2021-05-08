@@ -55,7 +55,7 @@ const actions = {
       commit("employeeList/updateError", error, { root: true });
     }
     commit("employeeList/updateLoading", false, { root: true });
-    // commit("employeeList/updateRetrieved", true, { root: true });
+    commit("employeeList/updateRetrieved", true, { root: true });
   },
 };
 

@@ -1,6 +1,6 @@
 <template>
   <ion-content class="ion-padding">
-    <div class="filter__option">
+    <div class="filter__option" v-if="!noItemsPerPage">
       <ion-label>Items Per Page</ion-label>
       <ion-select
         placeholder="Select One"
@@ -110,6 +110,7 @@ export default {
     "position",
     "dob",
     "positionList",
+    "noItemsPerPage",
   ],
   watch: {
     selectedItemsPerPage(newVal) {

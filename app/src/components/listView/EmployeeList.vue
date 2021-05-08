@@ -68,7 +68,7 @@
         <h2 class="main__title">No employees found.</h2>
       </ion-item>
     </ion-list>
-    <SkeletonList v-else />
+    <SkeletonList v-if="!employeesRetrieved" />
     <pagination
       :page="params.page"
       :itemsPerPage="params.itemsPerPage"

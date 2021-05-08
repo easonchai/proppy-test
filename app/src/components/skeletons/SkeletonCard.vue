@@ -23,7 +23,12 @@
 </template>
 
 <script>
-import { IonCard, IonCardContent, IonCardHeader } from "@ionic/vue";
+import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonSkeletonText,
+} from "@ionic/vue";
 
 export default {
   name: "SkeletonCard",
@@ -31,6 +36,7 @@ export default {
     IonCard,
     IonCardContent,
     IonCardHeader,
+    IonSkeletonText,
   },
 };
 </script>
