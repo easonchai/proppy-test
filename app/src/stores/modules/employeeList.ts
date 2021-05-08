@@ -1,3 +1,9 @@
+import {
+  EmployeeResponse,
+  EmployeeListStore,
+  EmployeeQueryResponse,
+} from "@/models/Employee";
+import { ErrorObject } from "@/models/Error";
 import { QueryParams } from "@/models/QueryParams";
 import { axios } from "../../utils/axios";
 import { Endpoints } from "../endpoints";
@@ -10,31 +16,31 @@ const state = () => ({
 });
 
 const mutations = {
-  updateEmployees(state: { employees: any }, payload: any) {
+  updateEmployees(state: EmployeeListStore, payload: EmployeeQueryResponse) {
     state.employees = payload;
   },
-  updateError(state: { error: any }, payload: any) {
+  updateError(state: EmployeeListStore, payload: ErrorObject) {
     state.error = payload;
   },
-  updateLoading(state: { isLoading: any }, payload: any) {
+  updateLoading(state: EmployeeListStore, payload: boolean) {
     state.isLoading = payload;
   },
-  updateRetrieved(state: { isRetrieved: any }, payload: any) {
+  updateRetrieved(state: EmployeeListStore, payload: boolean) {
     state.isRetrieved = payload;
   },
 };
 
 const getters = {
-  loading(state: { isLoading: any }) {
+  loading(state: EmployeeListStore) {
     return state.isLoading;
   },
-  retrieved(state: { isRetrieved: any }) {
+  retrieved(state: EmployeeListStore) {
     return state.isRetrieved;
   },
-  error(state: { error: any }) {
+  error(state: EmployeeListStore) {
     return state.error;
   },
-  employees(state: { employees: any }) {
+  employees(state: EmployeeListStore) {
     return state.employees;
   },
 };
@@ -49,12 +55,14 @@ const actions = {
           params,
         })
         .then((response) => {
-          const items = response.data.items.map((employee: any) => {
-            return {
-              ...employee,
-              phoneNo: employee.phone_No,
-            };
-          });
+          const items = response.data.items.map(
+            (employee: EmployeeResponse) => {
+              return {
+                ...employee,
+                phoneNo: employee.phone_No,
+              };
+            }
+          );
           const employeeObj = {
             totalItems: response.data.totalItems,
             items,
