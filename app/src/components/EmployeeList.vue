@@ -63,12 +63,13 @@
     />
     <ion-popover
       :is-open="isOpenRef"
-      css-class="my-custom-class"
+      css-class="filter_options_popover"
       :event="event"
       :translucent="true"
       @didDismiss="setOpen(false)"
     >
       <FilterOptions
+        :itemsPerPage="params.itemsPerPage"
         @itemsPerPage="updateItemsPerPage"
         @sortBy="updateSortBy"
         @gender="updateGender"
@@ -158,7 +159,9 @@ export default {
     },
     params: {
       handler(params) {
-        console.log("newParams", params);
+        store.dispatch("employeeList/getAllEmployees", this.params, {
+          root: true,
+        });
       },
       deep: true,
     },
