@@ -74,6 +74,7 @@
         :gender="params.gender"
         :position="params.position"
         :dob="params.dob"
+        :positionList="positionList"
         @itemsPerPage="updateItemsPerPage"
         @sortBy="updateSortBy"
         @gender="updateGender"
@@ -143,15 +144,23 @@ export default {
       },
       totalItems: 0,
       employees: [],
+      positions: [],
     };
   },
   computed: {
     employeeList: function() {
       return store.state.employeeList.employees;
     },
+    employeesRetrieved: function() {
+      return store.state.employeeList.isRetrieved;
+    },
+    positionList: function() {
+      return store.state.positionList.positions;
+    },
   },
   mounted() {
     store.dispatch("employeeList/getAllEmployees", this.params, { root: true });
+    store.dispatch("positionList/getAllPositions", null, { root: true });
   },
   watch: {
     employeeList: {
@@ -161,9 +170,15 @@ export default {
       },
       deep: true,
     },
+    positionList: {
+      handler(positionObj) {
+        this.positions = positionObj.items;
+      },
+      deep: true,
+    },
     params: {
       handler(params) {
-        store.dispatch("employeeList/getAllEmployees", this.params, {
+        store.dispatch("employeeList/getAllEmployees", params, {
           root: true,
         });
       },

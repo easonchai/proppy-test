@@ -1,6 +1,6 @@
 import { createStore } from "vuex";
 import employeeList from "./modules/employeeList";
-import positionList from "./modules/employeeList";
+import positionList from "./modules/positionList";
 
 const store = createStore({
   state: {},

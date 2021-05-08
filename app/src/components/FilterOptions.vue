@@ -62,10 +62,12 @@
         interface="popover"
         :interface-options="options"
       >
-        <ion-select-option value="A">10</ion-select-option>
-        <ion-select-option value="B">20</ion-select-option>
-        <ion-select-option value="C">50</ion-select-option>
-        <ion-select-option value="D">100</ion-select-option>
+        <ion-select-option
+          v-for="position in positionList"
+          :key="position.code"
+          :value="position.code"
+          >{{ position.description }}</ion-select-option
+        >
       </ion-select>
       <ion-datetime
         placeholder="Date of Birth"
