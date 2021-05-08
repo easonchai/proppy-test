@@ -4,6 +4,7 @@ import { Endpoints } from "../endpoints";
 const state = () => ({
   isLoading: false,
   isRetrieved: false,
+  isSuccess: false,
   error: null,
   employee: {
     id: 0,
@@ -39,6 +40,9 @@ const mutations = {
   },
   updateRetrieved(state: { isRetrieved: any }, payload: any) {
     state.isRetrieved = payload;
+  },
+  updateSuccess(state: { isSuccess: any }, payload: any) {
+    state.isSuccess = payload;
   },
 };
 
@@ -89,7 +93,7 @@ const actions = {
     commit("employeeDetail/updateLoading", false, { root: true });
   },
   async updateEmployee({ commit, state }: any, params: any) {
-    commit("employeeDetail/updateRetrieved", false, { root: true });
+    commit("employeeDetail/updateSuccess", false, { root: true });
     commit("employeeDetail/updateLoading", true, { root: true });
     try {
       await axios
@@ -103,7 +107,7 @@ const actions = {
       commit("employeeDetail/updateError", error, { root: true });
     }
     commit("employeeDetail/updateLoading", false, { root: true });
-    commit("employeeDetail/updateRetrieved", true, { root: true });
+    commit("employeeDetail/updateSuccess", true, { root: true });
   },
 };
 

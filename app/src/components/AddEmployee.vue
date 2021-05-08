@@ -17,6 +17,7 @@
 <script>
 import store from "../stores";
 import EmployeeForm from "./EmployeeForm";
+import { alertController } from "@ionic/vue";
 
 export default {
   components: {
@@ -36,6 +37,19 @@ export default {
         remarks: "",
       },
     };
+  },
+  computed: {
+    employeeStore() {
+      return store.state.employeeCreate.employee;
+    },
+  },
+  watch: {
+    employeeStore() {
+      if (this.employeeStore.id) {
+        console.log(this.employeeStore);
+        this.presentCreateSuccess();
+      }
+    },
   },
   methods: {
     createEmployee() {
@@ -66,6 +80,21 @@ export default {
     },
     updateRemarks(val) {
       this.employee.remarks = val;
+    },
+    async presentCreateSuccess() {
+      const alert = await alertController.create({
+        header: "Create Success!",
+        message: "This employee was created successfully.",
+        buttons: [
+          {
+            text: "OK",
+            handler: () => {
+              this.$router.go();
+            },
+          },
+        ],
+      });
+      await alert.present();
     },
   },
 };

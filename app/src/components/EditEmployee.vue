@@ -18,6 +18,7 @@
 <script>
 import store from "../stores";
 import EmployeeForm from "./EmployeeForm";
+import { alertController } from "@ionic/vue";
 
 export default {
   components: {
@@ -59,10 +60,28 @@ export default {
     updateRemarks(val) {
       this.employeeData.remarks = val;
     },
+    async presentSaveSuccess() {
+      const alert = await alertController.create({
+        header: "Changes Saved!",
+        message: "This employee's data was saved successfully.",
+        buttons: [
+          {
+            text: "OK",
+            handler: () => {
+              this.$router.back();
+            },
+          },
+        ],
+      });
+      await alert.present();
+    },
   },
   computed: {
     employee() {
       return store.state.employeeDetail.employee;
+    },
+    employeeSaved() {
+      return store.state.employeeDetail.isSuccess;
     },
   },
   watch: {
@@ -72,6 +91,11 @@ export default {
           ...this.employee,
           positionCode: this.employee.position.code,
         };
+      }
+    },
+    employeeSaved() {
+      if (this.employeeSaved) {
+        this.presentSaveSuccess();
       }
     },
   },

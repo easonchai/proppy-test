@@ -178,9 +178,6 @@ export default {
         return true;
       return false;
     },
-    employeeStore() {
-      return store.state.employeeCreate.employee;
-    },
     error() {
       return store.state.employeeCreate.error;
     },
@@ -226,11 +223,6 @@ export default {
     "employee.positionCode"(newVal) {
       this.$emit("positionCode", newVal);
     },
-    employeeStore() {
-      if (this.employeeStore.id) {
-        this.presentCreateSuccess();
-      }
-    },
     error() {
       // Will improve in future
       let errorMessage =
@@ -244,23 +236,6 @@ export default {
     },
   },
   methods: {
-    async presentCreateSuccess() {
-      const alert = await alertController.create({
-        header: "Create Success!",
-        message: "This employee was created successfully.",
-        buttons: [
-          {
-            text: "OK",
-            handler: () => {
-              this.$router.go();
-            },
-          },
-        ],
-      });
-      await alert.present();
-
-      const { role } = await alert.onDidDismiss();
-    },
     async presentCreateFailed(errorMessage) {
       const alert = await alertController.create({
         header: "Create Failed!",
@@ -268,8 +243,6 @@ export default {
         buttons: ["OK"],
       });
       await alert.present();
-
-      const { role } = await alert.onDidDismiss();
     },
     emitClick() {
       this.$emit("formSubmit");
