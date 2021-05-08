@@ -50,7 +50,12 @@ const actions = {
         });
       });
     } catch (error) {
-      commit("employeeCreate/updateError", error, { root: true });
+      // TODO: Add interceptor which returns the body
+      const errorBody = {
+        status: error.response.status,
+        message: error.response.data,
+      };
+      commit("employeeCreate/updateError", errorBody, { root: true });
     }
     commit("employeeCreate/updateLoading", false, { root: true });
   },

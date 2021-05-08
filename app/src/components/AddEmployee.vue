@@ -181,6 +181,9 @@ export default {
     employeeStore() {
       return store.state.employeeCreate.employee;
     },
+    error() {
+      return store.state.employeeCreate.error;
+    },
   },
   watch: {
     "employee.name"() {
@@ -204,8 +207,19 @@ export default {
     },
     employeeStore() {
       if (this.employeeStore.id) {
-        this.presentAlert();
+        this.presentCreateSuccess();
       }
+    },
+    error() {
+      // Will improve in future
+      let errorMessage =
+        "An error occured when saving the employee: Some of the data might already exist";
+      if (
+        this.error.message !==
+        "An error occurred when saving the employee: An error occurred while updating the entries. See the inner exception for details."
+      )
+        errorMessage = this.error.message;
+      this.presentCreateFailed(errorMessage);
     },
   },
   methods: {
@@ -214,7 +228,7 @@ export default {
         root: true,
       });
     },
-    async presentAlert() {
+    async presentCreateSuccess() {
       const alert = await alertController.create({
         header: "Create Success!",
         message: "This employee was created successfully.",
@@ -230,7 +244,16 @@ export default {
       await alert.present();
 
       const { role } = await alert.onDidDismiss();
-      console.log("onDidDismiss resolved with role", role);
+    },
+    async presentCreateFailed(errorMessage) {
+      const alert = await alertController.create({
+        header: "Create Failed!",
+        message: errorMessage,
+        buttons: ["OK"],
+      });
+      await alert.present();
+
+      const { role } = await alert.onDidDismiss();
     },
   },
 };
