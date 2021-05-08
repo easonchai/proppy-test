@@ -67,27 +67,34 @@
         <ion-select-option value="C">50</ion-select-option>
         <ion-select-option value="D">100</ion-select-option>
       </ion-select>
-      <ion-select
+      <ion-datetime
         placeholder="Date of Birth"
+        display-format="YYYY MMMM"
+        value="2012-12-15T13:47:20.789"
         v-model="selectedDOB"
-        interface="popover"
-        :interface-options="options"
-      >
-        <ion-select-option value="10">10</ion-select-option>
-        <ion-select-option value="20">20</ion-select-option>
-        <ion-select-option value="50">50</ion-select-option>
-        <ion-select-option value="100">100</ion-select-option>
-      </ion-select>
+      ></ion-datetime>
     </div>
   </ion-content>
 </template>
 
 <script>
-import { IonContent, IonLabel, IonSelect, IonSelectOption } from "@ionic/vue";
+import {
+  IonContent,
+  IonLabel,
+  IonSelect,
+  IonSelectOption,
+  IonDatetime,
+} from "@ionic/vue";
 
 export default {
   name: "FilterOptions",
-  components: { IonContent, IonLabel, IonSelect, IonSelectOption },
+  components: {
+    IonContent,
+    IonLabel,
+    IonSelect,
+    IonSelectOption,
+    IonDatetime,
+  },
   emits: ["itemsPerPage", "sortBy", "gender", "position", "dob"],
   props: ["itemsPerPage", "sortBy", "gender", "position", "dob"],
   watch: {
@@ -107,7 +114,9 @@ export default {
       this.$emit("position", newVal);
     },
     selectedDOB(newVal) {
-      this.$emit("dob", newVal);
+      const parsedDate = newVal.toLocaleString().split("T")[0];
+      console.log(parsedDate);
+      this.$emit("dob", parsedDate);
     },
   },
   data() {
@@ -138,7 +147,8 @@ export default {
   flex-direction: row;
 }
 
-ion-select {
+ion-select,
+ion-datetime {
   border: 1px solid var(--ion-color-primary);
   border-radius: 4px;
   margin: 4px 0;
