@@ -1,3 +1,5 @@
+import { EmployeeBody, EmployeeCreateStore } from "@/models/Employee";
+import { ErrorObject } from "@/models/Error";
 import { axios } from "../../utils/axios";
 import { Endpoints } from "../endpoints";
 
@@ -9,6 +11,7 @@ const state = () => ({
     email: "",
     phoneNo: "",
     gender: "",
+    dob: "",
     positionCode: "",
     salary: 0,
     photo: "",
@@ -17,28 +20,25 @@ const state = () => ({
 });
 
 const mutations = {
-  updateEmployee(state: { employee: any }, payload: any) {
+  updateEmployee(state: EmployeeCreateStore, payload: EmployeeBody) {
     state.employee = payload;
   },
-  updateError(state: { error: any }, payload: any) {
+  updateError(state: EmployeeCreateStore, payload: ErrorObject) {
     state.error = payload;
   },
-  updateLoading(state: { isLoading: any }, payload: any) {
+  updateLoading(state: EmployeeCreateStore, payload: boolean) {
     state.isLoading = payload;
-  },
-  updateEmployeeId(state: { employee: any }, payload: boolean) {
-    state.employee.id = payload;
   },
 };
 
 const getters = {
-  loading(state: { isLoading: any }) {
+  loading(state: EmployeeCreateStore) {
     return state.isLoading;
   },
-  error(state: { error: any }) {
+  error(state: EmployeeCreateStore) {
     return state.error;
   },
-  employee(state: { employee: any }) {
+  employee(state: EmployeeCreateStore) {
     return state.employee;
   },
 };
@@ -61,9 +61,6 @@ const actions = {
       commit("employeeCreate/updateError", errorBody, { root: true });
     }
     commit("employeeCreate/updateLoading", false, { root: true });
-  },
-  updateEmployeeId({ commit, state }: any, params: any) {
-    commit("employeeCreate/updateEmployeeId", params, { root: true });
   },
 };
 

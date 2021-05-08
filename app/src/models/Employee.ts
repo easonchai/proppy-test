@@ -1,6 +1,18 @@
 import { ErrorObject } from "./Error";
 import { Position } from "./Position";
 
+export interface EmployeeBody {
+  name: string;
+  email: string;
+  phoneNo: string;
+  gender: string;
+  positionCode: string;
+  salary: number;
+  photo: string;
+  dob: Date;
+  remarks: string;
+}
+
 export interface EmployeeResponse {
   id: number;
   name: string;
@@ -10,6 +22,7 @@ export interface EmployeeResponse {
   position: Position;
   salary: number;
   photo: string;
+  dob: Date;
   remarks: string;
 }
 
@@ -34,7 +47,6 @@ export interface EmployeeDetailStore {
 
 export interface EmployeeCreateStore {
   isLoading: boolean;
-  isRetrieved: boolean;
   error: ErrorObject;
-  employees: Employee[];
+  employee: EmployeeBody;
 }

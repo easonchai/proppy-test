@@ -16,6 +16,7 @@ const state = () => ({
       code: "",
       description: "",
     },
+    dob: "",
     salary: 0,
     photo: "",
     remarks: "",
