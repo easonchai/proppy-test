@@ -6,7 +6,7 @@
           <ion-list-header class="list__header">Employees</ion-list-header>
         </div>
         <div class="column is_right">
-          <ion-button @click="openFilterOptions">
+          <ion-button @click="setOpen(true, $event)">
             <ion-icon slot="icon-only" :icon="filterCircleOutline"></ion-icon>
           </ion-button>
         </div>
@@ -61,6 +61,21 @@
       @next="goNext"
       @prev="goPrev"
     />
+    <ion-popover
+      :is-open="isOpenRef"
+      css-class="my-custom-class"
+      :event="event"
+      :translucent="true"
+      @didDismiss="setOpen(false)"
+    >
+      <FilterOptions
+        @itemsPerPage="updateItemsPerPage"
+        @sortBy="updateSortBy"
+        @gender="updateGender"
+        @dob="updateDOB"
+        @position="updatePosition"
+      ></FilterOptions>
+    </ion-popover>
   </div>
 </template>
 
@@ -73,12 +88,13 @@ import {
   IonText,
   IonIcon,
   IonButton,
-  popoverController,
+  IonPopover,
 } from "@ionic/vue";
 import SkeletonList from "./skeletons/SkeletonList";
 import EmployeeDetail from "./EmployeeDetail";
 import FilterOptions from "./FilterOptions";
 import { caretDownOutline, filterCircleOutline } from "ionicons/icons";
+import { ref } from "vue";
 
 export default {
   name: "EmployeeList",
@@ -91,11 +107,23 @@ export default {
     IonIcon,
     EmployeeDetail,
     IonButton,
+    IonPopover,
+    FilterOptions,
   },
   setup() {
+    const isOpenRef = ref(false);
+    const event = ref();
+    const setOpen = (state, event) => {
+      if (event) event.value = event;
+      isOpenRef.value = state;
+    };
+
     return {
       caretDownOutline,
       filterCircleOutline,
+      isOpenRef,
+      setOpen,
+      event,
     };
   },
   data() {
@@ -103,6 +131,10 @@ export default {
       params: {
         page: 1,
         itemsPerPage: 10,
+        sortBy: "",
+        gender: "",
+        dob: "",
+        position: "",
       },
       totalItems: 0,
       employees: [],
@@ -121,7 +153,12 @@ export default {
       handler(employeeObj) {
         this.totalItems = employeeObj.totalItems;
         this.employees = employeeObj.items;
-        console.log(this.employees);
+      },
+      deep: true,
+    },
+    params: {
+      handler(params) {
+        console.log("newParams", params);
       },
       deep: true,
     },
@@ -171,17 +208,20 @@ export default {
       }, this);
       this.employees = [...this.employees];
     },
-    async openFilterOptions(ev) {
-      const popover = await popoverController.create({
-        component: FilterOptions,
-        cssClass: "my-custom-class",
-        event: ev,
-        translucent: true,
-      });
-      await popover.present();
-
-      const { role } = await popover.onDidDismiss();
-      console.log("onDidDismiss resolved with role", role);
+    updateItemsPerPage(newVal) {
+      this.params.itemsPerPage = newVal;
+    },
+    updateSortBy(newVal) {
+      this.params.sortBy = newVal;
+    },
+    updateGender(newVal) {
+      this.params.gender = newVal;
+    },
+    updatePosition(newVal) {
+      this.params.position = newVal;
+    },
+    updateDOB(newVal) {
+      this.params.dob = newVal;
     },
   },
 };

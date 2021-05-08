@@ -42,15 +42,15 @@ export default {
     const filterBy = ref("");
 
     watch(itemsPerPage, (newVal) => {
-      emit("itemsPerPage", { newVal });
+      emit("itemsPerPage", newVal);
     });
 
     watch(sortBy, (newVal) => {
-      emit("sortBy", { newVal });
+      emit("sortBy", newVal);
     });
 
     watch(filterBy, (newVal) => {
-      emit("filterBy", { newVal });
+      emit("filterBy", newVal);
     });
 
     return {
