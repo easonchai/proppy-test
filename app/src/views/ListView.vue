@@ -7,7 +7,7 @@
   </base-layout>
 </template>
 
-<script lang="ts">
+<script>
 import { IonRefresher, IonRefresherContent } from "@ionic/vue";
 import EmployeeList from "../components/listView/EmployeeList.vue";
 
