@@ -19,7 +19,7 @@ This application is used to view Employees data within a company. It is split in
 - Microsoft SQL Server
 - NodeJS
 
-### Setup 🏗️
+### Backend Setup 🏗️
 
 First, ensure that your SQL server is running & proper credentials have been setup.
 
@@ -42,6 +42,18 @@ dotnet run # This will run the backend
 <br>
 
 Once complete, you may test the API by going to `localhost:5000/api/positions`. If you run into issues due to insecure connection, you may alternatively use the HTTPS url at `https://localhost:5001/api/positions`
+
+### Frontend Setup 📱
+
+Ensure that your system has the requirements to build & run the android app by following the guide [here](https://ionicframework.com/docs/developing/android).
+
+<br>
+
+With all setup, enter the command below to run the application on an emulator
+
+```bash
+npx cap open android
+```
 
 ## Useful Commands
 
