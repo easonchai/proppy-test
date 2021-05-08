@@ -85,7 +85,7 @@ const actions = {
     }
     commit("employeeDetail/updateLoading", false, { root: true });
   },
-  async updateEmployee({ commit, state }: any, params: string) {
+  async updateEmployee({ commit, state }: any, params: any) {
     commit("employeeDetail/updateRetrieved", false, { root: true });
     commit("employeeDetail/updateLoading", true, { root: true });
     try {

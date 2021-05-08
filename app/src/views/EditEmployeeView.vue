@@ -1,16 +1,16 @@
 <template>
-  <base-layout pageTitle="Add Employee">
-    <AddEmployee />
+  <base-layout pageTitle="Edit Employee">
+    <EditEmployee />
   </base-layout>
 </template>
 
 <script lang="ts">
-import AddEmployee from "@/components/AddEmployee.vue";
+import EditEmployee from "@/components/EditEmployee.vue";
 
 export default {
   name: "EditEmployeeView",
   components: {
-    AddEmployee,
+    EditEmployee,
   },
 };
 </script>
