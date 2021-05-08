@@ -5,7 +5,7 @@
         <h1>Employees</h1>
       </div>
       <div class="column is_right">
-        <ion-button>
+        <ion-button @click="setOpen(true, $event)">
           <ion-icon slot="icon-only" :icon="filterCircleOutline"></ion-icon>
         </ion-button>
       </div>
@@ -20,6 +20,27 @@
         <EmployeeCard :employee="employee" />
       </ion-slide>
     </ion-slides>
+    <ion-popover
+      :is-open="isOpenRef"
+      css-class="filter_options_popover"
+      :event="event"
+      :translucent="true"
+      @didDismiss="setOpen(false)"
+    >
+      <FilterOptions
+        :itemsPerPage="params.itemsPerPage"
+        :sortBy="params.sortBy"
+        :gender="params.gender"
+        :position="params.positionCode"
+        :dob="params.dob"
+        :positionList="positionList"
+        @itemsPerPage="updateItemsPerPage"
+        @sortBy="updateSortBy"
+        @gender="updateGender"
+        @dob="updateDOB"
+        @position="updatePosition"
+      ></FilterOptions>
+    </ion-popover>
   </ion-content>
 </template>
 
@@ -30,10 +51,13 @@ import {
   IonIcon,
   IonButton,
   IonContent,
+  IonPopover,
 } from "@ionic/vue";
 import EmployeeCard from "@/components/cardView/EmployeeCard";
 import { filterCircleOutline } from "ionicons/icons";
+import FilterOptions from "@/components/FilterOptions";
 import store from "../../stores";
+import { ref } from "vue";
 
 export default {
   name: "CardSlider",
@@ -44,44 +68,89 @@ export default {
     IonIcon,
     IonButton,
     IonContent,
+    IonPopover,
+    FilterOptions,
   },
   setup() {
     const slideOpts = {
       initialSlide: 0,
       speed: 400,
     };
-    return { slideOpts, filterCircleOutline };
+    const isOpenRef = ref(false);
+    const event = ref();
+    const setOpen = (state, event) => {
+      if (event) event.value = event;
+      isOpenRef.value = state;
+    };
+    return { slideOpts, filterCircleOutline, isOpenRef, setOpen, event };
   },
   data() {
     return {
       params: {
         page: 1,
-        itemsPerPage: 0, // Will retrieve all
+        itemsPerPage: 0,
         sortBy: "",
         gender: "",
         dob: "",
         position: "",
       },
-      totalItems: 0,
       employees: [],
+      positions: [],
     };
   },
   computed: {
     employeeList: function() {
       return store.state.employeeList.employees;
     },
+    employeesRetrieved: function() {
+      return store.state.employeeList.isRetrieved;
+    },
+    positionList: function() {
+      return store.state.positionList.positions;
+    },
   },
   mounted() {
     store.dispatch("employeeList/getAllEmployees", this.params, { root: true });
+    store.dispatch("positionList/getAllPositions", null, { root: true });
   },
   watch: {
     employeeList: {
       handler(employeeObj) {
         this.totalItems = employeeObj.totalItems;
         this.employees = employeeObj.items;
-        console.log(this.employees);
       },
       deep: true,
+    },
+    positionList: {
+      handler(positionObj) {
+        this.positions = positionObj.items;
+      },
+      deep: true,
+    },
+    params: {
+      handler(params) {
+        store.dispatch("employeeList/getAllEmployees", params, {
+          root: true,
+        });
+      },
+      deep: true,
+    },
+  },
+  methods: {
+    updateItemsPerPage(newVal) {
+      this.params.itemsPerPage = newVal;
+    },
+    updateSortBy(newVal) {
+      this.params.sortBy = newVal;
+    },
+    updateGender(newVal) {
+      this.params.gender = newVal;
+    },
+    updatePosition(newVal) {
+      this.params.positionCode = newVal;
+    },
+    updateDOB(newVal) {
+      this.params.dob = newVal;
     },
   },
 };
