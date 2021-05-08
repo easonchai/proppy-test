@@ -9,6 +9,9 @@
         :maxlength="30"
         :class="{ error: nameError }"
       ></ion-input>
+      <span class="error__message" v-if="nameError"
+        >Please enter a valid name!</span
+      >
     </div>
     <div class="input__field">
       <ion-label position="floating">Phone No</ion-label>
@@ -19,6 +22,9 @@
         :maxlength="20"
         :class="{ error: phoneError }"
       ></ion-input>
+      <span class="error__message" v-if="phoneError"
+        >Please enter a valid phone number!</span
+      >
     </div>
     <div class="input__field">
       <ion-label position="floating">Email</ion-label>
@@ -29,6 +35,9 @@
         :maxlength="30"
         :class="{ error: emailError }"
       ></ion-input>
+      <span class="error__message" v-if="emailError"
+        >Please enter a valid email!</span
+      >
     </div>
     <div class="input__field">
       <ion-label>Gender</ion-label>
@@ -70,6 +79,9 @@
         :maxlength="16"
         :class="{ error: salaryError }"
       ></ion-input>
+      <span class="error__message" v-if="salaryError"
+        >Please enter a valid salary!</span
+      >
     </div>
     <div class="input__field">
       <ion-label position="floating">Photo Filename/URL</ion-label>
@@ -80,6 +92,9 @@
         :maxlength="100"
         :class="{ error: photoError }"
       ></ion-input>
+      <span class="error__message" v-if="photoError"
+        >Please enter a valid photo name/URL!</span
+      >
     </div>
     <div class="input__field">
       <ion-label position="floating">Remarks</ion-label>
@@ -171,10 +186,10 @@ export default {
       this.phoneError = !this.phoneNo || !validatePhone(newVal);
     },
     salary(newVal) {
-      if (newVal < 0) {
-        this.salary = 0;
-      } else {
-        this.salary = Number(newVal);
+      if (isNaN(newVal)) this.salaryError = true;
+      else {
+        this.salary = parseInt(newVal);
+        this.salaryError = false;
       }
     },
   },
@@ -219,6 +234,12 @@ ion-label {
 
 .error {
   border: 2px solid var(--ion-color-danger) !important;
+}
+
+.error__message {
+  color: var(--ion-color-danger);
+  margin-top: 4px;
+  font-size: 14px;
 }
 
 /* Popover Interface: set color for the popover using Item's CSS variables */
