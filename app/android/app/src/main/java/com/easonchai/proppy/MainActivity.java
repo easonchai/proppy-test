@@ -1,4 +1,4 @@
-package io.ionic.starter;
+package com.easonchai.proppy;
 
 import android.os.Bundle;
 

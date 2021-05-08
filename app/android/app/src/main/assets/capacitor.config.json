@@ -1,6 +1,6 @@
 {
-  "appId": "io.ionic.starter",
-  "appName": "ProppyApp",
+  "appId": "com.easonchai.proppy",
+  "appName": "proppy",
   "bundledWebRuntime": false,
   "npmClient": "npm",
   "webDir": "dist",

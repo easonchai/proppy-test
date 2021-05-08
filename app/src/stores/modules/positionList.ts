@@ -1,3 +1,5 @@
+import { ErrorObject } from "@/models/Error";
+import { PositionListStore } from "@/models/Position";
 import { axios } from "../../utils/axios";
 import { Endpoints } from "../endpoints";
 
@@ -9,31 +11,31 @@ const state = () => ({
 });
 
 const mutations = {
-  updatePositions(state: { positions: any }, payload: any) {
+  updatePositions(state: PositionListStore, payload: any) {
     state.positions = payload;
   },
-  updateError(state: { error: object }, payload: object) {
+  updateError(state: PositionListStore, payload: ErrorObject) {
     state.error = payload;
   },
-  updateLoading(state: { isLoading: boolean }, payload: boolean) {
+  updateLoading(state: PositionListStore, payload: boolean) {
     state.isLoading = payload;
   },
-  updateRetrieved(state: { isRetrieved: boolean }, payload: boolean) {
+  updateRetrieved(state: PositionListStore, payload: boolean) {
     state.isRetrieved = payload;
   },
 };
 
 const getters = {
-  loading(state: { isLoading: any }) {
+  loading(state: PositionListStore) {
     return state.isLoading;
   },
-  retrieved(state: { isRetrieved: any }) {
+  retrieved(state: PositionListStore) {
     return state.isRetrieved;
   },
-  error(state: { error: any }) {
+  error(state: PositionListStore) {
     return state.error;
   },
-  positions(state: { positions: any }) {
+  positions(state: PositionListStore) {
     return state.positions;
   },
 };
