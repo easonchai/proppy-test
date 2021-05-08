@@ -22,6 +22,16 @@
       <h3>Remarks</h3>
       <h4>{{ employee.remarks === "" ? "None" : employee.remarks }}</h4>
     </ion-card-content>
+    <div class="button__container">
+      <div class="column">
+        <ion-button expand="block" fill="outline">Edit Employee</ion-button>
+      </div>
+      <div class="column">
+        <ion-button expand="block" fill="outline" color="danger"
+          >Delete Employee</ion-button
+        >
+      </div>
+    </div>
   </ion-card>
 </template>
 
@@ -133,5 +143,20 @@ h4 {
 .image__container {
   width: 100%;
   height: 30vh;
+}
+
+.button__container {
+  display: flex;
+  flex-direction: row;
+  padding: 2vh 2vw;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.column {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>
