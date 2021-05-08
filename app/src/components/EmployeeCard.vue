@@ -1,6 +1,6 @@
 <template>
   <ion-card>
-    <img :src="employee.imageUrl" />
+    <img :src="employee.photo" />
     <ion-card-header>
       <ion-card-title>{{ employee.name }}</ion-card-title>
       <ion-card-subtitle>{{ employee.position.description }}</ion-card-subtitle>
