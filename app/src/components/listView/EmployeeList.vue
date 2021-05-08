@@ -208,9 +208,11 @@ export default {
         dob: "",
         positionCode: "",
       };
-      store.dispatch("employeeList/getAllEmployees", defaultParams, {
-        root: true,
-      });
+      if (window.location.href.indexOf("list") > -1) {
+        store.dispatch("employeeList/getAllEmployees", defaultParams, {
+          root: true,
+        });
+      }
     },
   },
   methods: {
