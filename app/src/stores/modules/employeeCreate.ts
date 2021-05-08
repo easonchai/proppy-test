@@ -7,9 +7,9 @@ const state = () => ({
   employee: {
     name: "",
     email: "",
-    phone_No: "",
+    phoneNo: "",
     gender: "",
-    position_code: "",
+    positionCode: "",
     salary: 0,
     photo: "",
     remarks: "",

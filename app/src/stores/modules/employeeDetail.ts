@@ -9,7 +9,7 @@ const state = () => ({
     id: 0,
     name: "",
     email: "",
-    phone_No: "",
+    phoneNo: "",
     gender: "M",
     position: {
       code: "",

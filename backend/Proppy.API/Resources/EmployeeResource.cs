@@ -6,7 +6,7 @@ namespace Proppy.API.Resources
     {
         public long ID {get; set;}
         public string Name {get; set;}
-        public string Phone_No {get; set;}
+        public string PhoneNo {get; set;}
         public string Email{get; set;}
         public string Gender {get; set;}
         public PositionResource Position {get; set;}

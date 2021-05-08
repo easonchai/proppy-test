@@ -11,7 +11,7 @@ namespace Proppy.API.Resources
 
         [Required]
         [MaxLength(20)]
-        public string Phone_No {get; set;}
+        public string PhoneNo {get; set;}
 
         [Required]
         [MaxLength(30)]
@@ -23,7 +23,7 @@ namespace Proppy.API.Resources
 
         [Required]
         [MaxLength(1)]
-        public string Position_Code {get; set;}
+        public string PositionCode {get; set;}
 
         [Required]
         public DateTime DOB {get; set;} 
