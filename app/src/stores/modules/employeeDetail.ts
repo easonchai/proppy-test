@@ -1,3 +1,9 @@
+import {
+  EmployeeDetailStore,
+  EmployeeResponse,
+  ModifiedEmployeeResponse,
+} from "@/models/Employee";
+import { ErrorObject } from "@/models/Error";
 import { axios } from "../../utils/axios";
 import { Endpoints } from "../endpoints";
 
@@ -24,40 +30,40 @@ const state = () => ({
 });
 
 const mutations = {
-  updateEmployee(state: { employee: any }, payload: any) {
+  updateEmployee(state: EmployeeDetailStore, payload: EmployeeResponse) {
     state.employee = payload;
 
     // Manually modify the phone_No to camel case (Only since this API has this requirement for snake case)
     state.employee.phoneNo = payload.phone_No;
   },
-  updateEmployeeId(state: { employee: any }, payload: number) {
+  updateEmployeeId(state: EmployeeDetailStore, payload: number) {
     state.employee.id = payload;
   },
-  updateError(state: { error: any }, payload: any) {
+  updateError(state: EmployeeDetailStore, payload: ErrorObject) {
     state.error = payload;
   },
-  updateLoading(state: { isLoading: any }, payload: any) {
+  updateLoading(state: EmployeeDetailStore, payload: boolean) {
     state.isLoading = payload;
   },
-  updateRetrieved(state: { isRetrieved: any }, payload: any) {
+  updateRetrieved(state: EmployeeDetailStore, payload: boolean) {
     state.isRetrieved = payload;
   },
-  updateSuccess(state: { isSuccess: any }, payload: any) {
+  updateSuccess(state: EmployeeDetailStore, payload: boolean) {
     state.isSuccess = payload;
   },
 };
 
 const getters = {
-  loading(state: { isLoading: any }) {
+  loading(state: EmployeeDetailStore) {
     return state.isLoading;
   },
-  retrieved(state: { isRetrieved: any }) {
+  retrieved(state: EmployeeDetailStore) {
     return state.isRetrieved;
   },
-  error(state: { error: any }) {
+  error(state: EmployeeDetailStore) {
     return state.error;
   },
-  employee(state: { employee: any }) {
+  employee(state: EmployeeDetailStore) {
     return state.employee;
   },
 };
@@ -95,7 +101,10 @@ const actions = {
     commit("employeeDetail/updateRetrieved", true, { root: true });
     commit("employeeDetail/updateSuccess", true, { root: true });
   },
-  async updateEmployee({ commit, state }: any, params: any) {
+  async updateEmployee(
+    { commit, state }: any,
+    params: ModifiedEmployeeResponse
+  ) {
     commit("employeeDetail/updateSuccess", false, { root: true });
     commit("employeeDetail/updateLoading", true, { root: true });
     try {
@@ -112,7 +121,7 @@ const actions = {
     commit("employeeDetail/updateLoading", false, { root: true });
     commit("employeeDetail/updateSuccess", true, { root: true });
   },
-  updateSuccess({ commit, state }: any, params: any) {
+  updateSuccess({ commit }: any, params: boolean) {
     commit("employeeDetail/updateSuccess", params, { root: true });
   },
 };

@@ -26,6 +26,20 @@ export interface EmployeeResponse {
   remarks: string;
 }
 
+export interface ModifiedEmployeeResponse {
+  id: number;
+  name: string;
+  email: string;
+  phone_No?: string;
+  phoneNo?: string;
+  gender: string;
+  position: Position;
+  salary: number;
+  photo: string;
+  dob: Date;
+  remarks: string;
+}
+
 export interface EmployeeQueryResponse {
   totalItems: number;
   items: EmployeeResponse[];
@@ -41,8 +55,9 @@ export interface EmployeeListStore {
 export interface EmployeeDetailStore {
   isLoading: boolean;
   isRetrieved: boolean;
+  isSuccess: boolean;
   error: ErrorObject;
-  employees: Employee[];
+  employee: ModifiedEmployeeResponse;
 }
 
 export interface EmployeeCreateStore {
