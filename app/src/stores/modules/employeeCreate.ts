@@ -41,8 +41,7 @@ const getters = {
 };
 
 const actions = {
-  async createEmployee({ commit, state }: any, params: any) {
-    console.log(params);
+  async createEmployee({ commit }: any, params: any) {
     commit("employeeCreate/updateLoading", true, { root: true });
     try {
       await axios.post(Endpoints.Employees, params).then((response) => {

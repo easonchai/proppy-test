@@ -123,6 +123,7 @@ import {
   IonButton,
   IonSelectOption,
   IonSelect,
+  alertController,
 } from "@ionic/vue";
 import { validateEmail, validatePhone } from "../utils/validation";
 import store from "../stores";
@@ -177,6 +178,9 @@ export default {
         return true;
       return false;
     },
+    employeeStore() {
+      return store.state.employeeCreate.employee;
+    },
   },
   watch: {
     "employee.name"() {
@@ -198,12 +202,35 @@ export default {
         this.salaryError = false;
       }
     },
+    employeeStore() {
+      if (this.employeeStore.id) {
+        this.presentAlert();
+      }
+    },
   },
   methods: {
     createEmployee() {
       store.dispatch("employeeCreate/createEmployee", this.employee, {
         root: true,
       });
+    },
+    async presentAlert() {
+      const alert = await alertController.create({
+        header: "Create Success!",
+        message: "This employee was created successfully.",
+        buttons: [
+          {
+            text: "OK",
+            handler: () => {
+              this.$router.go();
+            },
+          },
+        ],
+      });
+      await alert.present();
+
+      const { role } = await alert.onDidDismiss();
+      console.log("onDidDismiss resolved with role", role);
     },
   },
 };
