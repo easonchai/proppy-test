@@ -76,6 +76,9 @@
         v-model="selectedDOB"
       ></ion-datetime>
     </div>
+    <ion-button color="primary" fill="outline" @click="clearAll"
+      >Clear All</ion-button
+    >
   </ion-content>
 </template>
 
@@ -86,6 +89,7 @@ import {
   IonSelect,
   IonSelectOption,
   IonDatetime,
+  IonButton,
 } from "@ionic/vue";
 
 export default {
@@ -96,6 +100,7 @@ export default {
     IonSelect,
     IonSelectOption,
     IonDatetime,
+    IonButton,
   },
   emits: ["itemsPerPage", "sortBy", "gender", "position", "dob"],
   props: [
@@ -136,9 +141,19 @@ export default {
       selectedPosition: this.position,
       selectedDOB: this.dob,
       options: {
-        cssClass: "my-custom-interface",
+        cssClass: "styled_select",
       },
     };
+  },
+  methods: {
+    clearAll() {
+      this.selectedItemsPerPage = 10;
+      this.sortCategory = "id";
+      this.sortOrder = "asc";
+      this.selectedGender = "";
+      this.selectedPosition = "";
+      this.selectedDOB = "";
+    },
   },
 };
 </script>
@@ -165,7 +180,7 @@ ion-datetime {
 }
 
 /* Popover Interface: set color for the popover using Item's CSS variables */
-.my-custom-interface .select-interface-option {
+.styled_select .select-interface-option {
   --color: #333;
   --color-hover: #333;
 }
