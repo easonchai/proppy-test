@@ -5,7 +5,7 @@
       <ion-input
         type="text"
         required
-        v-model="name"
+        v-model="employee.name"
         :maxlength="30"
         :class="{ error: nameError }"
       ></ion-input>
@@ -18,7 +18,7 @@
       <ion-input
         type="tel"
         required
-        v-model="phoneNo"
+        v-model="employee.phoneNo"
         :maxlength="20"
         :class="{ error: phoneError }"
       ></ion-input>
@@ -31,7 +31,7 @@
       <ion-input
         type="email"
         required
-        v-model="email"
+        v-model="employee.email"
         :maxlength="30"
         :class="{ error: emailError }"
       ></ion-input>
@@ -43,7 +43,7 @@
       <ion-label>Gender</ion-label>
       <ion-select
         placeholder="Select One"
-        v-model="gender"
+        v-model="employee.gender"
         interface="popover"
         :interface-options="options"
       >
@@ -55,7 +55,7 @@
       <ion-label>Position</ion-label>
       <ion-select
         placeholder="Select One"
-        v-model="positionCode"
+        v-model="employee.positionCode"
         interface="popover"
         :interface-options="options"
       >
@@ -75,7 +75,7 @@
         type="number"
         inputmode="numeric"
         required
-        v-model="salary"
+        v-model="employee.salary"
         :maxlength="16"
         :class="{ error: salaryError }"
       ></ion-input>
@@ -88,7 +88,7 @@
       <ion-input
         type="text"
         required
-        v-model="photo"
+        v-model="employee.photo"
         :maxlength="100"
         :class="{ error: photoError }"
       ></ion-input>
@@ -100,13 +100,16 @@
       <ion-label position="floating">Remarks</ion-label>
       <ion-textarea
         placeholder="Enter employee remarks..."
-        v-model="remarks"
+        v-model="employee.remarks"
         :maxlength="1000"
         :rows="5"
         spellcheck
       ></ion-textarea>
     </div>
-    <ion-button expand="block" :disabled="buttonDisabled"
+    <ion-button
+      expand="block"
+      :disabled="buttonDisabled"
+      @click="createEmployee"
       >Add Employee</ion-button
     >
   </form>
@@ -122,6 +125,7 @@ import {
   IonSelect,
 } from "@ionic/vue";
 import { validateEmail, validatePhone } from "../utils/validation";
+import store from "../stores";
 
 export default {
   components: {
@@ -135,14 +139,16 @@ export default {
   name: "AddEmployee",
   data() {
     return {
-      name: "",
-      email: "",
-      phoneNo: "",
-      gender: "M",
-      positionCode: "A",
-      salary: 0,
-      photo: "",
-      remarks: "",
+      employee: {
+        name: "",
+        email: "",
+        phoneNo: "",
+        gender: "M",
+        positionCode: "A",
+        salary: 0,
+        photo: "",
+        remarks: "",
+      },
       nameError: false,
       emailError: false,
       phoneError: false,
@@ -156,12 +162,12 @@ export default {
   computed: {
     buttonDisabled() {
       if (
-        !this.name ||
-        !this.email ||
-        !this.gender ||
-        !this.positionCode ||
-        !this.photo ||
-        !this.phoneNo ||
+        !this.employee.name ||
+        !this.employee.email ||
+        !this.employee.gender ||
+        !this.employee.positionCode ||
+        !this.employee.photo ||
+        !this.employee.phoneNo ||
         this.emailError ||
         this.phoneError ||
         this.nameError ||
@@ -173,29 +179,31 @@ export default {
     },
   },
   watch: {
-    name() {
-      this.nameError = !this.name;
+    "employee.name"() {
+      this.nameError = !this.employee.name;
     },
-    photo() {
-      this.photoError = !this.photo;
+    "employee.photo"() {
+      this.photoError = !this.employee.photo;
     },
-    email(newVal) {
-      this.emailError = !this.email || !validateEmail(newVal);
+    "employee.email"(newVal) {
+      this.emailError = !this.employee.email || !validateEmail(newVal);
     },
-    phoneNo(newVal) {
-      this.phoneError = !this.phoneNo || !validatePhone(newVal);
+    "employee.phoneNo"(newVal) {
+      this.phoneError = !this.employee.phoneNo || !validatePhone(newVal);
     },
-    salary(newVal) {
+    "employee.salary"(newVal) {
       if (isNaN(newVal)) this.salaryError = true;
       else {
-        this.salary = parseInt(newVal);
+        this.employee.salary = parseInt(newVal);
         this.salaryError = false;
       }
     },
   },
   methods: {
     createEmployee() {
-      console.log("create");
+      store.dispatch("employeeCreate/createEmployee", this.employee, {
+        root: true,
+      });
     },
   },
 };

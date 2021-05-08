@@ -31,7 +31,6 @@ namespace Proppy.API.Resources
         [Required]
         public int Salary {get; set;}
 
-        [Required]
         [MaxLength(1000)]
         public string Remarks {get; set;}
 

@@ -41,26 +41,19 @@ const getters = {
 };
 
 const actions = {
-  async createEmployee({ commit, state }: any, params: string) {
-    commit("employeeCreate/updateRetrieved", false, { root: true });
+  async createEmployee({ commit, state }: any, params: any) {
+    console.log(params);
     commit("employeeCreate/updateLoading", true, { root: true });
     try {
-      await axios
-        .post(Endpoints.Employees, {
-          data: {
-            ...state.employee,
-          },
-        })
-        .then((response) => {
-          commit("employeeCreate/updateEmployee", response.data, {
-            root: true,
-          });
+      await axios.post(Endpoints.Employees, params).then((response) => {
+        commit("employeeCreate/updateEmployee", response.data, {
+          root: true,
         });
+      });
     } catch (error) {
       commit("employeeCreate/updateError", error, { root: true });
     }
     commit("employeeCreate/updateLoading", false, { root: true });
-    commit("employeeCreate/updateRetrieved", true, { root: true });
   },
 };
 
