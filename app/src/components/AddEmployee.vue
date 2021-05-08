@@ -73,6 +73,7 @@ import {
   IonSelectOption,
   IonSelect,
 } from "@ionic/vue";
+import { validateEmail, validatePhone } from "../utils/validation";
 
 export default {
   components: {
@@ -98,6 +99,9 @@ export default {
       emailError: false,
       phoneError: false,
       salaryError: false,
+      options: {
+        cssClass: "styled_select",
+      },
     };
   },
   computed: {
@@ -113,6 +117,14 @@ export default {
       )
         return true;
       return false;
+    },
+  },
+  watch: {
+    email(newVal) {
+      this.emailError = !this.email || !validateEmail(newVal);
+    },
+    phone(newVal) {
+      this.phoneError = !this.phone || !validatePhone(newVal);
     },
   },
   methods: {
