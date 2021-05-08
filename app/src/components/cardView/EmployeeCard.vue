@@ -1,6 +1,9 @@
 <template>
   <ion-card>
-    <img :src="employee.photo" />
+    <img :src="employee.photo" @load="updateImageLoaded" />
+    <div class="image__container" v-if="imageNotLoaded">
+      <ion-skeleton-text></ion-skeleton-text>
+    </div>
     <ion-card-header>
       <ion-card-title>{{ employee.name }}</ion-card-title>
       <ion-card-subtitle>{{ employee.position.description }}</ion-card-subtitle>
@@ -27,6 +30,7 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
+  IonSkeletonText,
 } from "@ionic/vue";
 
 export default {
@@ -38,6 +42,12 @@ export default {
     IonCardHeader,
     IonCardSubtitle,
     IonCardTitle,
+    IonSkeletonText,
+  },
+  data() {
+    return {
+      imageNotLoaded: true,
+    };
   },
   methods: {
     displaySalary(value) {
@@ -57,6 +67,9 @@ export default {
         case "F":
           return "Female";
       }
+    },
+    updateImageLoaded() {
+      this.imageNotLoaded = false;
     },
   },
 };
@@ -103,5 +116,10 @@ h4 {
   font-size: 16px;
   margin: 4px 0 12px 0;
   flex: 5;
+}
+
+.image__container {
+  width: 100%;
+  height: 30vh;
 }
 </style>
