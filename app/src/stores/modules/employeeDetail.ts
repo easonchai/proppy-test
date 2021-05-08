@@ -93,11 +93,7 @@ const actions = {
     commit("employeeDetail/updateLoading", true, { root: true });
     try {
       await axios
-        .put(`${Endpoints.Employees}/${state.employee.id}`, {
-          data: {
-            ...state.employee,
-          },
-        })
+        .put(`${Endpoints.Employees}/${state.employee.id}`, params)
         .then((response) => {
           commit("employeeDetail/updateEmployee", response.data, {
             root: true,
