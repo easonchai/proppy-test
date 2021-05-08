@@ -15,8 +15,8 @@ namespace Proppy.API.Domain.Models.Queries
             // We can do some basic built-in error handling like below:
             if (page <= 0)
                 Page = 1;
-            if (itemsPerPage <= 0)
-                ItemsPerPage = 10;
+            if (itemsPerPage < 0)
+                ItemsPerPage = 0;
         }
     }
 }

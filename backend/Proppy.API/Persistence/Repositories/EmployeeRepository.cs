@@ -90,9 +90,13 @@ namespace Proppy.API.Persistence.Repositories
             queryable = SortBy(queryable, query);
 
             // Pagination
-            List<Employee> employees = await queryable.Skip((query.Page - 1) * query.ItemsPerPage)
+            List<Employee> employees = await queryable.ToListAsync();
+            if (query.ItemsPerPage > 0)
+            {
+                employees = await queryable.Skip((query.Page - 1) * query.ItemsPerPage)
                                                         .Take(query.ItemsPerPage)
                                                         .ToListAsync();
+            }
 
             // Finally, return the object
             return new QueryResult<Employee>
