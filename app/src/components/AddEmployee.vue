@@ -10,6 +10,7 @@
     @salary="updateSalary"
     @photo="updatePhoto"
     @remarks="updateRemarks"
+    @dob="updateDOB"
     @formSubmit="createEmployee"
   />
 </template>
@@ -35,6 +36,7 @@ export default {
         salary: 0,
         photo: "",
         remarks: "",
+        dob: "",
       },
     };
   },
@@ -46,7 +48,6 @@ export default {
   watch: {
     employeeStore() {
       if (this.employeeStore.id) {
-        console.log(this.employeeStore);
         this.presentCreateSuccess();
       }
     },
@@ -77,6 +78,9 @@ export default {
     },
     updatePhoto(val) {
       this.employee.photo = val;
+    },
+    updateDOB(val) {
+      this.employee.dob = val;
     },
     updateRemarks(val) {
       this.employee.remarks = val;

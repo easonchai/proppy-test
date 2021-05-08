@@ -72,7 +72,6 @@
       <ion-datetime
         placeholder="Date of Birth"
         display-format="YYYY MMMM"
-        value="2012-12-15T13:47:20.789"
         v-model="selectedDOB"
       ></ion-datetime>
     </div>

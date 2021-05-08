@@ -10,6 +10,7 @@
     @positionCode="updatePositionCode"
     @salary="updateSalary"
     @photo="updatePhoto"
+    @dob="updateDOB"
     @remarks="updateRemarks"
     @formSubmit="updateEmployee"
   />
@@ -56,6 +57,9 @@ export default {
     },
     updatePhoto(val) {
       this.employeeData.photo = val;
+    },
+    updateDOB(val) {
+      this.employee.dob = val;
     },
     updateRemarks(val) {
       this.employeeData.remarks = val;

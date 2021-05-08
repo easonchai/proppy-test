@@ -201,7 +201,6 @@ export default {
     },
     $route() {
       if (window.location.href.indexOf("list") > -1) {
-        console.log("at lsit");
         const defaultParams = {
           page: 1,
           itemsPerPage: 10,

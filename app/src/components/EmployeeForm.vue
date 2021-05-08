@@ -51,6 +51,12 @@
         <ion-select-option value="M">Male</ion-select-option>
       </ion-select>
     </div>
+    <ion-label>Date of Birth</ion-label>
+    <ion-datetime
+      placeholder="Select a date"
+      display-format="DD MMM YYYY"
+      v-model="employee.dob"
+    ></ion-datetime>
     <div class="input__field">
       <ion-label>Position</ion-label>
       <ion-select
@@ -121,6 +127,7 @@ import {
   IonSelectOption,
   IonSelect,
   alertController,
+  IonDatetime,
 } from "@ionic/vue";
 import { validateEmail, validatePhone } from "../utils/validation";
 import store from "../stores";
@@ -133,6 +140,7 @@ export default {
     IonButton,
     IonSelectOption,
     IonSelect,
+    IonDatetime,
   },
   name: "AddEmployee",
   props: ["employeeData", "buttonText"],
@@ -146,6 +154,7 @@ export default {
     "photo",
     "remarks",
     "formSubmit",
+    "dob",
   ],
   data() {
     return {
@@ -169,6 +178,7 @@ export default {
         !this.employee.positionCode ||
         !this.employee.photo ||
         !this.employee.phoneNo ||
+        !this.employee.dob ||
         this.emailError ||
         this.phoneError ||
         this.nameError ||
@@ -223,6 +233,9 @@ export default {
     "employee.positionCode"(newVal) {
       this.$emit("positionCode", newVal);
     },
+    "employee.dob"(newVal) {
+      this.$emit("dob", newVal);
+    },
     error() {
       // Will improve in future
       let errorMessage =
@@ -264,12 +277,17 @@ export default {
 
 ion-input,
 ion-textarea,
-ion-select {
+ion-select,
+ion-datetime {
   padding: 8px;
   border: 1px solid var(--ion-color-primary);
   margin: 4px 0;
   border-radius: 4px;
   color: var(--ion-color-step-250);
+}
+
+ion-datetime {
+  margin-bottom: 16px;
 }
 
 ion-input {
@@ -279,7 +297,6 @@ ion-input {
 ion-label {
   font-weight: 600;
   color: var(--ion-color-step-250);
-  margin-bottom: 8px;
 }
 
 .error {
