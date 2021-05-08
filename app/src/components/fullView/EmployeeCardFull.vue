@@ -1,5 +1,5 @@
 <template>
-  <ion-card type="button" @click="navigateToDetails">
+  <ion-card v-if="employee">
     <img :src="employee.photo" @load="updateImageLoaded" />
     <div class="image__container" v-if="imageNotLoaded">
       <ion-skeleton-text></ion-skeleton-text>
@@ -19,6 +19,8 @@
       <h4>{{ displayDob(employee.dob) }}</h4>
       <h3>Salary</h3>
       <h4>RM {{ displaySalary(employee.salary) }}</h4>
+      <h3>Remarks</h3>
+      <h4>{{ employee.remarks === "" ? "None" : employee.remarks }}</h4>
     </ion-card-content>
   </ion-card>
 </template>
@@ -34,8 +36,7 @@ import {
 } from "@ionic/vue";
 
 export default {
-  name: "EmployeeCard",
-  props: ["employee"],
+  name: "EmployeeCardFull",
   components: {
     IonCard,
     IonCardContent,
@@ -47,7 +48,11 @@ export default {
   data() {
     return {
       imageNotLoaded: true,
+      employee: null,
     };
+  },
+  mounted() {
+    console.log("here");
   },
   methods: {
     displaySalary(value) {
@@ -70,10 +75,6 @@ export default {
     },
     updateImageLoaded() {
       this.imageNotLoaded = false;
-    },
-    navigateToDetails() {
-      this.$router.push(`/employees/${this.employee.id}`);
-      console.log("clicked", this.employee.id);
     },
   },
 };

@@ -22,7 +22,7 @@ import {
 
 export default {
   name: "BaseLayout",
-  props: ["pageTitle", "hasFilter"],
+  props: ["pageTitle"],
   components: {
     IonHeader,
     IonToolbar,

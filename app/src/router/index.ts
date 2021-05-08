@@ -29,6 +29,10 @@ const routes: Array<RouteRecordRaw> = [
       },
     ],
   },
+  {
+    path: "/employees/:id",
+    component: () => import("@/views/FullDetailsView.vue"),
+  },
 ];
 
 const router = createRouter({

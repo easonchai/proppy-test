@@ -1,5 +1,5 @@
 <template>
-  <base-layout pageTitle="View Employees - List View" :hasFilter="true">
+  <base-layout pageTitle="View Employees - List View">
     <EmployeeList />
   </base-layout>
 </template>
