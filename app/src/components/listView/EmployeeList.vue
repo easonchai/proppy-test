@@ -28,7 +28,7 @@
                 {{ employee.name }}
               </h2>
               <h3 class="sub__title">
-                {{ employee.phone_No }}
+                {{ employee.phoneNo }}
               </h3>
               <p>{{ employee.position.description }}</p>
             </div>

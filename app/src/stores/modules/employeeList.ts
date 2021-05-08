@@ -49,7 +49,19 @@ const actions = {
           params,
         })
         .then((response) => {
-          commit("employeeList/updateEmployees", response.data, { root: true });
+          const items = response.data.items.map((employee: any) => {
+            return {
+              ...employee,
+              phoneNo: employee.phone_No,
+            };
+          });
+          const employeeObj = {
+            totalItems: response.data.totalItems,
+            items,
+          };
+          commit("employeeList/updateEmployees", employeeObj, {
+            root: true,
+          });
         });
     } catch (error) {
       commit("employeeList/updateError", error, { root: true });

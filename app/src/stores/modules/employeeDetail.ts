@@ -24,6 +24,9 @@ const state = () => ({
 const mutations = {
   updateEmployee(state: { employee: any }, payload: any) {
     state.employee = payload;
+
+    // Manually modify the phone_No to camel case (Only since this API has this requirement for snake case)
+    state.employee.phoneNo = payload.phone_No;
   },
   updateEmployeeId(state: { employee: any }, payload: number) {
     state.employee.id = payload;

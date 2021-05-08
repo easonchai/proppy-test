@@ -10,7 +10,7 @@
     </ion-card-header>
     <ion-card-content>
       <h3>Phone No.</h3>
-      <h4>{{ employee.phone_No }}</h4>
+      <h4>{{ employee.phoneNo }}</h4>
       <h3>Email</h3>
       <h4>{{ employee.email }}</h4>
       <h3>Gender</h3>
