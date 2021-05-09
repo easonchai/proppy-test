@@ -2,6 +2,7 @@
   <EmployeeForm
     v-if="employeeData.id"
     :employeeData="employeeData"
+    :positionList="positionList"
     buttonText="Save Changes"
     @name="updateName"
     @email="updateEmail"
@@ -87,6 +88,9 @@ export default {
     employeeSaved() {
       return store.state.employeeDetail.isSuccess;
     },
+    positionList() {
+      return store.state.positionList.positions;
+    },
   },
   watch: {
     employee() {
@@ -107,6 +111,7 @@ export default {
     store.dispatch("employeeDetail/getEmployee", this.$route.params.id, {
       root: true,
     });
+    store.dispatch("positionList/getAllPositions", null, { root: true });
   },
 };
 </script>

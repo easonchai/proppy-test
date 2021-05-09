@@ -1,6 +1,7 @@
 <template>
   <EmployeeForm
     :employeeData="employee"
+    :positionList="positionList"
     buttonText="Add Employee"
     @name="updateName"
     @email="updateEmail"
@@ -43,6 +44,9 @@ export default {
   computed: {
     employeeStore() {
       return store.state.employeeCreate.employee;
+    },
+    positionList() {
+      return store.state.positionList.positions;
     },
   },
   watch: {
@@ -100,6 +104,9 @@ export default {
       });
       await alert.present();
     },
+  },
+  mounted() {
+    store.dispatch("positionList/getAllPositions", null, { root: true });
   },
 };
 </script>

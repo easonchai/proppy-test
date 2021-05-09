@@ -65,14 +65,12 @@
         interface="popover"
         :interface-options="options"
       >
-        <ion-select-option value="A">Senior Manager</ion-select-option>
-        <ion-select-option value="B">Manager</ion-select-option>
-        <ion-select-option value="C">Engineer</ion-select-option>
-        <ion-select-option value="D">Designer</ion-select-option>
-        <ion-select-option value="E">CEO</ion-select-option>
-        <ion-select-option value="F">COO</ion-select-option>
-        <ion-select-option value="G">CTO</ion-select-option>
-        <ion-select-option value="H">CMO</ion-select-option>
+        <ion-select-option
+          v-for="position in positionList"
+          :key="position.code"
+          :value="position.code"
+          >{{ position.description }}</ion-select-option
+        >
       </ion-select>
     </div>
     <div class="input__field">
@@ -143,7 +141,7 @@ export default {
     IonDatetime,
   },
   name: "AddEmployee",
-  props: ["employeeData", "buttonText"],
+  props: ["employeeData", "buttonText", "positionList"],
   emits: [
     "name",
     "email",
