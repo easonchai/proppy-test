@@ -49,6 +49,10 @@ Ensure that your system has the requirements to build & run the android app by f
 
 <br>
 
+Create a .env file using the .env.example as a template. The `VUE_APP_BASE_URL` should point to your backend server.
+
+<br>
+
 With all setup, enter the command below to run the application on an emulator
 
 ```bash
