@@ -49,11 +49,27 @@ Ensure that your system has the requirements to build & run the android app by f
 
 <br>
 
-With all setup, enter the command below to run the application on an emulator
+Create a .env file using the .env.example as a template. The `VUE_APP_BASE_URL` should point to your backend server.
+
+<br>
+
+With all setup, enter the command below to copy the application to an emulator like android studio
 
 ```bash
-npx cap open android
+ionic capacitor run android -l --external
 ```
+
+<br>
+
+This is important as this opens a port for your Android app to connect to via it's internal proxy. Ensure that your .env uses the same IP displayed in the console.
+
+<br>
+Example: `VUE_APP_BASE_URL='http://192.168.0.122:5000'`
+
+<br>
+
+If you still do not see any data from your backend: <br>
+Sstart the AVD and use a manual proxy configuration of 10.0.2.2 at port 8100.
 
 ## Useful Commands
 
@@ -63,6 +79,7 @@ dotnet ef migrations add    # Adds migration
 dotnet ef database update   # Runs migrations
 dotnet ef database update 0 # Reset all migrations
 dotnet watch                # Watches for changes (hot reload)
+ionic cap copy android      # Builds & copies the file for Android
 ```
 
 _References: https://docs.microsoft.com/en-us/ef/core/managing-schemas/migrations/?tabs=dotnet-core-cli_ <br>
