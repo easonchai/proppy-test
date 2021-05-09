@@ -78,7 +78,7 @@ dotnet run                  # Starts the API
 dotnet ef migrations add    # Adds migration
 dotnet ef database update   # Runs migrations
 dotnet ef database update 0 # Reset all migrations
-dotnet watch                # Watches for changes (hot reload)
+dotnet watch run            # Watches for changes (hot reload)
 ionic cap copy android      # Builds & copies the file for Android
 ```
 
