@@ -1,7 +1,7 @@
 <template>
   <form class="form__container" @submit.prevent>
     <div class="input__field">
-      <ion-label position="floating">Employee Name</ion-label>
+      <ion-label position="floating" class="required">Employee Name</ion-label>
       <ion-input
         type="text"
         required
@@ -14,7 +14,7 @@
       >
     </div>
     <div class="input__field">
-      <ion-label position="floating">Phone No</ion-label>
+      <ion-label position="floating" class="required">Phone Number</ion-label>
       <ion-input
         type="tel"
         required
@@ -27,7 +27,7 @@
       >
     </div>
     <div class="input__field">
-      <ion-label position="floating">Email</ion-label>
+      <ion-label position="floating" class="required">Email</ion-label>
       <ion-input
         type="email"
         required
@@ -40,7 +40,7 @@
       >
     </div>
     <div class="input__field">
-      <ion-label>Gender</ion-label>
+      <ion-label class="required">Gender</ion-label>
       <ion-select
         placeholder="Select One"
         v-model="employee.gender"
@@ -51,14 +51,14 @@
         <ion-select-option value="M">Male</ion-select-option>
       </ion-select>
     </div>
-    <ion-label>Date of Birth</ion-label>
+    <ion-label class="required">Date of Birth</ion-label>
     <ion-datetime
       placeholder="Select a date"
       display-format="DD MMM YYYY"
       v-model="employee.dob"
     ></ion-datetime>
     <div class="input__field">
-      <ion-label>Position</ion-label>
+      <ion-label class="required">Position</ion-label>
       <ion-select
         placeholder="Select One"
         v-model="employee.positionCode"
@@ -74,7 +74,7 @@
       </ion-select>
     </div>
     <div class="input__field">
-      <ion-label position="floating">Salary (RM)</ion-label>
+      <ion-label position="floating" class="required">Salary (RM)</ion-label>
       <ion-input
         type="number"
         inputmode="numeric"
@@ -88,7 +88,9 @@
       >
     </div>
     <div class="input__field">
-      <ion-label position="floating">Photo Filename/URL</ion-label>
+      <ion-label position="floating" class="required"
+        >Photo Filename/URL</ion-label
+      >
       <ion-input
         type="text"
         required
@@ -295,6 +297,12 @@ ion-input {
 ion-label {
   font-weight: 600;
   color: var(--ion-color-step-250);
+}
+
+.required::after {
+  content: "*";
+  color: var(--ion-color-danger);
+  margin-left: 2px;
 }
 
 .error {
