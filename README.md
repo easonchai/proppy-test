@@ -61,7 +61,10 @@ ionic capacitor run android -l --external
 
 <br>
 
-This is important as this opens a port for your Android app to connect to via it's internal proxy.
+This is important as this opens a port for your Android app to connect to via it's internal proxy. Ensure that your .env uses the same IP displayed in the console.
+
+<br>
+Example: `VUE_APP_BASE_URL='http://192.168.0.122:5000'`
 
 <br>
 
