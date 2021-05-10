@@ -17,6 +17,7 @@ using Proppy.API.Domain.Services;
 using Proppy.API.Domain.Repositories;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using Swashbuckle.AspNetCore;
 
 namespace Proppy.API
 {
@@ -56,6 +57,7 @@ namespace Proppy.API
             services.AddScoped<IEmployeeRepository, EmployeeRepository>();
             services.AddScoped<IEmployeeService, EmployeeService>();
             services.AddAutoMapper();
+            services.AddSwaggerGen();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -72,8 +74,9 @@ namespace Proppy.API
 
             app.UseCors(CorsPolicy);
 
-            // app.UseHttpsRedirection();
+            app.UseHttpsRedirection();
             app.UseMvc();
+            app.UseSwagger();
         }
     }
 }

@@ -10,7 +10,8 @@ using Microsoft.AspNetCore.Cors;
 
 namespace Proppy.API.Controllers
 {
-    [Route("/api/[controller]")]
+    [ApiController]
+    [Route("/[controller]")]
     public class PositionController: Controller
     {
         private readonly IPositionService _positionService;

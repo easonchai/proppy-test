@@ -10,7 +10,8 @@ using Proppy.API.Domain.Models.Queries;
 using Microsoft.AspNetCore.Cors;
 namespace Proppy.API.Controllers
 {
-    [Route("/api/[controller]")]
+    [ApiController]
+    [Route("/[controller]")]
     public class EmployeeController: Controller
     {
         private readonly IEmployeeService _employeeService;
