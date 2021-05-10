@@ -1,7 +1,0 @@
-.vs/
-
-# Compiled Artifacts
-backend/Proppy.API/obj/
-backend/Proppy.API/bin/
-
-app/.env
