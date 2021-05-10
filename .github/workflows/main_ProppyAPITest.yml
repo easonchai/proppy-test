@@ -27,13 +27,13 @@ jobs:
 
     - name: dotnet publish
       working-directory: ./backend/Proppy.API
-      run: dotnet publish -c Release -o ./backend/Proppy.API/myapp
+      run: dotnet publish -c Release -o ./api-prod
 
     - name: Upload artifact for deployment job
       uses: actions/upload-artifact@v2
       with:
         name: .net-app
-        path: ./backend/Proppy.API/myapp
+        path: ./backend/Proppy.API/api-prod
 
   deploy:
     runs-on: windows-latest
