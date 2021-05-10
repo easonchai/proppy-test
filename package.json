@@ -1,6 +1,6 @@
 {
-  "name": "ProppyApp",
-  "version": "0.0.1",
+  "name": "proppy_app",
+  "version": "0.0.4",
   "author": "Eason Chai <echai2905@gmail.com>",
   "private": true,
   "scripts": {
@@ -10,7 +10,8 @@
     "backend:migrate": "cd backend\\Proppy.API && dotnet ef database update",
     "backend:reset": "cd backend\\Proppy.API && dotnet ef database update 0",
     "backend:migrate:add": "cd backend\\Proppy.API && dotnet ef migrations add",
-    "build:android": "cd app && ionic cap copy android"
+    "build:android:dev": "cd app && ionic cap copy android",
+    "build:android:prod": "cd app && ionic cap build android --production"
   },
   "description": "Test Assignment For Proppy"
 }

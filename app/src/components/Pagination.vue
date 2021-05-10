@@ -71,7 +71,7 @@ export default {
 
 h2 {
   font-size: 16px;
-  color: var(--ion-color-step-250);
+  color: var(--ion-color-step-750);
   text-align: center;
   padding: 0px 12px;
 }

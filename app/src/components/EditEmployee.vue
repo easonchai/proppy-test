@@ -134,7 +134,7 @@ ion-select {
   border: 1px solid var(--ion-color-primary);
   margin: 4px 0;
   border-radius: 4px;
-  color: var(--ion-color-step-250);
+  color: var(--ion-color-step-750);
 }
 
 ion-input {
@@ -143,7 +143,7 @@ ion-input {
 
 ion-label {
   font-weight: 600;
-  color: var(--ion-color-step-250);
+  color: var(--ion-color-step-750);
   margin-bottom: 8px;
 }
 
@@ -159,7 +159,7 @@ ion-label {
 
 /* Popover Interface: set color for the popover using Item's CSS variables */
 .styled_select .select-interface-option {
-  --color: #333;
-  --color-hover: #333;
+  --color: var(--ion-color-step-800);
+  --color-hover: var(--ion-color-step-800);
 }
 </style>
