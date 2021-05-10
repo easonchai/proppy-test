@@ -234,14 +234,14 @@ export default {
 h1 {
   font-weight: bold;
   font-size: 20px;
-  color: var(--ion-color-step-100);
+  color: var(--ion-color-step-900);
   margin: 0;
 }
 
 .main__title {
   font-weight: 600;
   font-size: 18px;
-  color: var(--ion-color-step-200);
+  color: var(--ion-color-step-800);
   margin: 0 0 8px 0;
 }
 </style>

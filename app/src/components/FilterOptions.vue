@@ -181,7 +181,7 @@ ion-datetime {
 
 /* Popover Interface: set color for the popover using Item's CSS variables */
 .styled_select .select-interface-option {
-  --color: #333;
-  --color-hover: #333;
+  --color: var(--ion-color-step-800);
+  --color-hover: var(--ion-color-step-800);
 }
 </style>

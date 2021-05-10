@@ -160,14 +160,14 @@ ion-card {
 }
 
 ion-card-title {
-  color: var(--ion-color-step-100);
+  color: var(--ion-color-step-900);
   font-weight: bold;
   font-size: 24px;
   text-align: left;
 }
 
 ion-card-subtitle {
-  color: var(--ion-color-step-200);
+  color: var(--ion-color-step-800);
   font-weight: 600;
   font-size: 18px;
   text-align: left;

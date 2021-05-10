@@ -288,7 +288,7 @@ export default {
 .list__header {
   font-weight: bold;
   font-size: 20px;
-  color: var(--ion-color-step-100);
+  color: var(--ion-color-step-900);
 }
 
 .list__item {
@@ -299,14 +299,14 @@ export default {
 .main__title {
   font-weight: 600;
   font-size: 18px;
-  color: var(--ion-color-step-200);
+  color: var(--ion-color-step-800);
   margin: 0 0 8px 0;
 }
 
 .sub__title {
   font-weight: 500;
   font-size: 16px;
-  color: var(--ion-color-step-300);
+  color: var(--ion-color-step-700);
   margin: 0 0 4px 0;
 }
 
