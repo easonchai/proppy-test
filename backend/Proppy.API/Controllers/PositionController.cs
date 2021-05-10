@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Cors;
 namespace Proppy.API.Controllers
 {
     [ApiController]
+    [Route("/[controller]")]
     public class PositionController: Controller
     {
         private readonly IPositionService _positionService;
@@ -23,7 +24,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpGet]
-        [Route("/[controller]")]
         public async Task<IEnumerable<PositionResource>> GetAllAsync()
         {
             var positions = await _positionService.ListAsync();
@@ -33,7 +33,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpPost]
-        [Route("/[controller]")]
         public async Task<IActionResult> PostAsync([FromBody] SavePositionResource resource)
         {
             if (!ModelState.IsValid)
@@ -50,7 +49,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpPut("{code}")]
-        [Route("/[controller]")]
         public async Task<IActionResult> PutAsync(string code, [FromBody] UpdatePositionResource resource)
         {
             if (!ModelState.IsValid)
@@ -67,7 +65,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpDelete("{code}")]
-        [Route("/[controller]")]
         public async Task<IActionResult> DeleteAsync(string code)
         {
             var result = await _positionService.DeleteAsync(code);

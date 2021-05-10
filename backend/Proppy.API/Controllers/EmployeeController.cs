@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Cors;
 namespace Proppy.API.Controllers
 {
     [ApiController]
+    [Route("/[controller]")]
     public class EmployeeController: Controller
     {
         private readonly IEmployeeService _employeeService;
@@ -23,7 +24,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpGet]
-        [Route("/[controller]")]
         public async Task<QueryResultResource<EmployeeResource>> ListAsync([FromQuery] EmployeeQueryResource query)
         {
             var employeesQuery = _mapper.Map<EmployeeQueryResource, EmployeesQuery>(query);
@@ -34,7 +34,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpGet("{id}")]
-        [Route("/[controller]")]
         public async Task<EmployeeResource> GetAsync(int id)
         {
             var employee = await _employeeService.GetByIdAsync(id);
@@ -44,7 +43,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpPost]
-        [Route("/[controller]")]
         public async Task<IActionResult> PostAsync([FromBody] SaveEmployeeResource resource)
         {
             if (!ModelState.IsValid)
@@ -61,7 +59,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpPut("{id}")]
-        [Route("/[controller]")]
         public async Task<IActionResult> PutAsync(int id, [FromBody] SaveEmployeeResource resource)
         {
             if (!ModelState.IsValid)
@@ -78,7 +75,6 @@ namespace Proppy.API.Controllers
         }
 
         [HttpDelete("{id}")]
-        [Route("/[controller]")]
         public async Task<IActionResult> DeleteAsync(int id)
         {
             var result = await _employeeService.DeleteAsync(id);
